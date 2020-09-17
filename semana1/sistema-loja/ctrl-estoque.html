@@ -7,67 +7,85 @@
     <meta name="description" content="Venda de alimentos orgânicos">
     <meta name="keywords" content="Alimentos orgânicos, delivery, compra online">
     <meta name="author" content="Índio Medeiros">
+    <link rel="stylesheet" href="/estilo-geral.css">
     <title>Compras</title>
 </head>
 <body>
-    <div>
-        <h1>DATERRA | Compra</h1>
-    </div>
     
-    <div>
-        <a href="./index.html">Home</a>
-        <a href="./ctrl-estoque.html">Compra</a>
-        <a href="./add-produto.html">Encomenda</a>
-        <a href="./funcionarios.html">Sobre nós</a>
-        <a href="./contato.html">Contato</a>
+    <h1>DATERRA | Compra</h1>
+    <img id="logo-daterra" src="./img-estoque/logo-daterra.png" alt="logo da DATERRA">
+     
+    <div id="menus">
+        
+        <a class="itensmenu" href="./index.html">Home</a>
+        <a class="itensmenu" href="./ctrl-estoque.html">Compra</a>
+        <a class="itensmenu" href="./add-produto.html">Encomenda</a>
+        <a class="itensmenu" href="./funcionarios.html">Sobre nós</a>
+        <a class="itensmenu" href="./contato.html">Contato</a>
     </div>
 
-    <h2> Veja nosso estoque para compras</h2>
+    
+    <div id="lista-de-produtos">
+        <h2> Veja nosso estoque para compras</h2>
+        <table >
+            <tr>
+                <th class="titulos-produtos" >Produto</th>
+                <th class="titulos-produtos" >Descrição</th>
+                <th class="titulos-produtos" >Preço (R$)</th>
+                <th class="titulos-produtos" > Quantidade disponível</th>
+                <th class="titulos-produtos" > COMPRAR</th>
+            </tr>
 
-    <table>
-        <tr>
-            <th>Produto</th>
-            <th>Descrição</th>
-            <th>Preço (R$)</th>
-            <th>Quantidade disponível</th>
-        </tr>
+            <tr>
+                <td><img  width="100px" src="./img-estoque/banana.png" alt="Banana"/></td>
+                <td>  Banana(penca) </td>
+                <td> R$ 2,00 </td>
+                <td> 125 </td>
+                <td> <input class="botoes-compras" type="button" value="Compre"> </td>
+            </tr>
 
-        <tr>
-            <td><img  width="100px" src="./img-estoque/banana.png" alt="Banana"/></td>
-            <td>  Banana(penca) </td>
-            <td> R$ 2,00 </td>
-            <td> 125 </td>
-        </tr>
+            <tr>
+                <td><img width="100px" src="/img-estoque/laranja.png" alt="Laranja"/></td>
+                <td> Laranja (10) </td>
+                <td> R$ 3,00 </td>
+                <td> 500 </td>
+                <td> <input class="botoes-compras" type="button" value="Compre"> </td>
+            </tr>
 
-        <tr>
-            <td><img width="100px" src="/img-estoque/laranja.png" alt="Laranja"/></td>
-            <td> Laranja (10) </td>
-            <td> R$ 3,00 </td>
-            <td> 500 </td>
-        </tr>
+            <tr>
+                <td><img  width="100px" src="./img-estoque/maca.png" alt="Maçã"/></td>
+                <td> Maçã (kg) </td>
+                <td> R$ 7,00 </td>
+                <td> 254 </td>
+                <td> <input class="botoes-compras" type="button" value="Compre"> </td>
+            </tr>
 
-        <tr>
-            <td><img  width="100px" src="./img-estoque/maca.png" alt="Maçã"/></td>
-            <td> Maçã (kg) </td>
-            <td> R$ 7,00 </td>
-            <td> 254 </td>
-        </tr>
+            <tr>
+                <td><img  width="100px" src="./img-estoque/pera.png" alt="Pêra"/></td>
+                <td> Pêra(kg) </td>
+                <td> R$ 8,99 </td>
+                <td> 186 </td>
+                <td> <input class="botoes-compras" type="button" value="Compre"> </td>
+            </tr>
 
-        <tr>
-            <td><img  width="100px" src="./img-estoque/pera.png" alt="Pêra"/></td>
-            <td> Pêra(kg) </td>
-            <td> R$ 8,99 </td>
-            <td> 186 </td>
-        </tr>
-
-        <!-- Crie mais uma linha desta tabela abaixo \/ -->
-        <tr>
-            <td><img  width="100px" src="./img-estoque/uva.png" alt="Uva"/></td>
-            <td> Uva(cacho) </td>
-            <td> R$ 10,00 </td>
-            <td> 89 </td>
-        </tr>
-    </table>
+            <!-- Crie mais uma linha desta tabela abaixo \/ -->
+            <tr>
+                <td><img  width="100px" src="./img-estoque/uva.png" alt="Uva"/></td>
+                <td> Uva(cacho) </td>
+                <td> R$ 10,00 </td>
+                <td> 89 </td>
+                <td> <input class="botoes-compras" type="button" value="Compre"> </td>
+            </tr>
+        </table>
+    </div>
+    <div id="rodape">        
+        <p>Siga-nos nas redes sociais e compartilhe!</p>
+        <div>
+            <img class="redesociais" width="50px" src="https://image.flaticon.com/icons/png/512/25/25305.png" alt="facebook"/>
+            <img class="redesociais" width="50px" src="https://image.flaticon.com/icons/png/512/25/25425.png" alt="Instagram"/>
+            <img class="redesociais" width="50px" src="https://image.flaticon.com/icons/png/512/8/8800.png"   alt="Twitter"/>
+        </div>
+    </div>
 
 </body>
 </html>

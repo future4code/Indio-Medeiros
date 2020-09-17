@@ -1,0 +1,166 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, sans-serif;
+}
+body{
+    text-align: center;
+}
+/* configuração da index.html */
+h1{ 
+    visibility: hidden; /* todos títulos hidden*/
+}
+#logo-daterra {
+    width: 30%;
+    display: block;
+    margin:  auto;
+    padding: 2vh;
+}
+
+#menus {
+    text-align: center;
+    border-bottom:#f3e7e4 solid 1px ;
+}
+.itensmenu{
+    color: green;
+    text-decoration: none;
+    margin-right: 10px;
+    padding: 20px;
+    font: bold 14pt Helvetica;
+}
+.itensmenu:hover{
+    color: #581709;
+}
+
+#sobre-a-loja{
+    display: inline-block;
+    color: #581709;
+    text-align: justify;
+    height: 40vh;
+    font: normal 18pt Helvetica;
+    margin-top: 10vh;
+    
+}
+#rodape{
+    height: 12vh;
+    text-align: center;
+    border-top: #f3e7e4 solid 1px;
+    color: #581709;
+}
+#rodape>p{
+    margin-top: 10px;
+}
+.redesociais{
+    margin: 20px;
+    width: 30px;
+}
+/* declarações só para o html dos funcionarios/sobre nós */
+#funcionarios{
+    color: #581709;
+    text-align: center;
+    height: 40vh;
+    font: normal 18pt Helvetica;
+    margin-top: 10vh;
+}
+#funcionarios>h2{
+    margin-bottom: 50px;
+}
+#funcionarios>p{
+    display: inline-block;
+    text-align: left;
+    margin-bottom: 30px;
+}
+/* declarações só para o html das compras */
+#lista-de-produtos{
+    border: black solid 1px;
+    display: inline-block;
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#lista-de-produtos>h2{
+    padding: 20px;
+    color: #581709;
+}
+.titulos-produtos{
+    padding: 30px;
+    color: #581709;
+}
+.botoes-compras{
+    padding: 10px;
+    background-color:tomato;
+    font: bold 12pt helvetica;
+    color: white;
+    border: none;
+}
+.botoes-compras:hover{
+    background-color: rgb(163, 39, 17);
+}
+
+/* declaração para página de contato */
+
+#caixa-de-contato{
+    border: black solid 1px;
+    display: inline-block;
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #581709;
+
+}
+#formulario{
+    text-align: center;
+    padding: 50px;
+}
+.itens-do-formulario{
+    margin: 10px;
+    padding: 5px;
+}
+#botao-do-formulario{
+    padding: 10px;
+    width: 225px;
+    background-color:tomato;
+    font: bold 12pt helvetica;
+    color: white;
+    border: none;
+}
+#botao-do-formulario:hover{
+    background-color: rgb(163, 39, 17);
+}
+
+/* declarações para página de add produto /Encomenda */
+#msg-form{
+    display: inline-block;
+    padding: 20px;
+    text-align: justify;
+    color: #581709;
+}
+#msg-form>h2{
+    margin-bottom: 20px;
+}
+
+#formulario-de-encomenda{
+    color: #581709;
+    border: black solid 1px;
+    display: inline-block;
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+#botao-de-encomenda{
+    padding: 10px;
+    width: 225px;
+    background-color:tomato;
+    font: bold 12pt helvetica;
+    color: white;
+    border: none;
+}
+.form-add{
+    text-align: center;
+}
+.itens-form-encomenda{
+    padding: 5px;
+    margin-top: 10px;
+}
