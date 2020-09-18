@@ -7,36 +7,43 @@
     <meta name="description" content="Venda de alimentos orgânicos">
     <meta name="keywords" content="Alimentos orgânicos, delivery, compra online">
     <meta name="author" content="Índio Medeiros">
+    <link rel="stylesheet" href="/estilo-geral.css">
     <title>Contato</title>
 </head>
 <body>
-    <div>
-        <h1>DATERRA | Fale conosco</h1>
-    </div>
     
-    <div>
-        <a href="./index.html">Home</a>
-        <a href="./ctrl-estoque.html">Compra</a>
-        <a href="./add-produto.html">Encomenda</a>
-        <a href="./funcionarios.html">Sobre nós</a>
-        <a href="./contato.html">Contato</a>
+    <h1>DATERRA | Fale conosco</h1>
+    <img id="logo-daterra" src="./img-estoque/logo-daterra.png" alt="logo da DATERRA">
+     
+    <div id="menus">
+        
+        <a class="itensmenu" href="./index.html">Home</a>
+        <a class="itensmenu" href="./ctrl-estoque.html">Compra</a>
+        <a class="itensmenu" href="./add-produto.html">Encomenda</a>
+        <a class="itensmenu" href="./funcionarios.html">Sobre nós</a>
+        <a class="itensmenu" href="./contato.html">Contato</a>
     </div>
+
     <br>
-    <div>
+    <div id="caixa-de-contato">
         <p>Cadastre-se e entraremos em contato com você!</p>
-        <form action="#">
-            <label for="nome">Nome:</label>
+        <form action="#" id="formulario">
+            <label class="itens-do-formulario" for="nome">Nome:</label>
+            <input class="itens-do-formulario"   type="text" name="nome" id="nome" placeholder="digite o seu nome">
             <br>
-            <input type="text" name="nome" id="nome" placeholder="digite o seu nome">
+            <label class="itens-do-formulario"  for="email">E-mail</label>
+            <input class="itens-do-formulario"  type="email" name="email" id="email" placeholder="digite o seu email">
             <br>
-            <br>
-            <label for="email">E-mail</label>
-            <br>
-            <input type="email" name="email" id="email" placeholder="digite o seu email">
-            <br>
-            <br>
-            <input type="button" value="Enviar">
+            <input id="botao-do-formulario" class="itens-do-formulario"  type="button" value="Enviar">
         </form>
+    </div>
+    <div id="rodape">        
+        <p>Siga-nos nas redes sociais e compartilhe!</p>
+        <div>
+            <img class="redesociais" width="50px" src="https://image.flaticon.com/icons/png/512/25/25305.png" alt="facebook"/>
+            <img class="redesociais" width="50px" src="https://image.flaticon.com/icons/png/512/25/25425.png" alt="Instagram"/>
+            <img class="redesociais" width="50px" src="https://image.flaticon.com/icons/png/512/8/8800.png"   alt="Twitter"/>
+        </div>
     </div>
 </body>
 </html>
