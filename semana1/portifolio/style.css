@@ -1,0 +1,60 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    color: #2c7db5;
+}
+#logo, #titulo-cabecalho, #lista-menu, .menus{
+    display: inline-block;
+}
+#logomarca{
+    width: 50px;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+#cabecalho{ 
+    border-bottom: 1px solid rgb(175, 174, 174);
+    text-align: center;
+}
+#titulo-cabecalho{
+    margin-left: 0.5vw;
+}
+#lista-menu{
+    text-align: right;
+    margin-left: 30vw;
+}
+.menus{
+    
+    margin-left: 2vw;
+    font: bold 16pt roboto;
+    text-decoration: none;
+    color: rgb(175, 174, 174);
+    padding: 4px 6px 4px 6px;
+}
+.menus:hover, .menus:active{
+    color: #2c7db5;
+}
+/* corpo */
+#corpo{
+    height: 80vh;
+    
+}
+
+/* rodapé */
+#rodape{
+    height: 14vh;
+    background-color: #2c7db5;
+    
+    
+}
+.container-icons{
+    padding: 10px;
+    margin-left: 15vw;
+}
+.iconesocial{
+    width: 60px;
+    margin: -5px;
+    
+}
