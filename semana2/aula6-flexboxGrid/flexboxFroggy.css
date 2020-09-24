@@ -1,0 +1,55 @@
+//etapas - códigos
+
+//etapas 1
+justify-content: flex-end;
+//etapas 2
+justify-content: center;
+//etapas 3
+justify-content: space-around;
+//etapas 4
+justify-content: space-between
+//etapas 5
+align-items: flex-end;
+//etapas 6
+justify-content: center;
+align-items: center;
+//etapas 7
+align-items: flex-end;
+justify-content: space-around;
+//etapas 8
+flex-direction: row-reverse
+//etapas 9
+flex-direction: column;
+//etapas 10
+flex-direction: row-reverse;
+justify-content: flex-end;
+//etapas 11
+flex-direction: column;
+justify-content: flex-end;
+//etapas 12
+flex-direction: column-reverse;
+justify-content: space-between;
+//etapas 13
+align-items: flex-end;
+justify-content: center;
+flex-direction: row-reverse;
+//etapas 14
+order:3;
+//etapas 15
+order: -3;
+//etapas 16
+align-self: flex-end;
+//etapas 17
+align-self: flex-end;
+order:5
+//etapas 18
+flex-wrap: wrap;
+//etapas 19
+flex-direction: column;
+flex-wrap: wrap;
+//etapas 20
+flex-flow: column wrap;
+//etapas 21
+align-content: flex-start;
+//etapas 22
+align-content: flex-end;
