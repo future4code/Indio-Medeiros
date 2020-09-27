@@ -99,7 +99,7 @@ footer img {
 
 /* Página do formulário */
 h3{
-    font-size: 1.4em;
+    font-size: 3em;
     color: white; 
  }
 #footer-form{
@@ -118,9 +118,10 @@ input:focus{
 input{
     border: none;
     height: 3vh;
-    width: 53%;
+    width: 100%;
     font-size: 1.5em;
 }
+
 a p{
     font-size: 2em;
     color: white;
@@ -147,7 +148,7 @@ a p:hover{
         margin-left: 3vw; 
         
     }
-    h1, h2{
+    h1, h2, h3{
         font-size: 1.5em;
     }
      p{
@@ -218,19 +219,26 @@ a p:hover{
     form p{
         margin-top: 10vh;
         font-size: 1.3em;
+      
     }
     a p{
         font-weight: 600;
+        
     }
     label{
         font-size: 1em;
     }
    a{
+       
        text-align: center;
    }
    input{
        height: 4vh;
        width: 80%;
    }
-
+   
+    h3{
+        font-size: 1.2em;
+    
+     }
 }
