@@ -1,0 +1,244 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+    background-color: #ff914d;
+}
+
+/* Cabeçalho */
+
+header {
+    top: 0;
+}
+
+header img {
+    width: 10%;
+    padding: 1%;
+}
+
+/* 1º sessão do site */
+
+section:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff914d;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+section:nth-child(1) img {
+    width: 52.2%; 
+    margin-left: 5vw; 
+}
+
+h1 {
+    font-size: 3em;
+    color: white;
+}
+
+p {
+    font-weight: 300;
+    color: rgb(59, 59, 59);
+    font-size: 1.5em;
+}
+/* Botões */
+button {
+    background-color: #ffbd59;
+    border-radius: 20px;
+    border: none;
+    font: bold 1.3em helvetica;
+    color: white;
+    padding: 3%;
+}
+
+section:nth-child(2) button{
+    padding: 2%;
+}
+button:hover {
+    background-color: #f59403;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* 2ª sessão do site */
+
+section:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 95vh;
+}
+
+section:nth-child(2) img {
+    width: 25%;
+}
+
+h2 {
+    color: #f59403;
+    font-size: 2.5em;
+    padding-right: 10vw;
+}
+
+/* rodapé do site */
+
+footer {
+    background-color: rgb(59, 59, 59);
+}
+
+footer img {
+    bottom: 0;
+    width: 2%;
+    padding: 2vh;
+}
+
+/* Página do formulário */
+h3{
+    font-size: 3em;
+    color: white; 
+ }
+#footer-form{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+label{
+    color: white;
+    font-size: 1.5em;
+}
+input:focus{
+    outline: none;
+}
+input{
+    border: none;
+    height: 3vh;
+    width: 100%;
+    font-size: 1.5em;
+}
+
+a p{
+    font-size: 2em;
+    color: white;
+}
+a{
+    text-decoration: none;
+}
+a p:hover{
+    color: black;
+}
+
+/* responsivo Iphone X /6/7/8/plus e maioria dos celulares 
+/* ladscape */
+@media screen and (max-width: 850px) and  (orientation: landscape) {
+  
+    header{
+        height: 1vh;
+    }
+    section:nth-child(1) {
+        height: 100vh;
+     }
+    section:nth-child(1) img {
+        width: 40%; 
+        margin-left: 3vw; 
+        
+    }
+    h1, h2, h3{
+        font-size: 1.5em;
+    }
+     p{
+        font-size: 1em;
+    }
+    a p{
+        text-align: center;
+        font-size: 1.5em;
+    }
+    input{
+        height: 8vh;
+        width: 99%;
+    }
+    label{
+        font-size: 1em;
+    }
+}
+
+    /* screen vertical */
+@media screen and (max-width: 415px){
+    /* sessão 1 */
+    header{
+        height: 10vh;
+    }
+    header img {
+        width: 15%;
+        
+    }
+    section:nth-child(1) {
+      flex-direction: column;
+        height: auto;
+       
+    }
+    section:nth-child(1) img {
+        margin-top: 10vh;
+        width: 90%;
+    }
+    button {
+        font-size: 1.0em;
+    }
+    h1,
+    h2 {
+        font-size: 1.6em;
+    }
+    p {
+        font-size: 1em;
+    }
+    /* sessão 2 */
+    section:nth-child(2) button {
+        margin-left: 5vw;
+    }
+    h2,
+    section:nth-child(2) p {
+        margin-left: 6vw;
+    }
+    section:nth-child(2) img {
+        width: 80%;
+    }
+    /* rodapé */
+    footer img {
+        width: 5%;
+    }
+    /* página do formulário */
+    
+   form{
+       text-align: center;
+   }
+    form p{
+        margin-top: 10vh;
+        font-size: 1.3em;
+      
+    }
+    a p{
+        font-weight: 600;
+        
+    }
+    label{
+        font-size: 1em;
+    }
+   a{
+       
+       text-align: center;
+   }
+   input{
+       height: 4vh;
+       width: 80%;
+   }
+   
+    h3{
+        font-size: 1.2em;
+    
+     }
+}
