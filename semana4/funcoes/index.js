@@ -162,25 +162,21 @@
 //     }
 // }
 
-//d.
+//d
 function organizarArray (array) {
     let pivor;
-    let j;
+    let j = 8;
+    let novoArray1 = [];
     for (let i = 0; i < array.length; i++){
-        for ( j = 1; j < array.length; j++){
-            if (array[i] > array[j]){
-                
-                pivor = array[j];
-                array[j] = array[i];
-                array[i] = pivor;
-                
+        if(j > array.length/2 -1){
+            pivor =  array[j];
+            array[j] = array[i];
+            array[i] = pivor;
+            novoArray1[i] = pivor
+            novoArray1[j] = array[j]
+                j--
             }
-        }
-        
     }
-    return array;
+    return novoArray1;
 }
 
-const numeros = [13, 12, 41, 15, 10, 16, 23, 8, 0];
-let array = organizarArray(numeros);
-console.log(array)
