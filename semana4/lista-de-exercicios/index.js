@@ -159,3 +159,43 @@ function AcharOmaiorDivisiveisDiferentes( number1, number2){
     }
 
 }
+
+//Exercícios de Funções
+//1.
+function maiorMenor(array){
+    let maiorNumero = 0;
+    let segundoMaior = 0
+    let menorNumero = 0;
+    let segundoMenor = 0;
+
+    //maior numero
+    for(let i = 0; i < array.length; i++){
+        if(maiorNumero < array[i]){
+            maiorNumero = array[i]  
+        }
+    }
+    // segundo maior
+    for(let i = 0; i < array.length; i++){     
+        if(maiorNumero !== array[i] && segundoMaior < array[i]){
+            segundoMaior = array[i]
+        }
+    }
+    //menor numero
+    menorNumero = maiorNumero
+    segundoMenor = segundoMaior
+    for(let i = 0; i < array.length; i++){
+        if (menorNumero > array[i]){
+            menorNumero = array[i]
+        }
+    }
+    //segundo menor
+    for(let i = 0; i < array.length; i++){ 
+        if(menorNumero !== array[i] && segundoMenor > array[i]){
+            segundoMenor = array[i]
+        }
+    }
+    
+    console.log(segundoMaior)
+    console.log (segundoMenor)
+}
+maiorMenor([10, 20, 80, 15, 278, 915, 800 , 1000])
