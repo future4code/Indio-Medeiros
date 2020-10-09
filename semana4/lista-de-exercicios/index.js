@@ -63,4 +63,18 @@ Ao final o programa imprime no console:
     -  8
 */
 
+/*
+4.
+O programa conta encontra a quantidade maxima e minima de elementos dentro do grupo de números.
+ - O programa consegue fazer os seus procedimentos através de um loop, que se repete considerando
+  a quantidade de elementos do conjuto
+  - dentro do laço tem condições que compara entre numero atual de elementos verificados com numérios prédefinidos
+  - Na primeira condição adiciona somente números menores  que o seu anterior
+  - Na segunda condição adiciona somente números maiores que o seu antecessor
+  no final é impresso:
+  1
+  25
+*/
+
+
 
