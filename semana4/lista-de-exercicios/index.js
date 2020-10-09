@@ -89,5 +89,12 @@ function imprimirLista(listaArray){
     }
 }
 
-
+/*
+2.
+a. false
+b. true
+c. true
+d. true
+e. true
+*/
 
