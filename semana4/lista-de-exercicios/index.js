@@ -116,4 +116,17 @@ function imprimirQuantidadeDeNumerosPares(quantidadeDeNumerosPares){
     i++  
     }
 }
+/*
+4.
+ */
+function verificarTriangulo (a, b, c){
+    
+    if(a === b && b === c){
+        return "Equilátero"
+    }else if(a === b || b === c || c === a){
+        return "Isósceles"
+    }else if (a !== b && b !== c){
+        return "Escaleno"
+    }
+}
 
