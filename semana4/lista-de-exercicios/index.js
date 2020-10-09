@@ -130,3 +130,32 @@ function verificarTriangulo (a, b, c){
     }
 }
 
+//5.
+
+function AcharOmaiorDivisiveisDiferentes( number1, number2){
+    //maior numero
+    if (number1 > number2){
+        console.log("O maior é:", number1)
+    }else{
+        console.log("O maior é:", number2)
+    }
+    //divisão
+    if (number1 % number2 !== 0){
+        console.log (number1, "não é divisível por", number2)
+    }else{
+        console.log (number1, "é divisível por", number2)
+    }
+
+    if (number2 % number1 !== 0){
+        console.log (number2, "não é divisível por", number1)
+    }else{
+        console.log (number2, "é divisível por", number1)
+    }
+
+    if (number1 > number2){
+        console.log ("A diferença entre eles é", number1 - number2)
+    }else{
+        console.log ("A diferença entre eles é", number2 - number1)
+    }
+
+}
