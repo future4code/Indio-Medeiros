@@ -77,4 +77,17 @@ O programa conta encontra a quantidade maxima e minima de elementos dentro do gr
 */
 
 
+//Exercícios de Lógica de Programação
+
+/*
+1.
+Através de estruturas de repetição: for, while e for of
+*/
+function imprimirLista(listaArray){
+    for(let i = 0; i < listaArray.length; i++){
+        console.log (listaArray[i])
+    }
+}
+
+
 
