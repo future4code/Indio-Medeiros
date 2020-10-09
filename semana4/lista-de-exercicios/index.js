@@ -225,10 +225,18 @@ function criaRetangulo (lado1, lado2){
     let objeto  = {
         largura: lado1,
         altura: lado2,
-        parímetro: 2 *(lado1 + lado2),
+        parimetro: 2 *(lado1 + lado2),
         area: lado1 * lado1
     }
     return objeto
 }
 
+//3.
+let filmeFavorito = {
+    titulo: "A Origem",
+    ano: "2006",
+    diretor: "bill",
+    atores: ["leonardo", "Leandro", "Lais"]
+}
+console.log(`Venha assistir ao filme ${filmeFavorito.titulo}, de ${filmeFavorito.ano}, dirigido por ${filmeFavorito.diretor} e estrelado por ${filmeFavorito.atores[0]}, ${filmeFavorito.atores[1]}, ${filmeFavorito.atores[2]}`)
 
