@@ -207,3 +207,17 @@ let imprimir = () =>{
     alert("Hello Future4")
 }
 imprimir()
+
+
+//Exercícios de Objetos
+//1.
+//Objetos são semelhantes aos objetos do mundo real, é possível ter propriedades especificas
+//organização especifica com diversos tipos de variáveis em um mesmo objeto.
+// Se você quer guardar uma informação que necessite de caracteristicas especificas,exmemplo
+// cadastro de pessoas, usar o conceito de objeto é mais recomendável, pois podemos guardar o nome, idade
+// genero tudo em um só lugar. Além disso é possível definir funções e criar métodos.
+//
+//Diferente do objeto, o array se organiza de forma ordenada com indexação e isso nos permite a utilizar funções onde necessita e facilita o trabalho
+//de verificação. Um bom exemplo de uso seria listas.
+
+
