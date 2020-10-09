@@ -199,3 +199,11 @@ function maiorMenor(array){
     console.log (segundoMenor)
 }
 maiorMenor([10, 20, 80, 15, 278, 915, 800 , 1000])
+
+
+
+//2.
+let imprimir = () =>{
+    alert("Hello Future4")
+}
+imprimir()
