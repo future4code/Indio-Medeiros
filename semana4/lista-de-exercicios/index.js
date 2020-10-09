@@ -46,3 +46,21 @@ O código é um conversor de moeda, do Dolar para real.
  */
 
 
+ /*
+ 3.
+ O programa separa um grupo de numeros  contendo numeros pares e impares em dois 2 grupos distintos:
+ 1 - grupo de numeros pares
+ 2 - grupo de numeros ímpares
+ 
+ O programa consegue fazer os seus procedimentos através de um loop, que se repete considerando
+  a quantidade de elementos do conjuto
+    a - a cada repetição ele verifica se o resto da divisão do número encontrado é 0 ou 1
+    b - se for 0, ele adiciona números pares a um novo conjunto de números
+    c - se for 1, ele adiciona números ímpares a um novo conjunto de números, que difere do conjunto dos números pares
+Ao final o programa imprime no console:
+    -  Quantidade total de números 14
+    -  6
+    -  8
+*/
+
+
