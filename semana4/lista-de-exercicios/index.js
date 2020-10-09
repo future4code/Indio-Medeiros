@@ -98,3 +98,22 @@ d. true
 e. true
 */
 
+/*
+3.
+Não funciona, por que não é possivel saber os números pares com a multiplicação
+Não existe uma condição que filtre os números pares
+a variável não foi inicializada,  e a incrementação da variável i não existe,por isso teremos um loop infinito
+*/
+function imprimirQuantidadeDeNumerosPares(quantidadeDeNumerosPares){
+
+    let i = 0
+    while(i < quantidadeDeNumerosPares) {
+        if(i % 2 === 0){
+            console.log(i)
+        }else{
+            quantidadeDeNumerosPares += 1 
+        }
+    i++  
+    }
+}
+
