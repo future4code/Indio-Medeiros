@@ -220,4 +220,15 @@ imprimir()
 //Diferente do objeto, o array se organiza de forma ordenada com indexação e isso nos permite a utilizar funções onde necessita e facilita o trabalho
 //de verificação. Um bom exemplo de uso seria listas.
 
+//2.
+function criaRetangulo (lado1, lado2){
+    let objeto  = {
+        largura: lado1,
+        altura: lado2,
+        parímetro: 2 *(lado1 + lado2),
+        area: lado1 * lado1
+    }
+    return objeto
+}
+
 
