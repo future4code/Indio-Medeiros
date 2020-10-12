@@ -307,4 +307,31 @@ const pessoasRestringidas = pessoasMontanha.filter((pessoasMontanha) => {
     return !(pessoasMontanha.altura >= 1.5 && pessoasMontanha.idade > 14 &&  pessoasMontanha.idade < 60)
  })
 
-
+4//
+const consultas = [
+	{ nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
+	{ nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
+	{ nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
+	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+]
+let saudar
+let mensagemLembrar
+const consultasCanceladas = consultas.map((consultas) => {
+    
+    if (consultas.genero === "masculino"){
+        saudar = "Sr."
+        mensagemLembrar = "lembrá-lo "
+        mensagemLembrar = "lembrá-la"
+    }else{
+        saudar = "Sra."
+    }
+    if (consultas.cancelada){
+      return  `Olá, ${ saudar } ${ consultas.nome  }. Estamos enviando esta mensagem para
+        ${ mensagemLembrar} da sua consulta no dia ${ consultas.dataDaConsulta}. Por favor, acuse
+        o recebimento deste e-mail.`
+    }else if (!consultas.cancelada){
+       return `Olá, ${ saudar } ${ consultas.nome  }. Infelizmente, sua consulta marcada
+        para o dia ${ consultas.dataDaConsulta } foi cancelada. Se quiser, pode entrar em 
+        contato conosco para remarcá-la`
+    }
+})
