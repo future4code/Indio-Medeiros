@@ -314,10 +314,11 @@ const consultas = [
 	{ nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
 	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
 ]
-let saudar
-let mensagemLembrar
+
 const consultasCanceladas = consultas.map((consultas) => {
-    
+    let saudar
+    let mensagemLembrar
+
     if (consultas.genero === "masculino"){
         saudar = "Sr."
         mensagemLembrar = "lembrá-lo "
