@@ -257,4 +257,20 @@ function anonimizarPessoa (pessoa){
 }
 
 
+//Exercícios de Funções de array
 
+const pessoas = [
+	{ nome: "Pedro", idade: 20 },
+	{ nome: "João", idade: 10 },
+	{ nome: "Paula", idade: 12 },
+	{ nome: "Artur", idade: 89 } 
+]
+//1a.
+const soAdultos = pessoas.filter((pessoas) => {
+        return pessoas.idade >= 20
+})
+
+//1b.
+const soCriancas = pessoas.filter((pessoas) => {
+    return pessoas.idade < 20
+})
