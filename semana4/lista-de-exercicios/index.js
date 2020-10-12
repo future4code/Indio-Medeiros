@@ -286,3 +286,25 @@ const multiplicar = array.map((array) => {
 const multiplicar2 = array.map((array) => {
     return String (array * 3)
  })
+
+ //3.
+
+ const pessoasMontanha = [
+	{ nome: "Paula", idade: 12, altura: 1.8},
+	{ nome: "João", idade: 20, altura: 1.3},
+	{ nome: "Pedro", idade: 15, altura: 1.9},
+	{ nome: "Luciano", idade: 22, altura: 1.8},
+	{ nome: "Artur", idade: 10, altura: 1.2},
+	{ nome: "Soter", idade: 70, altura: 1.9}
+]
+//3a
+const permitirPessoas = pessoasMontanha.filter((pessoasMontanha) => {
+   return pessoasMontanha.altura >= 1.5 && pessoasMontanha.idade > 14 &&  pessoasMontanha.idade < 60
+})
+
+//3b
+const pessoasRestringidas = pessoasMontanha.filter((pessoasMontanha) => {
+    return !(pessoasMontanha.altura >= 1.5 && pessoasMontanha.idade > 14 &&  pessoasMontanha.idade < 60)
+ })
+
+
