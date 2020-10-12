@@ -274,3 +274,15 @@ const soAdultos = pessoas.filter((pessoas) => {
 const soCriancas = pessoas.filter((pessoas) => {
     return pessoas.idade < 20
 })
+
+//2a.
+const array = [1, 2, 3, 4, 5, 6]
+
+const multiplicar = array.map((array) => {
+   return array * 2
+})
+
+//2c.
+const multiplicar2 = array.map((array) => {
+    return String (array * 3)
+ })
