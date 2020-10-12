@@ -236,7 +236,25 @@ let filmeFavorito = {
     titulo: "A Origem",
     ano: "2006",
     diretor: "bill",
-    atores: ["leonardo", "Leandro", "Lais"]
+    atores: ["leonardo", " Leandro", " Lais"]
 }
-console.log(`Venha assistir ao filme ${filmeFavorito.titulo}, de ${filmeFavorito.ano}, dirigido por ${filmeFavorito.diretor} e estrelado por ${filmeFavorito.atores[0]}, ${filmeFavorito.atores[1]}, ${filmeFavorito.atores[2]}`)
+console.log(`Venha assistir ao filme ${filmeFavorito.titulo}, de ${filmeFavorito.ano}, dirigido por ${filmeFavorito.diretor} e estrelado por ${filmeFavorito.atores}`)
+
+//4.
+
+const pessoa = {
+    nome: "indio",
+    idade: "32",
+    email: "bboyindio@gmail.com",
+    endereço: "rua ladeira do silva"
+}
+function anonimizarPessoa (pessoa){
+    let copiaPessoa = {
+        ...pessoa,
+        nome: "ANÔNIMO"
+    }
+    return copiaPessoa
+}
+
+
 
