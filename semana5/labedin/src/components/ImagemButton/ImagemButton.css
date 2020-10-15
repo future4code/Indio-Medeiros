@@ -1,0 +1,15 @@
+.image-button-container {
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    padding: 15px 10px;
+    margin: 10px 0px;
+}
+
+.image-button-container > img {
+    width: 30px;
+    margin-right: 10px;
+}
+.image-button-container > p {
+    color: white;
+}
