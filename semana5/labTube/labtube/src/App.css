@@ -1,0 +1,157 @@
+body {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.tela-inteira {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: roboto;
+}
+h1{
+  font: bold 2em roboto;
+}
+header {
+  background-color: orange;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  height: 10%;
+}
+header>div{
+  display: flex;
+  justify-content: center;
+
+}
+input:nth-child(1){
+  width: 20vw;
+  height: 28px;
+  font-size: 1.3em;
+  background-color: rgb(250, 170, 22);
+  border: black solid 1px;
+}
+input:nth-child(2){
+
+  width: 20px;
+  height: 20px;
+  padding: 5px 10px;
+
+
+}
+::placeholder{
+  color: rgba(8, 0, 0, 0.11);
+  font: normal 1em roboto;
+}
+input:focus{
+  outline: none;
+  background-color:rgb(252, 190, 76);
+}
+div>img{
+  width: 30px;
+  margin: 0px 10px;
+}
+div>img:hover{
+  cursor: pointer;
+}
+
+li>img{
+  width: 20px;
+  margin-right: 20px;
+}
+main {
+  min-height: 80%;
+  display: flex;
+}
+
+.menu-vertical {
+  flex-basis: 200px;
+  background-color: orange;
+}
+
+.botoes-meunu-vertical {
+  list-style-type: none;
+  padding: 10px ;
+}
+.botoes-meunu-vertical:hover{
+  background-color: rgb(252, 190, 76);
+}
+
+.painel-de-videos {
+  justify-content: center;
+  padding-top: 20px;
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 17% 0.2%);
+  grid-template-rows: repeat(4, 270px 30px);
+  column-gap: 8px;
+}
+
+.media1 {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.media2 {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+.media3 {
+  grid-column-start: 5;
+  grid-row-start: 1;
+}
+
+.media4 {
+  grid-column-start: 7;
+  grid-row-start: 1;
+}
+
+.media5 {
+  grid-column-start: 1;
+  grid-row-start: 3;
+}
+
+.media6 {
+  grid-column-start: 3;
+  grid-row-start: 3;
+}
+
+.media7 {
+  grid-column-start: 5;
+  grid-row-start: 3;
+}
+
+.media8 {
+  grid-column-start: 7;
+  grid-row-start: 3;
+}
+
+.box-pagina-principal {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-template-columns: 1fr;
+  align-items: start;
+  justify-items: stretch;
+}
+
+
+footer {
+  height: 10%;
+  background-color: grey;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.box-pagina-principal > img {
+  width: 100%;
+  height: 200px;
+}
+
+h4 {
+  margin-left: 20px;
+}
+
