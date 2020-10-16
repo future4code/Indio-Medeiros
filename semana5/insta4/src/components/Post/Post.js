@@ -20,6 +20,8 @@ class Post extends React.Component {
     marcador: false,
     compartilhar: false,
     mensagem: false
+
+    
   }
 
   onClickCurtida = () => {
@@ -120,7 +122,7 @@ class Post extends React.Component {
         <IconeComContador
           icone={iconeCompartilhar}
           onClickIcone={this.onClickCompartilhar}
-          valorContador={this.state.numeroComentarios}
+         
         />
 
       </div>
