@@ -1,15 +1,17 @@
-import logo from './logo.svg';
+import React, {useState} from 'react'
 import './App.css';
 import styled from 'styled-components'
 import CardMatch from './Components/CardMatch';
-import coracaoInicio from './assents/coracao-telainicial.svg'
+import TelaMatch from './Components/TelaMatch';
+import iconeMudarTela from './assents/icone-mudar-tela.svg'
+
 
 const Div = styled.div `
-  width: 360px;
+  width: 100vw;
   height: 100vh;
   background: #F13939;
-  border-radius: 30px;
   margin: auto;
+  text-align:center;
 `
 const DivTitulo = styled.div `
   display:flex;
@@ -17,8 +19,6 @@ const DivTitulo = styled.div `
   color:black;
   background-color:white;
   border: 1px solid #F13939;
-  border-top-right-radius: 30px;
-  border-top-left-radius: 30px;
   justify-content: center;
 `
 const H1 = styled.h1 `
@@ -30,36 +30,33 @@ const H1 = styled.h1 `
 const Bold = styled(H1) `
   color:#F13939;
 `
-const Img = styled.img ` 
-  width:100px;
-  margin-top:200px;
-  animation: fill 1s linear infinite;
-	
-			@keyframes fill {
-        10% {
-          width: 30%;
-        }
-
-        50% {
-          width:40%;
-        }
-
-        100% {
-          width: 20%;
-        }
-			}
+const Logo = styled.img `
+  width: 10px;
+`
+const Input = styled.input ` 
+   width: 30px;
+   margin-left:200px;
+   outline: none;
+   :hover{
+        -webkit-transform: scale(1);
+        transform: scale(1.3);
+    }
 `
 function App() {
 
+  const [telaDeMatch, setTelaMatch] = useState(false)
+
   return (
-    <Div className="App">
+    <Div>
       <DivTitulo>
         <H1>Astro</H1>
         <Bold>match</Bold>
+        <Logo src={iconeMudarTela} />
+        <Input type="image" src={iconeMudarTela} onClick={() => setTelaMatch(!telaDeMatch)} />
       </DivTitulo>
-      <CardMatch/>
-      {/* <Img src={coracaoInicio}/> */}
-     
+      {/* condição para mudar de tela */}
+      {telaDeMatch ? <TelaMatch/> : <CardMatch/>}
+      
     </Div>
   );
 }
