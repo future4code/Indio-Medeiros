@@ -53,9 +53,11 @@ const P = styled.p `
     color: white;
     position:relative;
     margin-top: -10px;
-    width:380px;
+    width:300px;
 `
 const ImgMatch = styled.input `
+    position: fixed;
+    top: 500px;
     width:70px;
     margin-left:80px;
     outline: none;
@@ -66,8 +68,7 @@ const ImgMatch = styled.input `
     }
 `
 const ImgPassar = styled(ImgMatch) `
-    margin-right:80px;
-    margin-left:0px;
+    margin-left:-160px;
 `
 const ImgCoracao = styled.img ` 
   position:fixed;
@@ -89,6 +90,7 @@ const ImgCoracao = styled.img `
         }
 	}
 `
+
 
 export default function CardMatch () {
 
@@ -160,7 +162,7 @@ export default function CardMatch () {
     }
     
     return(<Div>
-     
+            
             {/* condição confere se existe perfis. Caso não exista é renderizado o coração pulsando */}
             {existePerfil? <Img src={perfil.photo}/> : <ImgCoracao src={coracaoInicio}/>}
             <H1>{existePerfil? perfil.name + "," : "Os perfis acabaram!"} {existePerfil? perfil.age : ""}</H1>

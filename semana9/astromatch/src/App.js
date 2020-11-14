@@ -14,6 +14,7 @@ const Div = styled.div `
   text-align:center;
 `
 const DivTitulo = styled.div `
+
   display:flex;
   height:50px;
   color:black;
