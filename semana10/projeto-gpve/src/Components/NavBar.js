@@ -12,7 +12,7 @@ const Header = styled.header `
 `
 const Button = styled.button `
     height:30px;
-    width:90px;
+    width:120px;
     margin-right:30px;
     margin-left: 30px;
     background-color:white;
@@ -21,6 +21,7 @@ const Button = styled.button `
         cursor: pointer;
     }
 `
+
 const ButtonLabex = styled.button `
     margin-left: 30px;
     background-color:white;
@@ -33,6 +34,7 @@ const ButtonLabex = styled.button `
 `
 export default function NavBar(){
     const history = useHistory()
+    const token = localStorage.getItem("token")
 
     const goToPage = (path) => {
         history.push(path)
@@ -43,8 +45,10 @@ export default function NavBar(){
     return(
         <Header>
             <ButtonLabex onClick={() => {goToPage("/")}}> LABEX </ButtonLabex>
-            {/* <button onClick={() => {goToPage("/trips/create")}}>Criar viagem</button>
-            <button onClick={() => {goToPage("/trips/details")}}>Detalhes da viagem</button> */}
+            <div>
+                {token ? <Button onClick={() => {goToPage("/trips/create")}}>Criar viagem</Button> : ""}
+                {token? <Button onClick={() => {goToPage("/trips/details")}}>Detalhes viagem</Button>: ""}
+            </div>
             {/* <button onClick={() => {goToPage("/application-form")}}>Formulário</button> */}
             <Button onClick={() => {goToPage("/login")}}>login</Button>
         </Header>

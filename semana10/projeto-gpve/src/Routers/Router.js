@@ -1,13 +1,15 @@
 
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import ApplicationFormPage from './ApplicationFormPage'
-import CreateTripPage from './CreateTripPage'
-import HomePage from './HomePage'
-import ListTripPage from './ListTripsPage'
-import LoginPage from './LoginPage'
-import NavBar from './NavBar'
-import TripDetailsPage from './TripDetailsPage'
+import ApplicationFormPage from '../Components/ApplicationFormPage'
+import CreateTripPage from '../Components/CreateTripPage'
+import HomePage from '../Components/HomePage'
+import ListTripPage from '../Components/ListTripsPage'
+import LoginPage from '../Components/LoginPage'
+import NavBar from '../Components/NavBar'
+import TripDetailsPage from '../Components/TripDetailsPage'
+
+
 
 export default function Router(){
     return (
@@ -37,18 +39,17 @@ export default function Router(){
                     <CreateTripPage/>
                 </Route>
 
-                //Para vermos todas as viagens
-                <Route exact path="/trips/list">
-                    <NavBar/>
-                    <ListTripPage/>
-                </Route>
-
                 //Para vermos os candidatos de uma viagem
                 <Route exact path="/trips/details">
                     <NavBar/>
                     <TripDetailsPage/>
                 </Route>
 
+                //Para vermos todas as viagens
+                <Route exact path="/trips/list">
+                    <NavBar/>
+                    <ListTripPage/>
+                </Route>
             </Switch>
         </BrowserRouter>
     )
