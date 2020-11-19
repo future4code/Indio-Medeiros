@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiTextField-root': {
       margin: theme.spacing(2),
       width: 200,
+      background: "white"
     },
   },
 }));
@@ -19,11 +20,13 @@ const Div= styled.div `
     margin: auto;
     height:400px;
     border-radius: 10px;
+    box-shadow: 1px 1px 8px gray;
     margin-top: 250px;
     flex-direction:column;
     width:300px;
     align-items:center;
-    border: 1px solid black;
+    background-color:#F5F5F5;
+   
 `
 
 const Button = styled.button `
@@ -31,18 +34,22 @@ const Button = styled.button `
     padding:5px;
     width:200px;
     margin-top:10px;
-    background-color:white;
+    margin-left: 16px;
+    border: none;
+    box-shadow: 1px 1px 2px gray;
+    background-color:#3E38F2;
+    color: white;
     border-radius: 5px;
     :hover{
         cursor: pointer;
+        background-color:#5C73F2;
     }
 `
 
 
 export default function LoginPage(){
   const classes = useStyles();
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [form, setForm] = useState({email: "", password: ""})
   const history = useHistory()
 
   
@@ -52,13 +59,13 @@ export default function LoginPage(){
   }, [history])
 
   //login
-  function loginAdm() {
-    console.log(email);
+  function onSubmitForm(event) {
+    event.preventDefault();
     const body = {
-      email: email,
-      password: password
+      email: form.email,
+      password: form.password
     };
-
+ 
     axios
       .post(
         "https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/login",
@@ -67,27 +74,27 @@ export default function LoginPage(){
       .then(response => {
         localStorage.setItem("token", response.data.token);
         history.push("/trips/details");
+        console.log("token", response.data.token)
       })
       .catch(error => {
         console.log(error);
       });
+     
   }
 
 //inputs controlados: email e senha
-const handleEmail = (event) => {
-  setEmail(event.target.value)
-  console.log(email)
-}
-
-const handlePassword = (event) => {
-  setPassword(event.target.value)
+const handleInput = (event) => {
+  const {value, name} = event.target
+  console.log (name, value)
+  setForm({...form, [name]: value})
+  
 }
 
   return (
   <Div>
-    <form className={classes.root} noValidate autoComplete="off">
+    <form onSubmit={onSubmitForm} className={classes.root} >
       <div>
-          <h1>Login Adm</h1>
+          <h1>Login</h1>
       </div>
       
       <div>
@@ -96,8 +103,10 @@ const handlePassword = (event) => {
           variant="outlined"
           size="small"
           type="email"
-          onChange={handleEmail}
-          value={email}
+          onChange={handleInput}
+          value={form.email}
+          name={"email"}
+          required
         />
        
     </div>
@@ -108,15 +117,18 @@ const handlePassword = (event) => {
           variant="outlined"
           size="small"
           type= "password"
-          onChange={handlePassword}
-          value={password}
+          onChange={handleInput}
+          value={form.password}
+          name={"password"}
+          required
         />
       </div>
-    
+
+      
+      <Button>login</Button>
     </form>
-    <div>
-      <Button onClick={loginAdm}>login</Button>
-    </div>
+    
+    
   </Div>
   );
 }

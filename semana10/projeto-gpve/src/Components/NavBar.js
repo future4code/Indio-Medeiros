@@ -49,7 +49,7 @@ export default function NavBar(){
                 {token ? <Button onClick={() => {goToPage("/trips/create")}}>Criar viagem</Button> : ""}
                 {token? <Button onClick={() => {goToPage("/trips/details")}}>Detalhes viagem</Button>: ""}
             </div>
-            {/* <button onClick={() => {goToPage("/application-form")}}>Formulário</button> */}
+            <Button onClick={() => {goToPage("/application-form")}}>Formulário</Button> 
             <Button onClick={() => {goToPage("/login")}}>login</Button>
         </Header>
     )
