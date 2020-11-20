@@ -55,7 +55,7 @@ export default function LoginPage(){
   
   useEffect(() => {
       const token = localStorage.getItem("token")
-      token? history.push("/trips/details") : history.push("/login")
+      token? history.push("/trips/list") : history.push("/login")
   }, [history])
 
   //login

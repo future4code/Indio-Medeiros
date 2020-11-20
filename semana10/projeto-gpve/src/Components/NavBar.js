@@ -47,7 +47,7 @@ export default function NavBar(){
             <ButtonLabex onClick={() => {goToPage("/")}}> LABEX </ButtonLabex>
             <div>
                 {token ? <Button onClick={() => {goToPage("/trips/create")}}>Criar viagem</Button> : ""}
-                {token? <Button onClick={() => {goToPage("/trips/details")}}>Detalhes viagem</Button>: ""}
+                {/* {token? <Button onClick={() => {goToPage("/trips/details")}}>Detalhes viagem</Button>: ""} */}
             </div>
             <Button onClick={() => {goToPage("/application-form")}}>Formulário</Button> 
             <Button onClick={() => {goToPage("/login")}}>login</Button>

@@ -1,9 +1,11 @@
-import React, { useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components'
 import axios from 'axios';
-import {useHistory} from 'react-router-dom'
+import Country from './Selects/CountrySelect';
+import TripIdSelect from './Selects/TripIdSelect';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,33 +49,37 @@ const Button = styled.button `
 `
 
 export default function ApplicationFormPage(){
+    const [form , setForm] = useState()
     const classes = useStyles();
 
     const handleInput = (event) => {
-        const {value, name} = event.target
-        console.log (name, value)
+        const {value, name, id} = event.target
+        
+        setForm({...form, [name]:value})
       }
 
       function onSubmitForm(event) {
         event.preventDefault();
-        // const body = {
-        //   email: ''
-        //   password: ''
-        // };
-     
-        // axios
-        //   .post(
-        //     "https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/login",
-        //     body
-        //   )
-        //   .then(response => {
-        //     localStorage.setItem("token", response.data.token);
-        //     history.push("/trips/details");
-        //     console.log("token", response.data.token)
-        //   })
-        //   .catch(error => {
-        //     console.log(error);
-        //   });
+        const body = {
+            name: form.name,
+            age: form.age,
+            applicationText: form.applicationText ,
+            profession: form.profession,
+            country: form.country
+        };
+        console.log("body", body)
+        axios
+          .post(
+            `https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/trips/${form.id}/apply`,
+            body
+          )
+          .then(response => {
+              console.log(response)
+  
+          })
+          .catch(error => {
+            console.log(error);
+          });
          
       }
 
@@ -92,7 +98,7 @@ export default function ApplicationFormPage(){
                 size="small"
                 type="text"
                 onChange={handleInput}
-                value={''}
+                // value={''}
                 name={"name"}
                 required
                 />
@@ -107,7 +113,7 @@ export default function ApplicationFormPage(){
                 size="small"
                 type= "number"
                 onChange={handleInput}
-                value={''}
+                // value={''}
                 name={"age"}
                 required
                 />
@@ -127,17 +133,32 @@ export default function ApplicationFormPage(){
                 />
             </div>
 
-            {/* colocar dropdown  de países*/}
             <div>
-                <select>
-                    <option>Países</option>
-                </select>
+                <TextField
+                pattern={"[A-Za-z]{10,}"}
+                label="Profissão"
+                variant="outlined"
+                size="small"
+                type= "text"
+                onChange={handleInput}
+                // value={''}
+                name={"profession"}
+                required
+                />
             </div>
-            {/* colocar dropdown  de viagens*/}
+
             <div>
-                <select>
-                    <option>Viagens</option>
-                </select>
+                <Country 
+                name="country"
+                onchange={handleInput}
+                required/>
+            </div>
+
+            <div>
+                <TripIdSelect 
+                name="trip"
+                onchange={handleInput}
+                required/>
             </div>
 
             <Button>inscrever-se</Button>

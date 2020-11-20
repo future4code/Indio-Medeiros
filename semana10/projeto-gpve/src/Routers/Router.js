@@ -7,7 +7,7 @@ import HomePage from '../Components/HomePage'
 import ListTripPage from '../Components/ListTripsPage'
 import LoginPage from '../Components/LoginPage'
 import NavBar from '../Components/NavBar'
-import TripDetailsPage from '../Components/TripDetailsPage'
+
 
 
 
@@ -39,11 +39,7 @@ export default function Router(){
                     <CreateTripPage/>
                 </Route>
 
-                //Para vermos os candidatos de uma viagem
-                <Route exact path="/trips/details">
-                    <NavBar/>
-                    <TripDetailsPage/>
-                </Route>
+              
 
                 //Para vermos todas as viagens
                 <Route exact path="/trips/list">
