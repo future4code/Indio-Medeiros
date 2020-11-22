@@ -4,48 +4,59 @@ import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components'
 import axios from 'axios';
 import {useHistory} from 'react-router-dom'
+import {Button, Title} from '../Styled/ColorItems'
+
+const Img = styled.img `
+  width: 100vw;
+  height: 95vh;
+  filter: brightness(0.6);
+`
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(2),
       width: 200,
-      background: "white"
+      background: "white",
+   
     },
   },
 }));
 
 const Div= styled.div `
+      
     display:flex;
     margin: auto;
-    height:400px;
     border-radius: 10px;
-    box-shadow: 1px 1px 8px gray;
-    margin-top: 250px;
     flex-direction:column;
     width:300px;
     align-items:center;
+    justify-content: center;
     background-color:#F5F5F5;
-   
 `
 
-const Button = styled.button `
+const ButtonLogin = styled(Button) `
+    
     font-size: 1.2em;
     padding:5px;
     width:200px;
     margin-top:10px;
-    margin-left: 16px;
-    border: none;
-    box-shadow: 1px 1px 2px gray;
-    background-color:#3E38F2;
-    color: white;
-    border-radius: 5px;
-    :hover{
-        cursor: pointer;
-        background-color:#5C73F2;
-    }
 `
+const DivChild = styled.div `
 
+  margin-left: -66vw;
+  position: absolute;
+  border: 1px solid white;
+  width: 300px;
+  text-align: center;
+  padding-bottom: 100px;
+  background-color: white;
+  border-radius: 30px;
+`
+const Span = styled.span `
+    color: #102b89;
+    font-weight:lighter;
+`
 
 export default function LoginPage(){
   const classes = useStyles();
@@ -55,7 +66,7 @@ export default function LoginPage(){
   
   useEffect(() => {
       const token = localStorage.getItem("token")
-      token? history.push("/trips/list") : history.push("/login")
+      token? history.push("/trips/create") : history.push("/login")
   }, [history])
 
   //login
@@ -73,11 +84,11 @@ export default function LoginPage(){
       )
       .then(response => {
         localStorage.setItem("token", response.data.token);
-        history.push("/trips/details");
-        console.log("token", response.data.token)
+        history.push("/trips/create");
+        
       })
       .catch(error => {
-        console.log(error);
+        
       });
      
   }
@@ -85,16 +96,18 @@ export default function LoginPage(){
 //inputs controlados: email e senha
 const handleInput = (event) => {
   const {value, name} = event.target
-  console.log (name, value)
   setForm({...form, [name]: value})
   
 }
 
   return (
   <Div>
+    
+     <Img src={"https://s1.1zoom.me/big3/156/Surface_of_planets_Cosmonauts_Helmet_519590_5200x3250.jpg"}/>
+    <DivChild>
     <form onSubmit={onSubmitForm} className={classes.root} >
       <div>
-          <h1>Login</h1>
+          <Title><Span>Login</Span>AdmEX</Title>
       </div>
       
       <div>
@@ -125,10 +138,11 @@ const handleInput = (event) => {
       </div>
 
       
-      <Button>login</Button>
+      <ButtonLogin>login</ButtonLogin>
     </form>
-    
+    </DivChild>
     
   </Div>
+  
   );
 }

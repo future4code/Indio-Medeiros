@@ -1,8 +1,18 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Select = styled.select `
+    width: 100px;
+    height: 30px;
+    border: 0.5px solid #a1a1a1;
+    color:#a1a1a1;
+    outline: none;
+`
 
 export default function PlanetSelect(props) {
     return (
-        <select defaultValue onChange={props.onchange} name={props.name}>
+        <Select defaultValue onChange={props.onchange} name={props.name}>
+            <option value={"Mercúrio"}>Planeta</option>
             <option value={"Mercúrio"}>Mercúrio</option>
             <option value={"Vênus"}>Vênus</option>
             <option value={"Terra"}>Terra</option>
@@ -11,6 +21,6 @@ export default function PlanetSelect(props) {
             <option value={"Saturno"}>Saturno</option>
             <option value={"Urano"}>Urano</option>
             <option value={"Netuno"}>Netuno</option>
-       </select>
+       </Select>
     )
 }

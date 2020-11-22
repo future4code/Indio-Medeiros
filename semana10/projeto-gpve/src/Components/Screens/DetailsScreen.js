@@ -1,26 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
-
-
-const Div = styled.div `
-    
-`
-
-
+import {ButtonsListTrip} from '../Styled/ColorItems'
 const DivTitle = styled.div `
     display:grid;
     grid-template-columns: 1fr 2fr 0.5fr 0.5fr 0.5fr 0.5fr;
     grid-template-rows: 1fr 4fr;
     box-shadow: 1px 1px 2px gray;
-    margin-top: 30px;
     width:1080px;
     margin:auto;
-    margin-top: 30px;
-`
-const H1 = styled.h5 `
+    margin-bottom: 20px;
+    background-color: white;
     
+`
+const H1 = styled.p `
+    
+    font-size:1.1em;
     color:white;
-    background-color: #5C73F2;
+    background-color: #102b89;
     border-bottom: 1px solid black;
     padding: 0px 10px;
     margin: 0;
@@ -28,29 +24,20 @@ const H1 = styled.h5 `
 const P = styled.p `
     padding: 0px 10px;
     margin: 0;  
+    
 `
-const Button = styled.button `
+const Button = styled(ButtonsListTrip) `
     margin: auto;
     grid-column: 6/6;
     grid-row: 2;
-    border: none;
-    background-color:tomato;
-    color: black;
-    border-radius: 5px;
-    outline: none;
-    color: white;
-    :hover{
-        cursor: pointer;
-        background-color:#5C73F2;
-        
-    }
-
+    height: 30px;
 `
 
 
 export default function DetailsScreen (props) {
     return (
-        <Div>
+        <div >
+            
             <DivTitle>
                 <H1>Nome da viagem</H1>
                 <H1>Descrição</H1>
@@ -68,6 +55,6 @@ export default function DetailsScreen (props) {
 
             </DivTitle>
 
-        </Div>
+        </div>
     )
 }

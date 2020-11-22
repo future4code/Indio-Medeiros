@@ -1,6 +1,19 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Select = styled.select `
+     width: 100px;
+    height: 30px;
+    border: 0.5px solid #a1a1a1;
+    color:#a1a1a1;
+    outline: none;
+    
+`
+
+
 export default function Country (props) {
-    return (<select defaultValue onChange={props.onchange} name={props.name}>
+    return (<Select defaultValue onChange={props.onchange} name={props.name}>
+                <option>País</option>
                 <option value="África do Sul">África do Sul</option>
                 <option value="Albânia">Albânia</option>
                 <option value="Alemanha">Alemanha</option>
@@ -175,7 +188,7 @@ export default function Country (props) {
                 <option value="Zaire">Zaire</option>
                 <option value="Zâmbia">Zâmbia</option>
                 <option value="Zimbábue">Zimbábue</option>
-    </select>
+    </Select>
         
     )
 }

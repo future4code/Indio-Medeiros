@@ -9,7 +9,7 @@ export  function useProtectedPage() {
         const token = localStorage.getItem("token")
         if(!token){
             history.push("/login")
-            console.log("funcionou")
+            
         }
     }, [history])
 }

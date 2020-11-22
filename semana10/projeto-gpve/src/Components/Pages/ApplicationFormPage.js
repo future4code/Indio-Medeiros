@@ -3,15 +3,21 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components'
 import axios from 'axios';
-import Country from './Selects/CountrySelect';
-import TripIdSelect from './Selects/TripIdSelect';
+import Country from '../Selects/CountrySelect';
+import TripIdSelect from '../Selects/TripIdSelect';
+import { Button, Title } from '../Styled/ColorItems';
 
+const Img = styled.img `
+  width: 100vw;
+  height: 95vh;
+ 
+`
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(2),
-      width: 200,
+      width: 300,
       background: "white"
     },
   },
@@ -19,37 +25,46 @@ const useStyles = makeStyles((theme) => ({
 
 const Div= styled.div `
     display:flex;
-    margin: auto;
-    height:500px;
     border-radius: 10px;
-    box-shadow: 1px 1px 8px gray;
-    margin-top: 250px;
-    flex-direction:column;
-    width:300px;
     align-items:center;
+    justify-content: center;
     background-color:#F5F5F5;
-   
 `
 
-const Button = styled.button `
+const DivChild = styled.div `
+  position: absolute;
+  border: 1px solid white;
+  color:#a5b1d9;
+  width: 400px;
+  text-align: center;
+  padding-bottom: 100px;
+  background-color: white;
+  border-radius: 30px;
+  margin-left: -66vw;
+ 
+`
+const ButtonSubinsc = styled(Button)`
     font-size: 1.2em;
     padding:5px;
     width:200px;
-    margin-top:10px;
-    margin-left: 16px;
-    border: none;
-    box-shadow: 1px 1px 2px gray;
-    background-color:#3E38F2;
-    color: white;
-    border-radius: 5px;
-    :hover{
-        cursor: pointer;
-        background-color:#5C73F2;
-    }
+    margin-top:60px;
+ 
+`
+const DivSelect = styled.div `
+    display:flex;
+    width:300px;
+    align-items: center;
+    justify-content:space-between;
+    margin-left: 50px;
+`
+const Span = styled.span `
+    color: #102b89;
+    font-weight: lighter;
 `
 
 export default function ApplicationFormPage(){
     const [form , setForm] = useState()
+    const [messageForm, setMessageForm] =useState (0)
     const classes = useStyles();
 
     const handleInput = (event) => {
@@ -67,27 +82,24 @@ export default function ApplicationFormPage(){
             profession: form.profession,
             country: form.country
         };
-        console.log("body", body)
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/trips/${form.id}/apply`
         axios
-          .post(
-            `https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/trips/${form.id}/apply`,
-            body
-          )
-          .then(response => {
-              console.log(response)
-  
-          })
-          .catch(error => {
-            console.log(error);
-          });
-         
+        .post(url, body)
+        .then(response => {
+          setMessageForm(1)
+        })
+        .catch(error => {
+          setMessageForm(2)
+        });
       }
 
     return(
-        <Div>
+    <Div>
+        <Img src={"https://s1.1zoom.me/big3/157/374615-blackangel.jpg"}/>
+        <DivChild> 
             <form onSubmit={onSubmitForm} className={classes.root} >
             <div>
-                <h1>Candidato</h1>
+            <Title><Span>Candidato</Span>EX</Title>
             </div>
             
             <div>
@@ -147,22 +159,24 @@ export default function ApplicationFormPage(){
                 />
             </div>
 
-            <div>
+            <DivSelect>
                 <Country 
                 name="country"
                 onchange={handleInput}
                 required/>
-            </div>
-
-            <div>
+           
                 <TripIdSelect 
                 name="trip"
                 onchange={handleInput}
                 required/>
-            </div>
+            </DivSelect>
 
-            <Button>inscrever-se</Button>
+            <ButtonSubinsc>inscrever-se</ButtonSubinsc>
+            {messageForm === 1 ? <p>Você se cadastrou com sucesso!</p> : ""}
+            {messageForm === 2 ? <p>Algo deu errado  {" :("} </p>: " " }
+            
         </form>
-    </Div>
+    </DivChild> 
+</Div>
     )
 }
