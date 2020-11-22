@@ -7,9 +7,7 @@ const Select = styled.select `
     border: 0.5px solid #a1a1a1;
     color:#a1a1a1;
     outline: none;
-    
 `
-
 
 export default function Country (props) {
     return (<Select defaultValue onChange={props.onchange} name={props.name}>

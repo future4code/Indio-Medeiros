@@ -6,6 +6,7 @@ import axios from 'axios';
 import {useHistory} from 'react-router-dom'
 import {Button, Title} from '../Styled/ColorItems'
 
+
 const Img = styled.img `
   width: 100vw;
   height: 95vh;
@@ -62,35 +63,32 @@ export default function LoginPage(){
   const classes = useStyles();
   const [form, setForm] = useState({email: "", password: ""})
   const history = useHistory()
-
+ 
   
   useEffect(() => {
       const token = localStorage.getItem("token")
       token? history.push("/trips/create") : history.push("/login")
   }, [history])
 
-  //login
+  
   function onSubmitForm(event) {
     event.preventDefault();
     const body = {
       email: form.email,
       password: form.password
     };
- 
+    //login
     axios
-      .post(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/login",
-        body
-      )
-      .then(response => {
-        localStorage.setItem("token", response.data.token);
-        history.push("/trips/create");
-        
-      })
-      .catch(error => {
-        
-      });
-     
+    .post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/login", body)
+    .then(response=> {
+      localStorage.setItem("token", response.data.token)
+      history.push("/trips/create")
+    })
+    .catch(error => {
+
+    })
+    
+    
   }
 
 //inputs controlados: email e senha
@@ -102,7 +100,7 @@ const handleInput = (event) => {
 
   return (
   <Div>
-    
+      
      <Img src={"https://s1.1zoom.me/big3/156/Surface_of_planets_Cosmonauts_Helmet_519590_5200x3250.jpg"}/>
     <DivChild>
     <form onSubmit={onSubmitForm} className={classes.root} >

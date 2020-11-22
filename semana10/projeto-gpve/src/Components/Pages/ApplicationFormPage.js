@@ -2,17 +2,16 @@ import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components'
-import axios from 'axios';
 import Country from '../Selects/CountrySelect';
 import TripIdSelect from '../Selects/TripIdSelect';
 import { Button, Title } from '../Styled/ColorItems';
+import { RequestPost } from '../../Requests/Requests';
 
 const Img = styled.img `
   width: 100vw;
   height: 95vh;
  
 `
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
@@ -83,14 +82,7 @@ export default function ApplicationFormPage(){
             country: form.country
         };
         const url = `https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/trips/${form.id}/apply`
-        axios
-        .post(url, body)
-        .then(response => {
-          setMessageForm(1)
-        })
-        .catch(error => {
-          setMessageForm(2)
-        });
+        RequestPost(url, body)
       }
 
     return(
@@ -172,7 +164,7 @@ export default function ApplicationFormPage(){
             </DivSelect>
 
             <ButtonSubinsc>inscrever-se</ButtonSubinsc>
-            {messageForm === 1 ? <p>Você se cadastrou com sucesso!</p> : ""}
+            {messageForm === 1 ? <p>Seja bem vindo a viagem, tripulante!</p> : ""}
             {messageForm === 2 ? <p>Algo deu errado  {" :("} </p>: " " }
             
         </form>

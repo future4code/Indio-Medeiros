@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Button, Title } from '../Styled/ColorItems';
 import { useProtectedPage } from '../../Hooks/useProtectedPage';
 import PlanetSelect from '../Selects/PlanetSelect';
+import { RequestPost } from '../../Requests/Requests';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -85,22 +86,9 @@ export default function CreateTripPage(){
       durationInDays: form.durationInDays
     }
     
-
-    axios
-    .post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/trips`, 
-    body,{
-      headers: {
-        auth: localStorage.getItem("token")
-    }
-    
-    })
-    .then(response => {
-
-    })
-    .catch(error => {
-      
-    })
-    
+    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/trips`
+    const header = {headers: {auth: localStorage.getItem("token")}}
+    RequestPost(url, body, header)
   }
 
     

@@ -8,9 +8,6 @@ import ListTripPage from '../Components/Pages/ListTripsPage'
 import LoginPage from '../Components/Pages/LoginPage'
 import NavBar from '../Components/Nav/NavBar'
 
-
-
-
 export default function Router(){
     return (
         <BrowserRouter>
