@@ -35,20 +35,28 @@ const Img = styled.img `
 
 export default function ListTripPage(){
     const [listTrip, setListTrip] = useState()
-    const history = useHistory()
-    
-    const onDetails = (event) => {
-        localStorage.setItem("tripId", event.target.id )
-        history.push("/application-form")
-       
+   
+    //quando logado como adm, deleta a viagem
+    const onDelete = (event) => {
+        axios
+        .delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/trips/${event.target.id}`)
+        .then(response => {
+            window.location.reload()
+        })
+        .catch(error => {
+
+        })
+        
     }
 
 
     useEffect(() => {
+        //pega a lista de viagens ao iniciar a pagina
         getListTrip()
         
     },[])
 
+    //pega a lista de viagens
     const getListTrip = () => {
         
         axios
@@ -64,9 +72,10 @@ export default function ListTripPage(){
                     description={trip.description}
                     planet={trip.planet}
                     durationInDays={trip.durationInDays+" dias"}
-                    onclick={onDetails}
+                    onclick={onDelete}
                 />    
              })
+             //guarda a lista de viagens mapeada no state/hook
              setListTrip(list)
         })
         .catch(error => {
@@ -75,6 +84,7 @@ export default function ListTripPage(){
     }
     return(
         <Div>
+            {/* imagem do fundo */}
             <Img src={"https://s1.1zoom.me/big3/461/Star_Citizen_Starship_536691_3034x1809.jpg"}/>
             <DivChild>
                 <H1><Span>Lista de viagens</Span>EX</H1>

@@ -46,7 +46,7 @@ export const ButtonHome = styled.button `
     }
 `
 export const ButtonsListTrip = styled.button `
-    background-color:tomato;
+    background-color:red;
     border: none;
     border-radius: 5px;
     outline: none;

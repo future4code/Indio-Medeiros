@@ -66,12 +66,14 @@ export default function ApplicationFormPage(){
     const [messageForm, setMessageForm] =useState (0)
     const classes = useStyles();
 
+    //controla os inputs
     const handleInput = (event) => {
         const {value, name, id} = event.target
-        
+        setMessageForm(0)
         setForm({...form, [name]:value})
       }
 
+      //formulário de candidatura
       function onSubmitForm(event) {
         event.preventDefault();
         const body = {
@@ -83,10 +85,13 @@ export default function ApplicationFormPage(){
         };
         const url = `https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/trips/${form.id}/apply`
         RequestPost(url, body)
+        //troca a mensagem para sucesso
+        setMessageForm(1)
       }
 
     return(
     <Div>
+        {/* imagem de fundo */}
         <Img src={"https://s1.1zoom.me/big3/157/374615-blackangel.jpg"}/>
         <DivChild> 
             <form onSubmit={onSubmitForm} className={classes.root} >
@@ -102,7 +107,6 @@ export default function ApplicationFormPage(){
                 size="small"
                 type="text"
                 onChange={handleInput}
-                // value={''}
                 name={"name"}
                 required
                 />
@@ -117,7 +121,6 @@ export default function ApplicationFormPage(){
                 size="small"
                 type= "number"
                 onChange={handleInput}
-                // value={''}
                 name={"age"}
                 required
                 />
@@ -131,7 +134,6 @@ export default function ApplicationFormPage(){
                 size="small"
                 type= "text"
                 onChange={handleInput}
-                // value={''}
                 name={"applicationText"}
                 required
                 />
@@ -145,7 +147,6 @@ export default function ApplicationFormPage(){
                 size="small"
                 type= "text"
                 onChange={handleInput}
-                // value={''}
                 name={"profession"}
                 required
                 />
@@ -156,7 +157,6 @@ export default function ApplicationFormPage(){
                 name="country"
                 onchange={handleInput}
                 required/>
-           
                 <TripIdSelect 
                 name="trip"
                 onchange={handleInput}
@@ -164,9 +164,8 @@ export default function ApplicationFormPage(){
             </DivSelect>
 
             <ButtonSubinsc>inscrever-se</ButtonSubinsc>
-            {messageForm === 1 ? <p>Seja bem vindo a viagem, tripulante!</p> : ""}
-            {messageForm === 2 ? <p>Algo deu errado  {" :("} </p>: " " }
-            
+            {/* //mensagem de sucesso */}
+            {messageForm === 1 ? <p>Seja bem vindo a viagem, tripulante!</p> : ""} 
         </form>
     </DivChild> 
 </Div>

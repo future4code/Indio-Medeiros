@@ -67,6 +67,8 @@ export default function LoginPage(){
   
   useEffect(() => {
       const token = localStorage.getItem("token")
+
+      //redireciona a página ao logar-se
       token? history.push("/trips/create") : history.push("/login")
   }, [history])
 
@@ -77,7 +79,10 @@ export default function LoginPage(){
       email: form.email,
       password: form.password
     };
-    //login
+    
+    //Para testar:
+    //login: adm@ex.com.br
+    //password: 123456
     axios
     .post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/login", body)
     .then(response=> {
@@ -87,7 +92,6 @@ export default function LoginPage(){
     .catch(error => {
 
     })
-    
     
   }
 
@@ -100,7 +104,7 @@ const handleInput = (event) => {
 
   return (
   <Div>
-      
+      {/* imagem de fundo */}
      <Img src={"https://s1.1zoom.me/big3/156/Surface_of_planets_Cosmonauts_Helmet_519590_5200x3250.jpg"}/>
     <DivChild>
     <form onSubmit={onSubmitForm} className={classes.root} >

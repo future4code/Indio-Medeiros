@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import {ButtonsListTrip} from '../Styled/ColorItems'
+
+
 const DivTitle = styled.div `
     display:grid;
     grid-template-columns: 1fr 2fr 0.5fr 0.5fr 0.5fr 0.5fr;
@@ -35,23 +37,27 @@ const Button = styled(ButtonsListTrip) `
 
 
 export default function DetailsScreen (props) {
+    const token = localStorage.getItem("token")
     return (
         <div >
-            
+            {/* tela de detalhes da lista de viagem */}
             <DivTitle>
                 <H1>Nome da viagem</H1>
                 <H1>Descrição</H1>
                 <H1>Planeta</H1>
                 <H1>Data</H1>
                 <H1>Duração</H1>
-                <H1>inscrição</H1>
+                {/* se logado como adm, terá função de deletar */}
+                {token? <H1>Adm</H1>: <H1></H1>}
            
                 <P>{props.name}</P>
                 <P>{props.description}</P>
                 <P>{props.planet}</P>
                 <P>{props.date}</P>
                 <P>{props.durationInDays}</P>
-                <Button id={props.id} onClick={props.onclick}>Candidatar-se</Button>
+                
+                {/* se logado como adm, terá função de deletar */}
+                {token ? <Button id={props.id} onClick={props.onclick}>Deletar</Button> : ""}
 
             </DivTitle>
 

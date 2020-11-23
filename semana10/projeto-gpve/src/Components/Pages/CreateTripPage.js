@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components'
-import axios from 'axios';
 import { Button, Title } from '../Styled/ColorItems';
 import { useProtectedPage } from '../../Hooks/useProtectedPage';
 import PlanetSelect from '../Selects/PlanetSelect';
 import { RequestPost } from '../../Requests/Requests';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -64,20 +64,26 @@ const Span = styled.span `
 `
 
 export default function CreateTripPage(){
+  const [messageForm, setMessageForm] =useState (0)
   const [form, setForm] = useState()
+
+  //protege a página
   useProtectedPage()
   const classes = useStyles();
 
 
-
+//controla inputs
   const handleInput = (event) => {
     const {value, name} = event.target
     setForm({...form, [name]: value})
+    setMessageForm(0)
   }
 
+  //cria a viagem
   const createTrip = (event) => {
     event.preventDefault()
-   
+    
+
     const body = {
       name: form.name,
       planet: form.planet,
@@ -89,11 +95,15 @@ export default function CreateTripPage(){
     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/trips`
     const header = {headers: {auth: localStorage.getItem("token")}}
     RequestPost(url, body, header)
+
+    //muda a mensagem para sucesso
+    setMessageForm(1)
   }
 
     
     return(
       <Div>
+        {/* imagem de fundo */}
        <Img src={"https://s1.1zoom.me/big3/260/Alien_Covenant_Starship_Ships_532194_4000x2000.jpg"}/>
        <DivChild>  
           <form onSubmit={createTrip} className={classes.root} >
@@ -162,6 +172,7 @@ export default function CreateTripPage(){
           </DivSelect>
 
           <ButtonCreate>Criar viagem</ButtonCreate>
+          {messageForm === 1 ? <p>Seja bem vindo a viagem, tripulante!</p> : ""}
       </form>
   </DivChild>
 </Div>

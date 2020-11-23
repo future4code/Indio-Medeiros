@@ -41,12 +41,14 @@ const Img = styled.img `
 export default function HomePage(){
     const history = useHistory()
 
+    //muda de página
     const goToPage = (path) => {
         history.push(path)
     }
 
     return(
         <Body>
+            {/* imagem de fundo */}
             <Img src={"https://s1.1zoom.me/b4647/584/Cosmonauts_Surface_of_planets_525931_1920x1080.jpg"}/>
            <H1> 
                Embarque com a LABEX <br/>

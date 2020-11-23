@@ -17,6 +17,7 @@ export default function TripIdSelect (props) {
         
     },[])
 
+    //pega a  lista de viagem
     const getListTrip = () => {
         axios
         .get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/indio/trips")
@@ -25,6 +26,7 @@ export default function TripIdSelect (props) {
             const list = response.data.trips.map((trip) =>{
                 return <option id={trip.id} value={trip.id} name={trip.id}>{trip.name}</option>    
              })
+             //guarda a lista mapeada com tags no state/hook
              setListTrip(list)
         })
         .catch(error => {
@@ -35,6 +37,7 @@ export default function TripIdSelect (props) {
     return (
       
             <div>
+                {/* seçetor de viagens */}
                 <Select onChange={props.onchange} name={props.name}>
                     <option>Viagens</option>
                     { listTrip}

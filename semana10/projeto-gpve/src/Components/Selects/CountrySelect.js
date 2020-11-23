@@ -10,6 +10,8 @@ const Select = styled.select `
 `
 
 export default function Country (props) {
+
+    //seletor de países
     return (<Select defaultValue onChange={props.onchange} name={props.name}>
                 <option>País</option>
                 <option value="África do Sul">África do Sul</option>
