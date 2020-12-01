@@ -1,24 +1,29 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import LoginPage from "../Pages/LoginPage";
+import SignupPage from "../Pages/SignupPage";
+import FeedsPage from "../Pages/FeedsPage";
+import PostPage from "../Pages/PostPage";
+import Header from "../Elements/Header";
 
 const Router = () => {
   return (
     <BrowserRouter>
+     
       <Switch>
         <Route exact path={"/"}>
-          <p>login</p>
+          <LoginPage />
         </Route>
 
-        <Route exact path={"/singup"}>
-          <p>singup</p>
+        <Route exact path={"/signup"}>
+          <SignupPage />
         </Route>
 
-        <Route exact path={"/feeds"}>
-          <p>feed</p>
-        </Route>
-
+        <Route exact path={"/feeds"}></Route>
+        <Header />
         <Route exact path={"/post"}>
-          <p>post</p>
+          <Header />
+          <PostPage />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -1,12 +1,13 @@
+
 export const goToPageLogin = (history) => {
   history.push("/");
 };
 
-export const goToPageSingup = (history) => {
-  history.push("/singup");
+export const goToPageSignup = (history) => {
+  history.push("/signup");
 };
 
-export const goToPageFeeds = (history) => {
+export const goToPageFeeds= (history) => {
   history.push("/feeds");
 };
 
