@@ -7,9 +7,8 @@ import PostPage from "../Pages/PostPage";
 import Header from "../Elements/Header";
 
 const Router = () => {
-  return (
+  return ( 
     <BrowserRouter>
-     
       <Switch>
         <Route exact path={"/"}>
           <LoginPage />
@@ -19,12 +18,16 @@ const Router = () => {
           <SignupPage />
         </Route>
 
-        <Route exact path={"/feeds"}></Route>
-        <Header />
-        <Route exact path={"/post"}>
-          <Header />
-          <PostPage />
+        <Route exact path={"/feeds"}>
+          <Header/>
+          <FeedsPage/>
         </Route>
+        
+        <Route exact path={`/post/:id`}>
+          <Header/>
+          <PostPage/>
+        </Route>
+
       </Switch>
     </BrowserRouter>
   );

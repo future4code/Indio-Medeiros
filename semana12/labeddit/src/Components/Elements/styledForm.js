@@ -1,8 +1,12 @@
 import styled from "styled-components";
-import { ButtonColor, DivColorForm, ButtonTextColor } from "./color/colorWebSite";
+import {
+  ButtonColor,
+  DivColorForm,
+  ButtonTextColor,
+} from "./color/colorWebSite";
 
 export const DivForm = styled(DivColorForm)`
-    position: absolute;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,20 +31,19 @@ export const ButtonSingup = styled(ButtonTextColor)`
   font-size: 1.2em;
   margin-top: 10px;
   height: 40px;
-  
 `;
-export const InputForm = styled.input `
-    padding: 8px;
-    width: 285px;
-    margin: 15px 0px;
-    border-radius: 8px;
-    outline: none;
-    font-size: 1.3em ;
-    border: 1px solid #dcdcdc;
-    ::placeholder{
-        color: #dcdcdc;
-    }
-    :focus{
-        border-color: purple;
-    }
-`
+export const InputForm = styled.input`
+  padding: 8px;
+  width: 285px;
+  margin: 15px 0px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1.3em;
+  border: 1px solid #dcdcdc;
+  ::placeholder {
+    color: #dcdcdc;
+  }
+  :focus {
+    border-color: purple;
+  }
+`;
