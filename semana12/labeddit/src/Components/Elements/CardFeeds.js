@@ -1,13 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-
 import Typography from "@material-ui/core/Typography";
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+import { CardForm, Commit } from "./styledCardFeeds";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,38 +21,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CardFeeds(props) {
   const classes = useStyles();
-
+  const history = useHistory()
   return (
-    <Card  className={classes.root}>
-      <CardHeader
-        onClick={() => {
-          console.log("entrei");
-        }}
-        title={props.username}
-      />
+    <CardForm className={classes.root}>
+      <CardHeader title={props.username} />
 
       <CardContent>
-          <Typography>{props.title}</Typography>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-        >
+        <Typography>{props.title}</Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
           {props.message}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-          <ThumbDownIcon id={props.id} onClick={props.voteNegative}/>
-          <p>{props.favorite}</p>
-          <ThumbUpIcon
-            onClick={props.votePositive}
-          />
-        
+      <CardActions>
+        <ThumbUpIcon onClick={props.votePositive} />
+        <p>{props.favorite}</p>
+        <ThumbDownIcon id={props.id} onClick={props.voteNegative} />
 
-        <Typography variant="body2" color="textSecondary" component="p">
-        {props.commit} comentários
-        </Typography>
+        {history.location.pathname === `/post/:id` && <Commit onClick={props.onClickCommit} variant="body2" color="textSecondary" component="p">
+          {props.commit} comentários
+        </Commit>}
       </CardActions>
-    </Card>
+    </CardForm>
   );
 }

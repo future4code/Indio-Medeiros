@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 
 export default function useRequestData(baseUrl) {
   const [data, setData] = useState();
-
+  const [refresh, setRefresh] = useState()
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
+    
     axios
       .get(baseUrl, {
         headers: {
@@ -19,7 +21,7 @@ export default function useRequestData(baseUrl) {
       .catch((error) => {
         console.log(error.message);
       });
-  }, [baseUrl]);
-
-  return data;
+  }, []);
+  
+  return [ data, setData ];
 }

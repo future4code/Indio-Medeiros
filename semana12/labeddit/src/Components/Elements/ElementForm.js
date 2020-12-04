@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ButtonLogin, ButtonSingup, DivForm, InputForm } from "./styledForm";
-import { goToPageFeeds, goToPageSignup } from "../Coordination/coordinator";
+import {goToPageSignup } from "../Coordination/coordinator";
 import { requestPost } from "../Requests/requests";
 import { loginUrl, signupUlr } from "./urls/requestsUrls";
 
@@ -22,7 +22,6 @@ export default function ElementForm() {
     } else {
       requestPost(signupUlr, form);
     }
-    goToPageFeeds(history);
   };
 
   return (

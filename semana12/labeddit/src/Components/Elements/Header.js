@@ -1,49 +1,15 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import {
-  goToPageFeeds,
-  goToPageSignup,
-  goToPagePost,
-  goToPageLogin,
-} from "../Coordination/coordinator";
+import { ButtonLogout, DivHeader } from "./styledHeader";
 
 export default function Header() {
-  const history = useHistory();
+  const logoutEddit = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
 
   return (
-    <div>
-      <button
-        onClick={() => {
-          goToPageFeeds(history);
-        }}
-      >
-        {" "}
-        Ir para Feeds
-      </button>
-      <button
-        onClick={() => {
-          goToPageLogin(history);
-        }}
-      >
-        {" "}
-        Ir para Login
-      </button>
-      <button
-        onClick={() => {
-          goToPageSignup(history);
-        }}
-      >
-        {" "}
-        Ir para Singup
-      </button>
-      <button
-        onClick={() => {
-          goToPagePost(history);
-        }}
-      >
-        {" "}
-        Ir para Post
-      </button>
-    </div>
+    <DivHeader>
+      <ButtonLogout onClick={logoutEddit}>LOGOUT</ButtonLogout >
+    </DivHeader>
   );
 }

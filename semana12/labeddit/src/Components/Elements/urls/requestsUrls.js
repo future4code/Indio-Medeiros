@@ -1,6 +1,6 @@
 //POST-------------------------------------------
 
-//cadastrar
+//cadastrar 
 export const signupUlr =
   "https://us-central1-labenu-apis.cloudfunctions.net/labEddit/signup";
 //logar
@@ -19,7 +19,7 @@ export const createCommentUrl =
 export const getPostsUrl =
   "https://us-central1-labenu-apis.cloudfunctions.net/labEddit/posts";
 //listar todos os posts
-export const getPostDetailUrl = `https://us-central1-labenu-apis.cloudfunctions.net/labEddit/posts/;`;
+export const getPostDetailUrl = `https://us-central1-labenu-apis.cloudfunctions.net/labEddit/posts/`;
 
 //PUT-------------------------------------------
 //vota em um feed
