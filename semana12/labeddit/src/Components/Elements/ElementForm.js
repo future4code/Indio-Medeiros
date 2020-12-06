@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ButtonLogin, ButtonSingup, DivForm, InputForm } from "./styledForm";
-import {goToPageSignup } from "../Coordination/coordinator";
+import { goToPageSignup } from "../Coordination/coordinator";
 import { requestPost } from "../Requests/requests";
 import { loginUrl, signupUlr } from "./urls/requestsUrls";
 
@@ -26,7 +26,6 @@ export default function ElementForm() {
 
   return (
     <DivForm>
-      {console.log(history.location.pathname)}
       <form onSubmit={handleSubmission}>
         {history.location.pathname === "/signup" && (
           <div>
@@ -38,7 +37,7 @@ export default function ElementForm() {
               label="Nome"
               name="username"
               value={form.name}
-              id="outlined-size-small"
+             
               onChange={handleInputChange}
             />
           </div>
@@ -66,7 +65,7 @@ export default function ElementForm() {
             type="password"
             name="password"
             value={form.password}
-            id="outlined-size-small"
+            
             onChange={handleInputChange}
           />
         </div>

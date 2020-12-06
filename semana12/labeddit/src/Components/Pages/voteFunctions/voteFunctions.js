@@ -1,7 +1,7 @@
 import { vote } from "../../Elements/urls/requestsUrls";
 import { requestPut } from "../../Requests/requests";
 
-export const votePositivePost = (id,  votesCount, comment) => {
+export const votePositivePost = (id, votesCount, comment) => {
   const header = {
     Authorization: localStorage.getItem("token"),
   };
@@ -18,7 +18,7 @@ export const votePositivePost = (id,  votesCount, comment) => {
   }
 };
 
-export const voteNegaivePost = (id,  votesCount, comment) => {
+export const voteNegaivePost = (id, votesCount, comment) => {
   const header = {
     Authorization: localStorage.getItem("token"),
   };

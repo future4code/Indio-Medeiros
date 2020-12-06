@@ -1,15 +1,11 @@
 import axios from "axios";
 
-
-
 export const requestPost = (baseUrl, body, header) => {
-  
   axios
-    .post(baseUrl, body, {headers: header})
+    .post(baseUrl, body, { headers: header })
     .then((response) => {
-      console.log("postForm", response)
       response.data.token && localStorage.setItem("token", response.data.token);
-      window.location.reload()
+      window.location.reload();
     })
     .catch((error) => {
       console.log(error);
@@ -19,16 +15,13 @@ export const requestPost = (baseUrl, body, header) => {
 
 export const requestPut = (baseUrl, body) => {
   const header = {
-    Authorization: localStorage.getItem("token")
-  }
+    Authorization: localStorage.getItem("token"),
+  };
   axios
-    .put(baseUrl, body, {headers: header})
-    .then((response) => {
-      console.log("metodo put", response);
-      
-    })
+    .put(baseUrl, body, { headers: header })
+    .then((response) => {})
     .catch((error) => {
       console.log(error);
     });
-    return true
+  return true;
 };

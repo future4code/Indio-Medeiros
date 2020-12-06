@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <DivHeader>
-      <ButtonLogout onClick={logoutEddit}>LOGOUT</ButtonLogout >
+      <ButtonLogout onClick={logoutEddit}>LOGOUT</ButtonLogout>
     </DivHeader>
   );
 }

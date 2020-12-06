@@ -1,14 +1,12 @@
-import styled from 'styled-components'
-import { ButtonColor } from './color/colorWebSite';
+import styled from "styled-components";
+import { ButtonColor } from "./color/colorWebSite";
 
-
-export const DivFormCardPost = styled.form `
-    display: flex;
-    flex-direction: column;
-    width: 345px;
-    
-`
-export const Textarea = styled.textarea `
+export const DivFormCardPost = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 345px;
+`;
+export const Textarea = styled.textarea`
   font-family: roboto;
   padding: 8px;
   width: 328px;
@@ -26,7 +24,7 @@ export const Textarea = styled.textarea `
   }
     
   }
-`
+`;
 export const ButtonCreatePost = styled(ButtonColor)`
   width: 345px;
   font-size: 1.2em;
@@ -51,4 +49,3 @@ export const InputTitle = styled.input`
     border-color: purple;
   }
 `;
-

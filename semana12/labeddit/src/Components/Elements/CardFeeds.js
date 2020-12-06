@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CardFeeds(props) {
   const classes = useStyles();
-  const history = useHistory()
+  const history = useHistory();
   return (
     <CardForm className={classes.root}>
       <CardHeader title={props.username} />
@@ -37,9 +37,16 @@ export default function CardFeeds(props) {
         <p>{props.favorite}</p>
         <ThumbDownIcon id={props.id} onClick={props.voteNegative} />
 
-        {history.location.pathname === `/post/:id` && <Commit onClick={props.onClickCommit} variant="body2" color="textSecondary" component="p">
-          {props.commit} comentários
-        </Commit>}
+        {history.location.pathname === `/feeds` && props.commit !== 0 && (
+          <Commit
+            onClick={props.onClickCommit}
+            variant="body2"
+            color="textSecondary"
+            component="p"
+          >
+            {props.commit} comentários
+          </Commit>
+        )}
       </CardActions>
     </CardForm>
   );

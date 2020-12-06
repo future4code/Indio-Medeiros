@@ -4,8 +4,8 @@ import { DivPageForm, LabEddit } from "./styledPagesForm";
 import labEddit from "../../img/labeddit.png";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
 export default function LoginPage() {
-    useProtectedPage()
-  
+  useProtectedPage();
+
   return (
     <DivPageForm>
       <LabEddit src={labEddit} />

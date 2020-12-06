@@ -8,19 +8,18 @@ export const DivPageForm = styled(DivColorPageForm)`
   height: 100vh;
 `;
 export const Img = styled.img`
-  
   width: 100vw;
   height: 100vh;
 `;
 export const H1 = styled.h1`
-    position: absolute;
-    margin-top: -350px;
-    color: white;
-   
-    font-size: 3.5em;
+  position: absolute;
+  margin-top: -350px;
+  color: white;
+
+  font-size: 3.5em;
 `;
-export const LabEddit = styled.img `
-    width: 150px;
-    margin-top: -250px;
-    position: absolute;
-`
+export const LabEddit = styled.img`
+  width: 150px;
+  margin-top: -250px;
+  position: absolute;
+`;
