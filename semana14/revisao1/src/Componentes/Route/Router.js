@@ -10,9 +10,8 @@ import ReviewList from "../Pages/ReviewList";
 export default function Router() {
   return (
     <BrowserRouter>
+     <Header />
       <Switch>
-        <Header />
-
         <Route exact path="/">
           <ReviewList />
         </Route>
@@ -32,7 +31,7 @@ export default function Router() {
         <Route exact path="/day4">
           <ReviewDay4 />
         </Route>
-        
+
       </Switch>
     </BrowserRouter>
   );
