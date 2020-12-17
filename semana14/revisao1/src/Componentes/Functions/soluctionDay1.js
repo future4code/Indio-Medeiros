@@ -113,7 +113,7 @@ export const checkSecondLargestMinor = (numbers) => {
   let arrayNumbers = [];
   arrayNumbers.push(numbers);
   let newArrayNumbers = numbers !== " " && arrayNumbers[0].split("").sort();
-  return newArrayNumbers[1] + "," + newArrayNumbers[newArrayNumbers.length - 2] 
+  return newArrayNumbers[1] + "," + newArrayNumbers[newArrayNumbers.length - 2];
 };
 
 //Exercício 9
@@ -158,8 +158,8 @@ export const getRepeatNumberCaracters = (string) => {
         count++;
       }
     }
-    if (count > 0 && (string[i] !== " ")) {
-      stringFiltering.push(string[i]+count + ", ");
+    if (count > 0 && string[i] !== " ") {
+      stringFiltering.push(string[i] + count + ", ");
     }
   }
   //remove caracteres repetidos
@@ -177,44 +177,81 @@ export const getRepeatNumberCaracters = (string) => {
 //Exercício 1
 export const largestNumber = (number) => {
   let largestNumber = 0;
-  number = number.split(" ")
- for(let i = 0; i < number.length; i++){
-    if(Number(number[i]) > Number(largestNumber)){
-      largestNumber = number[i]
-    }
- }
-  return largestNumber
-}
-//Exercício 2
-export const largestWord = (string) => {
-  string = string.split(" ")
-  let largestWord = ""
-  for (let i = 0; i < string.length; i++){
-    if (string[i].length > largestWord.length){
-      largestWord = string[i]
+  number = number.split(" ");
+  for (let i = 0; i < number.length; i++) {
+    if (Number(number[i]) > Number(largestNumber)) {
+      largestNumber = number[i];
     }
   }
-  return largestWord
-}
-//Exercício 3
-export const sortIncreasingNumbers = (number) => {
-  number = number.split("")
-  let auxiliar = ""
-  console.log(number)
-  for(let i = 0; i < number.length ; i++){
-    if(number[i+1] < number[i] ){
-     
-        auxiliar = Number(number[i])
-        number[i] = Number(number[i+1])
-        number[i+1] = Number(auxiliar) 
-
+  return largestNumber;
+};
+//Exercício 2
+export const largestWord = (string) => {
+  string = string.split(" ");
+  let largestWord = "";
+  for (let i = 0; i < string.length; i++) {
+    if (string[i].length > largestWord.length) {
+      largestWord = string[i];
     }
-}
-      
-  
-  return number
-}
-//Exercício 4
+  }
+  return largestWord;
+};
+//Exercício 3 e 4
+export const sortIncreasingNumbers = (number) => {
+  number = number.split("");
+  for (let i = 0; i < number.length - 1; i++) {
+    for (let j = 0; j < number.length - i - 1; j++) {
+      if (number[j] > number[j + 1]) {
+        let auxiliary = number[j];
+        number[j] = number[j + 1];
+        number[j + 1] = auxiliary;
+      }
+    }
+  }
+  return number;
+};
 //Exercício 5
+export const checkParOrDivisibleByThree = (number) => {
+  number = Number(number)
+  let message = []
+  console.log(number)
+  for( let i = 0; i <= number; i++){
+    if( i%2 === 0){
+      message.push(i," é par, ")
+    }else if( i%3 === 0) {
+      message.push(i," é par e divisivel por 3, " )
+    }
+  }
+  return message
+}
 //Exercício 6
+export const drawPattern = (number) => {
+  number = Number(number)
+  let arrayDraw = []
+  for (let i = 1; i <= number; i++){
+    
+    for( let j = 0; j < i; j++){
+      arrayDraw.push("*")
+    }
+    
+    arrayDraw.push(" ")
+  }
+
+  return arrayDraw.join("").split(" ")
+}
 //Exercício 7
+export const noteStudentLabenu = (note) => {
+
+  if(note < 30 ){
+      note ="E"
+  }else if(note < 40){
+      note ="D"
+  }else if (note < 60){
+      note ="C"
+  }else if (note < 80){
+      note ="B"
+  }else if (note < Infinity){
+      note ="A"
+  }
+  return "nota " + note
+}

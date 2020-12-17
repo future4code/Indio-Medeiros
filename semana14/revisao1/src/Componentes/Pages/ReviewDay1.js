@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {revertText,largestWord,sortIncreasingNumbers,  getRepeatNumberCaracters, largestNumber, extractUniqueCharacters,  checkSecondLargestMinor, countVowels, checkPalindromo, checkBiggerWord,  addCapitalLetter, combinationString, sortAlphabetic} from '../Functions/soluctionDay1'
+import {revertText, noteStudentLabenu, drawPattern, checkParOrDivisibleByThree, largestWord,sortIncreasingNumbers,  getRepeatNumberCaracters, largestNumber, extractUniqueCharacters,  checkSecondLargestMinor, countVowels, checkPalindromo, checkBiggerWord,  addCapitalLetter, combinationString, sortAlphabetic} from '../Functions/soluctionDay1'
 
 export default function ReviewDay1() {
     const [strings, setStrings] = useState({})
@@ -62,10 +62,23 @@ export default function ReviewDay1() {
         <input name="largestWord" value={strings.largestWord } onChange={(handleOnChange)}/>
         <p> Resultado: {strings.largestWord && largestWord(strings.largestWord)} </p>
 
-        <h3>Ordenação crescente de numeros (até 3 numeros)</h3>
-        <input  maxLength="3" name="sortIncreasingNumbers" value={strings.largestWord } onChange={(handleOnChange)}/>
+        <h3>Ordenação crescente de numeros </h3>
+        <input type="number"  name="sortIncreasingNumbers" value={strings.largestWord } onChange={(handleOnChange)}/>
         <p> Resultado: {strings.sortIncreasingNumbers && sortIncreasingNumbers(strings.sortIncreasingNumbers)} </p>
+        {strings.sortIncreasingNumbers && <button onClick={() => {alert(sortIncreasingNumbers(strings.sortIncreasingNumbers)[strings.sortIncreasingNumbers.length -1 ])}}> veja o maior numero</button>}
 
+        <h3>Checar se o numero é par ou divisível por três</h3>
+        <input maxLength="2" name="checkParOrDivisibleByThree" value={strings.checkParOrDivisibleByThree} onChange={(handleOnChange)}/>
+        <p> Resultado: {strings.checkParOrDivisibleByThree && checkParOrDivisibleByThree(strings.checkParOrDivisibleByThree)} </p>
+
+        <h3>Desenhar com asterisco</h3>
+        <input  type="number"  name="drawPattern" value={strings.drawPattern} onChange={(handleOnChange)}/>
+          {strings.drawPattern && drawPattern(strings.drawPattern).map((item) => { return <p>{item}</p>})} 
+
+        <h3>Nota da Labenu ( escreva o seu score de teste)</h3>
+        <input type="number" min="1" max="2" maxLength="2" name="noteStudentLabenu" value={strings.noteStudentLabenu} onChange={(handleOnChange)}/>
+        <p> Resultado: {strings.noteStudentLabenu && noteStudentLabenu(strings.noteStudentLabenu)} </p>
+    
     </div>
 
   )
