@@ -1,0 +1,12 @@
+{
+  "name": "semana15",
+  "version": "1.0.0",
+  "description": "primeira aula de node",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test"
+  },
+  "author": "indio medeiros",
+  "license": "ISC"
+}
