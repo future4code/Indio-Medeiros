@@ -2,7 +2,7 @@
 // const minhaString: string = 1
 
 //b) colocando a "|" union para ter duas possibilidades de tipos
-const meuNumero: number | string = 1
+const meuNumero: (number | string) = 1
 
 //c)
 const pessoa: {nome: string, idade: number, corFavorita: string} = {
