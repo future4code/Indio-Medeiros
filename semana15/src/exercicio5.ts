@@ -1,4 +1,4 @@
-function somar (numero1: number, numero2: number) {
+function somar (numero1: number, numero2: number): void {
     console.log("entrada:", numero1, "e", numero2)
     console.log ("a) Soma:", numero1 + numero2);
     console.log("b) Subtração:", numero1 - numero2);
