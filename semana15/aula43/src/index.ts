@@ -135,6 +135,9 @@ app.post("/user/createUser", (req: Request, res: Response) => {
       type: req.body.type,
       age: req.body.age,
     };
+    if(req.body === undefined){
+      throw new Error ("Algo errado no envio de dados (Body)")
+    }
     users.push(novoUsuario);
 
     res.status(200).send("usuário adicionado com sucesso!");
@@ -145,6 +148,32 @@ app.post("/user/createUser", (req: Request, res: Response) => {
 
 //exercicio 5
 
+app.put("/user/editUser/:id", (req: Request, res: Response) => {
+  let errorCode = 400;
+
+  try {
+    const result = users.findIndex((user: user) => {
+      return user.id === Number(req.params.id)
+    } )
+    
+    users[result] = {
+      id: users[result].id,
+      name: req.body.name,
+      email: users[result].email,
+      type: users[result].type,
+      age: users[result].age,
+    };
+    
+    if(req.body.name === undefined){
+      throw new Error ("Algo deu errado na sua requisição")
+    }
+    
+
+    res.status(200).send("usuário atualizado com sucesso!");
+  } catch (error) {
+    res.status(errorCode).send(error.message);
+  }
+});
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
