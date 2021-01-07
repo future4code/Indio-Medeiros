@@ -106,7 +106,7 @@ app.get("/user/nome", (req: Request, res: Response) => {
   try {
     const result = users.filter(
       (user: user) =>
-        user.name.toLowerCase() === (req.query.nome as string).toLowerCase()
+        user.name === req.query.nome as string
     );
 
     if (result.length === 0 || !result) {
@@ -119,6 +119,29 @@ app.get("/user/nome", (req: Request, res: Response) => {
     res.status(errorCode).send(error.message);
   }
 });
+
+
+//exercicio 4
+app.post("/user/createUser", (req: Request, res: Response) => {
+  let errorCode = 400;
+
+  try {
+    const novoUsuario = {
+      id: req.body.id,
+    name: req.body.name,
+    email: req.body.email,
+    type: req.body.type,
+    age: req.body.age
+    }
+    users.push(novoUsuario)
+    
+
+    res.status(200).send("usuário adicionado com sucesso!");
+  } catch (error) {
+    res.status(errorCode).send(error.message);
+  }
+});
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
