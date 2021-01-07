@@ -60,6 +60,20 @@ app.get("/countries/:id", (req: Request, res: Response) => {
   }
 });
 
+//endpoint 4
+app.put("/countries/edit/:id", (req: Request, res: Response) => {
+  
+  countries[Number(req.params.id)].name = req.body.name
+  countries[Number(req.params.id)].capital = req.body.capital
+ 
+  if (req.body) {
+    res.status(200).send(req.body);
+  } else {
+    res.status(404).send("Não tem body");
+  }
+
+})
+
 
 app.listen(process.env.PORT || 3003, () => {
   console.log("O serve está rodando em http://localhost:3003");
