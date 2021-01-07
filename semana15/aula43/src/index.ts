@@ -197,7 +197,27 @@ app.patch("/user/reeditUser/:id", (req: Request, res: Response) => {
     }
     
 
-    res.status(200).send("usuário atualizado com sucesso!");
+    res.status(200).send("usuário re-atualizado com sucesso!");
+  } catch (error) {
+    res.status(errorCode).send(error.message);
+  }
+});
+
+
+app.delete("/user/deleteUser/:id", (req: Request, res: Response) => {
+  let errorCode = 400;
+
+  try {
+    const result = users.findIndex((user: user) => {
+      return user.id === Number(req.params.id)
+    } )
+    users.splice(result, 1)
+    
+    if(!result || req.params.id === undefined){
+      throw new Error ("Algo deu errado na sua requisição")
+    }
+
+    res.status(200).send("usuário  deletado com sucesso!");
   } catch (error) {
     res.status(errorCode).send(error.message);
   }
