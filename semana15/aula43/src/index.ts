@@ -78,15 +78,40 @@ app.get("/users", (req: Request, res: Response) => {
 //a) passei parâmetro via entidade (path parameters), pois o dado não precisava de proteção
 //b) Utilizei o filtro e condições para garantir que só os types válidos fossem enviados
 
-app.get("/user/:type", (req: Request, res: Response) => {
+app.get("/user/tipo/:type", (req: Request, res: Response) => {
   let errorCode = 400;
- 
+
   try {
-    const result = users.filter((user: user) => user.type === req.params.type.toUpperCase());
+    const result = users.filter(
+      (user: user) => user.type === req.params.type.toUpperCase()
+    );
 
     if (result.length === 0 || !result) {
       errorCode = 404;
       throw new Error("Nenhum dado foi achado, insira um type válido");
+    }
+
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(errorCode).send(error.message);
+  }
+});
+
+//exercicio 3
+//a) tipo query
+
+app.get("/user/nome", (req: Request, res: Response) => {
+  let errorCode = 400;
+
+  try {
+    const result = users.filter(
+      (user: user) =>
+        user.name.toLowerCase() === (req.query.nome as string).toLowerCase()
+    );
+
+    if (result.length === 0 || !result) {
+      errorCode = 404;
+      throw new Error("Nenhum nome foi achado, insira um nome válido");
     }
 
     res.status(200).send(result);
