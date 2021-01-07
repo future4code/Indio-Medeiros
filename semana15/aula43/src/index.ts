@@ -158,7 +158,35 @@ app.put("/user/editUser/:id", (req: Request, res: Response) => {
     
     users[result] = {
       id: users[result].id,
-      name: req.body.name,
+      name: req.body.name +  "-ALTERADO",
+      email: users[result].email,
+      type: users[result].type,
+      age: users[result].age,
+    };
+    
+    if(req.body.name === undefined){
+      throw new Error ("Algo deu errado na sua requisição")
+    }
+    
+
+    res.status(200).send("usuário atualizado com sucesso!");
+  } catch (error) {
+    res.status(errorCode).send(error.message);
+  }
+});
+
+//EXERCICIO 6
+app.patch("/user/reeditUser/:id", (req: Request, res: Response) => {
+  let errorCode = 400;
+
+  try {
+    const result = users.findIndex((user: user) => {
+      return user.id === Number(req.params.id)
+    } )
+    
+    users[result] = {
+      id: users[result].id,
+      name: req.body.name +  "-REALTERADO",
       email: users[result].email,
       type: users[result].type,
       age: users[result].age,
