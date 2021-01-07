@@ -105,8 +105,7 @@ app.get("/user/nome", (req: Request, res: Response) => {
 
   try {
     const result = users.filter(
-      (user: user) =>
-        user.name === req.query.nome as string
+      (user: user) => user.name === (req.query.nome as string)
     );
 
     if (result.length === 0 || !result) {
@@ -120,21 +119,23 @@ app.get("/user/nome", (req: Request, res: Response) => {
   }
 });
 
-
 //exercicio 4
+//a) não há diferenças visiveis na mudança para o PUT
+//b) pelos resultados que consegui eu considero apropriado, porém e seguindo o conselho da comunidade
+//é preferivel utilizar o Post, por ter uma funcionalidade além de só atualizar/inserir dados
+
 app.post("/user/createUser", (req: Request, res: Response) => {
   let errorCode = 400;
 
   try {
     const novoUsuario = {
       id: req.body.id,
-    name: req.body.name,
-    email: req.body.email,
-    type: req.body.type,
-    age: req.body.age
-    }
-    users.push(novoUsuario)
-    
+      name: req.body.name,
+      email: req.body.email,
+      type: req.body.type,
+      age: req.body.age,
+    };
+    users.push(novoUsuario);
 
     res.status(200).send("usuário adicionado com sucesso!");
   } catch (error) {
@@ -142,6 +143,7 @@ app.post("/user/createUser", (req: Request, res: Response) => {
   }
 });
 
+//exercicio 5
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
