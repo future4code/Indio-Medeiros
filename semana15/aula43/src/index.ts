@@ -65,7 +65,16 @@ let users: user[] = [
     }
 ]
 
+app.get("/user", (req: Request, res: Response)=> {
+    const result: user[]  = users;
 
+    if(result){
+    res.status(200).send(result);
+    }else{
+        res.status(400).send("not found")
+    }
+    
+})
 
 
 const server = app.listen(process.env.PORT || 3003, () => {
