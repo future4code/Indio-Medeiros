@@ -4,7 +4,7 @@ import { AddressInfo } from "net";
 import { userAccount, userExtract, users } from "./database";
 
 const app = express();
-app.use(express.json);
+app.use(express.json());
 app.use(cors());
 
 //cadastrar usuário
@@ -12,7 +12,7 @@ app.post("/users/register", (req: Request, res: Response) => {
   let errorCode: number = 400;
 
   try {
-    if (req.body.birth.year < 2003) {
+    if (Number(req.body.birth.year) > 2003) {
       throw new Error(
         "Só é possível cadastrar pessoas com ou acimade 18 anos."
       );
@@ -39,7 +39,7 @@ app.post("/users/register", (req: Request, res: Response) => {
       transactions: ["Não possui transações"],
     };
     users.push(user);
-
+    console.log(req.body.birth.year)
     res.status(200).send("Conta criada com sucesso! Bem vindo ao F4Bank");
   } catch (error) {
     res.status(errorCode).send(error.message);
