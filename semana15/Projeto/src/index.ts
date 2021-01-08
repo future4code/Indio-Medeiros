@@ -39,7 +39,7 @@ app.post("/users/register", (req: Request, res: Response) => {
       transactions: ["Não possui transações"],
     };
     users.push(user);
-    console.log(req.body.birth.year)
+    
     res.status(200).send("Conta criada com sucesso! Bem vindo ao F4Bank");
   } catch (error) {
     res.status(errorCode).send(error.message);
@@ -59,6 +59,27 @@ app.get("/users/all", (req: Request, res: Response) => {
     res.status(errorCode).send("error.message");
   }
 });
+
+//pegar saldo
+app.post("/users/balance", (req: Request, res: Response) => {
+  let errorCode: number = 400
+  try {
+    const result= users.findIndex(user => {
+      return req.body.CPF === user.CPF
+    })
+    
+    if (result === -1 || req.body.CPF === undefined) {
+      errorCode = 404;
+      throw new Error("Não há usuários ou usuário não encontrado")
+    }
+
+    res.status(200).send("seu saldo é: " + users[result].balance)
+
+  } catch (error) {
+    res.status(errorCode).send(error.message)
+  }
+})
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
