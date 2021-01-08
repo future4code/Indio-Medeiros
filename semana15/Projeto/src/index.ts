@@ -18,6 +18,16 @@ app.post("/users/register", (req: Request, res: Response) => {
       );
     }
 
+    const result= users.findIndex(user => {
+      return req.body.CPF === user.CPF
+    })
+
+    if(result !== -1 ){
+      throw new Error (
+        "usuário/CPF já existe na base dados"
+      )
+    }
+
     if (
       req.body.name === undefined ||
       req.body.CPF === undefined ||
@@ -67,7 +77,7 @@ app.post("/users/balance", (req: Request, res: Response) => {
     const result= users.findIndex(user => {
       return req.body.CPF === user.CPF
     })
-    
+
     if (result === -1 || req.body.CPF === undefined) {
       errorCode = 404;
       throw new Error("Não há usuários ou usuário não encontrado")
