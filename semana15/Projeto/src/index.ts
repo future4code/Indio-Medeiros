@@ -18,14 +18,12 @@ app.post("/users/register", (req: Request, res: Response) => {
       );
     }
 
-    const result= users.findIndex(user => {
-      return req.body.CPF === user.CPF
-    })
+    const result = users.findIndex((user) => {
+      return req.body.CPF === user.CPF;
+    });
 
-    if(result !== -1 ){
-      throw new Error (
-        "usuário/CPF já existe na base dados"
-      )
+    if (result !== -1) {
+      throw new Error("usuário/CPF já existe na base dados");
     }
 
     if (
@@ -49,7 +47,7 @@ app.post("/users/register", (req: Request, res: Response) => {
       transactions: ["Não possui transações"],
     };
     users.push(user);
-    
+
     res.status(200).send("Conta criada com sucesso! Bem vindo ao F4Bank");
   } catch (error) {
     res.status(errorCode).send(error.message);
@@ -72,24 +70,33 @@ app.get("/users/all", (req: Request, res: Response) => {
 
 //pegar saldo
 app.post("/users/balance", (req: Request, res: Response) => {
-  let errorCode: number = 400
+  let errorCode: number = 400;
   try {
-    const result= users.findIndex(user => {
-      return req.body.CPF === user.CPF
-    })
+    const result = users.findIndex((user) => {
+      return req.body.CPF === user.CPF;
+    });
 
     if (result === -1 || req.body.CPF === undefined) {
       errorCode = 404;
-      throw new Error("Não há usuários ou usuário não encontrado")
+      throw new Error("Não há usuários ou usuário não encontrado");
+    }
+    //adicionar saldo
+    if (req.body.balance < users[result].balance) {
+      throw new Error("você não pode negativar o saldo por este endpoint");
+    } else if (req.body.balance > users[result].balance && req.body.name) {
+      users[result].balance = req.body.balance;
+      res
+        .status(200)
+        .send(
+          "Sr." + req.body.name + " seu novo saldo é: " + users[result].balance
+        );
     }
 
-    res.status(200).send("seu saldo é: " + users[result].balance)
-
+    res.status(200).send("seu saldo é: " + users[result].balance);
   } catch (error) {
-    res.status(errorCode).send(error.message)
+    res.status(errorCode).send(error.message);
   }
-})
-
+});
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
