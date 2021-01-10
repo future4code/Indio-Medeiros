@@ -44,7 +44,7 @@ app.post("/users/register", (req: Request, res: Response) => {
         year: req.body.birth.year,
       },
       balance: 0,
-      transactions: ["Não possui transações"],
+      transactions: [],
     };
     users.push(user);
 
@@ -78,6 +78,7 @@ app.post("/users/balance", (req: Request, res: Response) => {
 
     if (result === -1 || req.body.CPF === undefined) {
       errorCode = 404;
+
       throw new Error("Não há usuários ou usuário não encontrado");
     }
     //adicionar saldo
@@ -93,6 +94,79 @@ app.post("/users/balance", (req: Request, res: Response) => {
     }
 
     res.status(200).send("seu saldo é: " + users[result].balance);
+  } catch (error) {
+    res.status(errorCode).send(error.message);
+    res.status(errorCode).send(error.message);
+  }
+});
+
+//pagamento de conta
+app.post("/users/pay", (req: Request, res: Response) => {
+  let errorCode: number = 400;
+  try {
+    if (req.body.value === undefined || !req.body.value) {
+      errorCode = 402;
+      throw new Error("não há valor definido para o pagamento");
+      
+    }
+
+    //validando data
+    if (req.body.date === undefined || !req.body.date) {
+      const date = new Date();
+      const dateFormat =
+        date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+      req.body.date = dateFormat;
+    } else {
+      const date = new Date();
+      if (
+        req.body.date.split("/")[2] < date.getFullYear() ||
+        req.body.date.split("/")[1] < date.getMonth() + 1 || 
+        (req.body.date.split("/")[1] <= date.getMonth() + 1 && req.body.date.split("/")[0] < date.getDate())
+      ) {
+        errorCode = 403;
+        throw new Error("não é permitido agendar para uma data passada");
+      }
+    }
+
+    const pay: userExtract = {
+      value: req.body.value,
+      date: req.body.date,
+      description: req.body.description,
+    };
+
+    if (pay.description === undefined || !pay.description) {
+      pay.description = "sem descrição";
+    }
+
+    //procurar o usuário
+    const result = users.findIndex((user) => {
+      return req.body.CPF === user.CPF;
+    });
+
+    if (result === -1 || req.body.CPF === undefined) {
+      errorCode = 404;
+      throw new Error("Não há usuários ou usuário não encontrado");
+    }
+
+    if (users[result].balance > pay.value) {
+      users[result].balance -= pay.value;
+      users[result].transactions.push(pay)
+    } else {
+      errorCode = 406;
+      throw new Error("Saldo insuficiente");
+    }
+
+    res
+      .status(200)
+      .send(
+        "Pagamento efetuado com sucesso! " +
+          " Valor: " +
+          pay.value +
+          " Agendamento: " +
+          pay.date +
+          " Descrição: " +
+          pay.description
+      );
   } catch (error) {
     res.status(errorCode).send(error.message);
   }
