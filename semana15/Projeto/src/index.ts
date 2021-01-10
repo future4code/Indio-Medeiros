@@ -69,7 +69,7 @@ app.get("/users/all", (req: Request, res: Response) => {
 });
 
 //pegar saldo
-app.post("/users/balance", (req: Request, res: Response) => {
+app.put("/users/balance", (req: Request, res: Response) => {
   let errorCode: number = 400;
   try {
     const result = users.findIndex((user) => {
@@ -171,6 +171,46 @@ app.post("/users/pay", (req: Request, res: Response) => {
     res.status(errorCode).send(error.message);
   }
 });
+
+//transferência interna
+app.put("/users/transfer", (req: Request, res: Response) => {
+  let errorCode: number = 400
+
+  try{
+    
+  const userRecipient = users.findIndex(user => user.CPF === req.body.recipient.CPF)
+  const userSender = users.findIndex(user => user.CPF === req.body.sender.CPF)
+  if(userRecipient === -1){
+    errorCode = 404
+    throw new Error('destinatário não encontrado')
+  }
+  if(userSender === -1){
+    errorCode = 404
+    throw new Error ('remetente não encontrado')
+  }
+  if(users[userRecipient].name !== req.body.recipient.name  ){
+    errorCode = 409
+    throw new Error ('Nome e CPF do destinatário não correspodem')
+  }
+  if(users[userSender].name !== req.body.sender.name  ){
+    errorCode = 409
+    throw new Error ('Nome e CPF do remetente não correspodem')
+  }
+
+  if(users[userSender].balance < req.body.pay){
+    res.status(200).send(`${users[userSender].name} não possui saldo suficiente para transferência` )
+  }else{
+  users[userSender].balance -= Number(req.body.pay)
+  users[userRecipient].balance += Number(req.body.pay)
+  }
+  
+  res.status(200).send(`o valor de ${req.body.pay} foi transferido para ${users[userRecipient].name} com sucesso!`)
+
+  }catch(error){
+    res.status(errorCode).send(error.message)
+  }
+})
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
