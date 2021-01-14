@@ -24,3 +24,8 @@ INSERT INTO Rating (id, comment, rate, movie_id) VALUES
 
 SELECT * FROM Rating;
 </p>
+
+<p>
+C) Resposta:
+Não é possível adicionar uma nova linha quando não obedece a restrição da FOREIGN KEY, ou seja, se não houver correspondencia do dado cham
+</p>
