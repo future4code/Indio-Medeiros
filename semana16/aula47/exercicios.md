@@ -34,3 +34,8 @@ Não é possível adicionar uma nova linha quando não obedece a restrição da 
 D) Resposta:
 ALTER TABLE Movie DROP COLUMN rating
 </p>
+
+<p>
+E) Resposta:
+Não é possível excluir dados (filmes)que estão atrelados a outras tabelas (tabela de avaliação). Isso acontece por conta da restrição da chave estrageira (FOREIGN KEY)
+</p>
