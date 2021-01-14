@@ -29,3 +29,8 @@ SELECT * FROM Rating;
 C) Resposta:
 Não é possível adicionar uma nova linha quando não obedece a restrição da FOREIGN KEY, ou seja, se não houver correspondencia do dado cham
 </p>
+
+<p>
+D) Resposta:
+ALTER TABLE Movie DROP COLUMN rating
+</p>
