@@ -5,4 +5,22 @@ a) Resposta:
 FOREIGN é usado para fazer relações entre tabelas criadas. Ela deve ser sempre referenciada a PRIMARY KEY da tabela que deseja se relacionar
 </p>
 
+<p>
+b) Resposta:
+CREATE TABLE Rating (
+		id INT PRIMARY KEY,
+    comment TEXT NOT NULL,
+		rate FLOAT NOT NULL,
+    movie_id VARCHAR(255),
+    FOREIGN KEY (movie_id) REFERENCES Movie(id)
+);
 
+
+INSERT INTO Rating (id, comment, rate, movie_id) VALUES
+(1, 'Filme expetacular', 8.6, 'A'),
+(2, 'Revolução no lançamento', 8.0, 'B'),
+(3, 'Queridinho dos nerds', 8.6, 'C'),
+(4, 'O primeiro foi melhor', 7.6, 'D');
+
+SELECT * FROM Rating;
+</p>
