@@ -55,13 +55,39 @@ app.put("/user", (req: Request, res: Response) => {
       
       users.push(userCreate)
   
-      res.status(200).send('usuário criado com sucesso!')
+      res.status(200).send('usuário criado com sucesso! seu id é: ' + userCreate.id)
   
     } catch (error) {
         res.status(errorCode).send(error.message)
     }
   });
 
+  //pegar usuário por id/parametro
+  app.get('/user/:id', (req: Request, res: Response) => {
+    let errorCode: number = 400;
+    let errorMessage: string = `usuário não encontrado, `
+
+    try{
+        const result = users.findIndex(user => user.id === Number(req.params.id))
+
+        //validação 
+        if(!req.params.id || result === -1){
+            errorCode = 404
+            throw new Error(errorMessage + 'verifique o id utilizado')
+        }
+
+        const response = {
+            id: String(users[result].id),
+            nickname: users[result].nickname
+        }
+        res.status(200).send(response)
+
+    }catch(error){
+        res.status(errorCode).send(error.message)
+    }
+  })
+
+  
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
