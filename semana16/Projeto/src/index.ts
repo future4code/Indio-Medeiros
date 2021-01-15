@@ -29,6 +29,21 @@ app.put("/user", (req: Request, res: Response) => {
 
   try {
     //validação-------
+    const result = users.findIndex((user) => {
+      return req.body.name === user.name;
+    });
+
+    if (result !== -1) {
+      throw new Error("nome de usuário já existe na base dados");
+    }
+
+    const result2 = users.findIndex((user) => {
+      return req.body.nickname === user.nickname;
+    });
+
+    if (result2 !== -1) {
+      throw new Error("nome de usuário já existe na base dados");
+    }
 
     if (!req.body.name || req.body.name === undefined) {
       errorCode = 404;
@@ -111,10 +126,13 @@ app.post("/user/edit/:id", (req: Request, res: Response) => {
       errorCode = 404;
       throw new Error(errorMessage + "*nickname");
     }
-    
-    if(users[result].name === req.body.name && users[result].nickname === req.body.nickname){
-        errorCode = 409
-        throw new Error("(verificque o Body) os dados são identicos")
+
+    if (
+      users[result].name === req.body.name &&
+      users[result].nickname === req.body.nickname
+    ) {
+      errorCode = 409;
+      throw new Error("(verificque o Body) os dados são identicos");
     }
     //--------------------------------
     if (users[result].name !== req.body.name) {
@@ -123,10 +141,8 @@ app.post("/user/edit/:id", (req: Request, res: Response) => {
     if (users[result].nickname !== req.body.nickname) {
       users[result].nickname = req.body.nickname;
     }
-    
 
-    res.status(200).send("dados alterados com sucesso!")
-
+    res.status(200).send("dados alterados com sucesso!");
   } catch (error) {
     res.status(errorCode).send(error.message);
   }
