@@ -3,7 +3,7 @@ import express, { Response, Request, Express } from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
 import knex from "knex";
-import { users, user } from "./database";
+import { users, user, checkBody, checkID } from "./database";
 
 const app: Express = express();
 app.use(express.json());
@@ -24,11 +24,13 @@ export const connection = knex({
 
 //criar usuário
 app.put("/user", (req: Request, res: Response) => {
-  let errorCode: number = 400;
-  let errorMessage: string = `(verifique o body) ausência da propriedade  `;
-
+  let errorCode: number = 404;
   try {
     //validação-------
+    checkBody(req.body.name, "*name");
+    checkBody(req.body.nickname, "*nickname");
+    checkBody(req.body.email, "*email");
+
     const result = users.findIndex((user) => {
       return req.body.name === user.name;
     });
@@ -42,22 +44,7 @@ app.put("/user", (req: Request, res: Response) => {
     });
 
     if (result2 !== -1) {
-      throw new Error("nome de usuário já existe na base dados");
-    }
-
-    if (!req.body.name || req.body.name === undefined) {
-      errorCode = 404;
-      throw new Error(errorMessage + "*name");
-    }
-
-    if (!req.body.nickname || req.body.nickname === undefined) {
-      errorCode = 404;
-      throw new Error(errorMessage + "*nickname");
-    }
-
-    if (!req.body.email || req.body.email === undefined) {
-      errorCode = 404;
-      throw new Error(errorMessage + "*email");
+      throw new Error("nickname já existe na base dados");
     }
     //------------------
 
@@ -81,17 +68,13 @@ app.put("/user", (req: Request, res: Response) => {
 
 //pegar usuário por id/parametro
 app.get("/user/:id", (req: Request, res: Response) => {
-  let errorCode: number = 400;
-  let errorMessage: string = `usuário não encontrado, `;
+  let errorCode: number = 404;
 
   try {
     const result = users.findIndex((user) => user.id === Number(req.params.id));
 
     //validação -------------
-    if (!req.params.id || result === -1) {
-      errorCode = 404;
-      throw new Error(errorMessage + "verifique o id utilizado");
-    }
+    checkID(req.params.id, result);
 
     const response = {
       id: String(users[result].id),
@@ -106,26 +89,15 @@ app.get("/user/:id", (req: Request, res: Response) => {
 
 //Editar usuário
 app.post("/user/edit/:id", (req: Request, res: Response) => {
-  let errorCode: number = 400;
-  let errorMessage: string = `(verifique o body) ausência da propriedade `;
+  let errorCode: number = 404;
 
   try {
     const result = users.findIndex((user) => user.id === Number(req.params.id));
 
     //validação -------------
-    if (!req.params.id || result === -1) {
-      errorCode = 404;
-      throw new Error("usuário não encontrado, verifique o id utilizado");
-    }
-    if (!req.body.name || req.body.name === undefined) {
-      errorCode = 404;
-      throw new Error(errorMessage + "*name");
-    }
-
-    if (!req.body.nickname || req.body.nickname === undefined) {
-      errorCode = 404;
-      throw new Error(errorMessage + "*nickname");
-    }
+    checkID(req.params.id, result);
+    checkBody(req.body.name, "*name");
+    checkBody(req.body.nickname, "*nickname");
 
     if (
       users[result].name === req.body.name &&
@@ -147,6 +119,8 @@ app.post("/user/edit/:id", (req: Request, res: Response) => {
     res.status(errorCode).send(error.message);
   }
 });
+
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
