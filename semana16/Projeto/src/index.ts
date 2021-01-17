@@ -2,8 +2,10 @@ import dotenv from "dotenv";
 import express, { Response, Request, Express } from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
+import {createToDoListTable, createTodoListTask, TodoListResponsibleUserTaskRelation } from "./functionsSql"
+import { users, user, checkBody, checkID, tasks, task } from "./database";
 import knex from "knex";
-import { users, user, checkBody, checkID } from "./database";
+import Knex from "knex";
 
 const app: Express = express();
 app.use(express.json());
@@ -11,7 +13,7 @@ app.use(cors());
 
 dotenv.config();
 
-export const connection = knex({
+export const connection: Knex = knex({
   client: "mysql",
   connection: {
     host: process.env.DB_HOST,
@@ -21,6 +23,11 @@ export const connection = knex({
     database: process.env.DB_NAME,
   },
 });
+
+
+createToDoListTable()
+createTodoListTask()
+TodoListResponsibleUserTaskRelation()
 
 //criar usuário
 app.put("/user", (req: Request, res: Response) => {
@@ -120,7 +127,33 @@ app.post("/user/edit/:id", (req: Request, res: Response) => {
   }
 });
 
+app.put("/task", (req: Request, res: Response) => {
+  let errorCode: number = 404;
 
+  try {
+    const result = users.findIndex(
+      (user) => user.id === Number(req.body.creatorUserId)
+    );
+    //validação
+    checkBody(req.body.title, "title");
+    checkBody(req.body.description, "description");
+    checkBody(req.body.limitDate, "limitDate");
+    checkID(req.body.creatorUserId, result);
+
+    const taskCreate: task = {
+      title: req.body.title,
+      description: req.body.description,
+      limitDate: req.body.limitDate,
+      creatorUserId: req.body.creatorUserId,
+    };
+
+    tasks.push(taskCreate);
+
+    res.status(200).send("Tarefa criada com sucesso!");
+  } catch (error) {
+    res.status(errorCode).send(error.message);
+  }
+});
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

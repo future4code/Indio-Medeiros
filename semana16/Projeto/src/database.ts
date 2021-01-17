@@ -10,9 +10,11 @@ export let users: user[] = [];
 export type task = {
     title: string,
 	description: string,
-	limitDate: Date,
+	limitDate: string,
 	creatorUserId: number
 }
+
+export let tasks: task[] = []
 
 //validação de dados do req.body
  export  function checkBody (req: string, propsError: string) {
