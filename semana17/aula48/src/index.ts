@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { recipe } from "./types/recipe";
 import createTableUsers from "./data/queryEndPoint/createTableUsers";
+import {getUserName} from "./data/endpoints/getUserName";
+import { getUserType } from "./data/endpoints/getUserType";
 
 dotenv.config();
 
@@ -23,7 +25,9 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors())
 
-createTableUsers()
+app.get('/user/search', getUserName)
+app.get('/user/:type', getUserType)
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
