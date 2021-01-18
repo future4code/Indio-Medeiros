@@ -2,8 +2,18 @@ import dotenv from "dotenv";
 import express, { Response, Request, Express } from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
-import {createToDoListTable, createTodoListTask, TodoListResponsibleUserTaskRelation } from "./functionsSql"
-import { users, user, checkBody, checkID, tasks, task } from "./database";
+import {
+  checkBody,
+  createToDoListTable,
+  createTodoListTask,
+  TodoListResponsibleUserTaskRelation,
+  creatUser,
+  getUser,
+  updateUser,
+  createTask,
+  getTask,
+} from "./functions";
+import { user, task } from "./types";
 import knex from "knex";
 import Knex from "knex";
 
@@ -24,46 +34,32 @@ export const connection: Knex = knex({
   },
 });
 
-
-createToDoListTable()
-createTodoListTask()
-TodoListResponsibleUserTaskRelation()
+//criar tabelas
+createToDoListTable();
+createTodoListTask();
+TodoListResponsibleUserTaskRelation();
 
 //criar usuário
-app.put("/user", (req: Request, res: Response) => {
+app.put("/user", async (req: Request, res: Response) => {
   let errorCode: number = 404;
   try {
+    const { name, nickname, email } = req.body;
+
     //validação-------
-    checkBody(req.body.name, "*name");
-    checkBody(req.body.nickname, "*nickname");
-    checkBody(req.body.email, "*email");
-
-    const result = users.findIndex((user) => {
-      return req.body.name === user.name;
-    });
-
-    if (result !== -1) {
-      throw new Error("nome de usuário já existe na base dados");
-    }
-
-    const result2 = users.findIndex((user) => {
-      return req.body.nickname === user.nickname;
-    });
-
-    if (result2 !== -1) {
-      throw new Error("nickname já existe na base dados");
-    }
+    checkBody(name, "*name");
+    checkBody(nickname, "*nickname");
+    checkBody(email, "*email");
     //------------------
 
     //criação de usuário
     const userCreate: user = {
-      id: Date.now(),
-      name: req.body.name,
-      nickname: req.body.nickname,
-      email: req.body.email,
+      id: String(Date.now()),
+      name: name,
+      nickname: nickname,
+      email: email,
     };
 
-    users.push(userCreate);
+    await creatUser(userCreate);
 
     res
       .status(200)
@@ -74,86 +70,95 @@ app.put("/user", (req: Request, res: Response) => {
 });
 
 //pegar usuário por id/parametro
-app.get("/user/:id", (req: Request, res: Response) => {
+app.get("/user/:id", async (req: Request, res: Response) => {
   let errorCode: number = 404;
 
   try {
-    const result = users.findIndex((user) => user.id === Number(req.params.id));
-
-    //validação -------------
-    checkID(req.params.id, result);
-
-    const response = {
-      id: String(users[result].id),
-      nickname: users[result].nickname,
-    };
+    const result = await getUser(req.params.id);
     //----------------------
-    res.status(200).send(response);
+    if (Number(result) === 0) {
+      throw new Error("usuário não existe");
+    }
+    res.status(200).send(result);
   } catch (error) {
     res.status(errorCode).send(error.message);
   }
 });
 
 //Editar usuário
-app.post("/user/edit/:id", (req: Request, res: Response) => {
+app.post("/user/edit/:id", async (req: Request, res: Response) => {
   let errorCode: number = 404;
 
   try {
-    const result = users.findIndex((user) => user.id === Number(req.params.id));
-
+    const { name, nickname } = req.body;
     //validação -------------
-    checkID(req.params.id, result);
-    checkBody(req.body.name, "*name");
-    checkBody(req.body.nickname, "*nickname");
+    checkBody(name, "*name");
+    checkBody(nickname, "*nickname");
 
-    if (
-      users[result].name === req.body.name &&
-      users[result].nickname === req.body.nickname
-    ) {
-      errorCode = 409;
-      throw new Error("(verificque o Body) os dados são identicos");
-    }
-    //--------------------------------
-    if (users[result].name !== req.body.name) {
-      users[result].name = req.body.name;
-    }
-    if (users[result].nickname !== req.body.nickname) {
-      users[result].nickname = req.body.nickname;
-    }
+    const result = await updateUser(name, nickname, String(req.params.id));
 
+    if (result === 0) {
+      throw new Error("usuário não existe");
+    }
     res.status(200).send("dados alterados com sucesso!");
   } catch (error) {
     res.status(errorCode).send(error.message);
   }
 });
 
-app.put("/task", (req: Request, res: Response) => {
+//criar tarefa
+app.put("/task", async (req: Request, res: Response) => {
   let errorCode: number = 404;
 
   try {
-    const result = users.findIndex(
-      (user) => user.id === Number(req.body.creatorUserId)
-    );
+    const { title, description, limite_date, creator_user_id } = req.body;
+
     //validação
-    checkBody(req.body.title, "title");
-    checkBody(req.body.description, "description");
-    checkBody(req.body.limitDate, "limitDate");
-    checkID(req.body.creatorUserId, result);
+    checkBody(title, "title");
+    checkBody(description, "description");
+    checkBody(limite_date, "limite_date");
+    checkBody(creator_user_id, "creator_user_id");
+
+    //formatando data
+    const dateArraySplit = limite_date.split("/");
+    const dateFormat = new Date(
+      dateArraySplit[1] + "-" + dateArraySplit[0] + "-" + dateArraySplit[2]
+    );
 
     const taskCreate: task = {
-      title: req.body.title,
-      description: req.body.description,
-      limitDate: req.body.limitDate,
-      creatorUserId: req.body.creatorUserId,
+      id: String(Date.now()),
+      title: title,
+      description: description,
+      limite_date: dateFormat,
+      creator_user_id: creator_user_id,
     };
 
-    tasks.push(taskCreate);
+    await createTask(taskCreate);
 
     res.status(200).send("Tarefa criada com sucesso!");
   } catch (error) {
     res.status(errorCode).send(error.message);
   }
 });
+
+//pegar tarefa por id
+app.get("/task/:id", async (req: Request, res: Response) => {
+  let errorCode: number = 404;
+
+  try {
+    const result = await getTask(String(req.params.id));
+    if (Number(result) === 0) {
+      errorCode = 400;
+      throw new Error("Tarefa não existe!");
+    }
+
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(errorCode).send(error.message);
+  }
+});
+
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
