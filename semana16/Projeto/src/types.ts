@@ -12,10 +12,3 @@ export type task = {
   limite_date: any;
   creator_user_id: string;
 };
-
-export type allUsers  = [
-    {
-    id: string;
-  name: string
-}
-]

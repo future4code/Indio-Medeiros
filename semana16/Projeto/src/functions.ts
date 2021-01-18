@@ -130,14 +130,15 @@ export async function getTask(id: string): Promise<any> {
 }
 
 //pegar todos os usuários
-export async function getUsers(): Promise<allUsers[]> {
+export async function getUsers(): Promise<any> {
   try {
     const result = await connection
-      .select("*")
+      .select("id", "nickname")
       .from("TodoListUser")
+      const users = {users:result} 
       
 
-    return result;
+    return users ;
   } catch (error) {
     throw new Error(error.sqlMessage || error.message);
   }
