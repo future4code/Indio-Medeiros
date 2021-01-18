@@ -8,7 +8,6 @@ export const getAllUsersLimit = async (
 ): Promise<void> => {
   try {
     let page = Number(req.params.page);
-
     const users = await selectAllLimit(page * 5);
 
     if (!users.length) {

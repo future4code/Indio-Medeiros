@@ -9,6 +9,7 @@ import { getUserName } from "./data/endpoints/getUserName";
 import { getUserType } from "./data/endpoints/getUserType";
 import { orderTypeName } from "./data/endpoints/orderTypeName";
 import { getAllUsersLimit } from "./data/endpoints/getAllUsersLimit";
+import { getAllUsers } from "./data/endpoints/getAllUsers ";
 
 dotenv.config();
 
@@ -27,9 +28,10 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
+app.get("/user", getAllUsers)
 app.get("/user/:page", getAllUsersLimit)
 app.get("/user/search", getUserName);
-// app.get("/user/:type", getUserType);
+app.get("/user/:type", getUserType);
 app.put("/user/order", orderTypeName);
 
 
