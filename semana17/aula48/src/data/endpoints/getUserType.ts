@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { send } from "process";
 import filterUserType from "../queryEndPoint/filterUserType";
 
 // filtrar o usuários por nome
@@ -21,7 +20,7 @@ export const getUserType = async (
     res.status(200).send(users);
    
     }else{
-      
+
       res.statusCode = 404
       throw new Error ("parametro não aceito. use: 'CX', 'Teacher' ou 'Operations'")
     }
