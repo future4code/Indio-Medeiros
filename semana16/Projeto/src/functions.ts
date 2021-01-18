@@ -1,5 +1,5 @@
 import { connection } from "./index";
-import { task, user } from "./types";
+import { allUsers, task, user } from "./types";
 
 //validação de dados do req.body
 export function checkBody(req: string, propsError: string) {
@@ -122,6 +122,20 @@ export async function getTask(id: string): Promise<any> {
       .select("*")
       .from("TodoListTask")
       .where("id", `${id}`);
+
+    return result;
+  } catch (error) {
+    throw new Error(error.sqlMessage || error.message);
+  }
+}
+
+//pegar todos os usuários
+export async function getUsers(): Promise<allUsers[]> {
+  try {
+    const result = await connection
+      .select("*")
+      .from("TodoListUser")
+      
 
     return result;
   } catch (error) {

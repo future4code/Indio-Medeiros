@@ -12,6 +12,7 @@ import {
   updateUser,
   createTask,
   getTask,
+  getUsers,
 } from "./functions";
 import { user, task } from "./types";
 import knex from "knex";
@@ -68,6 +69,19 @@ app.put("/user", async (req: Request, res: Response) => {
     res.status(errorCode).send(error.message);
   }
 });
+
+//pegando todos usuários
+app.get('/user/all', async (req: Request, res: Response) => {
+  let errorCode: number = 404;
+  try {
+    const result = await getUsers()
+
+
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(errorCode).send(error.message);
+  }
+})
 
 //pegar usuário por id/parametro
 app.get("/user/:id", async (req: Request, res: Response) => {
