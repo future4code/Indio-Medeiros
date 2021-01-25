@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { createTable } from "./data/createTable";
+import createUser from "./endpoints/createUser";
 
 
 dotenv.config();
@@ -25,6 +26,11 @@ app.use(cors());
 
 //criar tabela "User"
 createTable()
+
+//criar usuário
+app.post('/signup', createUser)
+
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

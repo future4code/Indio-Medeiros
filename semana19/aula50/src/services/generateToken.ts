@@ -1,8 +1,10 @@
 import * as jwt from "jsonwebtoken";
-import {userTokenType} from '../type/userTokenType'
+import {userTokenType} from '../type/generateTokenType'
+
 const expiresIn = "1min"
 
 export const generateToken = (id: userTokenType): string => {
+ 
   const token = jwt.sign(
     {
       id
@@ -11,6 +13,8 @@ export const generateToken = (id: userTokenType): string => {
     {
       expiresIn
     }
+
   );
+
   return token;
 }
