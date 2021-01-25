@@ -1,5 +1,5 @@
 import * as jwt from "jsonwebtoken";
-import {userTokenType} from '../type/generateTokenType'
+import {userTokenType} from '../type/userTokenType'
 
 const expiresIn = "1min"
 

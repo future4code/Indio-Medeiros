@@ -75,3 +75,8 @@ A
 ---
 A linha 'as string' transforma os dados no tipo string para que possa ser aceito na função, que antes também foi tipada como string.
 
+Exercicio 7
+======
+A
+-----
+"as any" é uma afirmação de tipo, para evitar error no TS.

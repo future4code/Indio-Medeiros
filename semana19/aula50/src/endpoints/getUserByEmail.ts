@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { selectUserByEmail } from "../data/selectUser";
 import generateId from "../services/generateId";
 import { generateToken } from "../services/generateToken";
-import { userTokenType } from "../type/generateTokenType";
+import { userTokenType } from "../type/userTokenType";
 import { userData } from "../type/userData";
 
 
