@@ -1,6 +1,6 @@
 import {connection} from '../index'
 
-const userTableName = "User";
+export const userTableName = "User";
 
 	export const insertUser = async (
 		id: string, 

@@ -15,8 +15,6 @@ export default async function createUser(
       password: req.body.password,
     };
 
-    console.log();
-
     if (!user.email) {
       res.statusCode = 422;
       throw new Error("verifique a propriedade *email*");
