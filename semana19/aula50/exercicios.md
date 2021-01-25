@@ -68,3 +68,10 @@ export default async function createUser(req: Request, res: Response):Promise<vo
     }
     
 }
+
+Exercicio 3
+=====
+A
+---
+A linha 'as string' transforma os dados no tipo string para que possa ser aceito na função, que antes também foi tipada como string.
+
