@@ -6,6 +6,7 @@ import { AddressInfo } from "net";
 import { createTable } from "./data/createTable";
 import createUser from "./endpoints/createUser";
 import getUserByEmail from "./endpoints/getUserByEmail";
+import getUserById from "./endpoints/getUserById";
 
 
 dotenv.config();
@@ -31,7 +32,7 @@ createTable()
 //criar usuário
 app.post('/signup', createUser)
 app.post("/login", getUserByEmail)
-
+app.get("/user/profile", getUserById)
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
