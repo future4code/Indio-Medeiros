@@ -3,6 +3,7 @@ import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
+import { createTable } from "./data/createTable";
 
 
 dotenv.config();
@@ -22,8 +23,8 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
-
-
+//criar tabela "User"
+createTable()
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
