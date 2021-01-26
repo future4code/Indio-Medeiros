@@ -8,6 +8,7 @@ import createUser from "./endpoints/createUser";
 import getUserByEmail from "./endpoints/getUserByEmail";
 import getUserById from "./endpoints/getUserById";
 import deleteUser from "./endpoints/deleteUser";
+import getUser from "./endpoints/getUser";
 
 
 dotenv.config();
@@ -35,6 +36,8 @@ app.post('/signup', createUser)
 app.post("/login", getUserByEmail)
 app.get("/user/profile", getUserById)
 app.delete("/user/:id", deleteUser)
+app.get("/user", getUser)
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
