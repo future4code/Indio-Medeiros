@@ -36,6 +36,7 @@ export default async function getUserByEmail(
     }
     const token = generateToken({
       id: user.id,
+      role: user.role
     });
 
     res.status(200).send({ token: token });
