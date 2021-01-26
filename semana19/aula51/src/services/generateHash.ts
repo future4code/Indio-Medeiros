@@ -1,9 +1,11 @@
 import * as bcrypt from "bcryptjs";
 
+
+
 export const hash = async (s: string): Promise<string> => {
-  const rounds = String(process.env.BCRYPT_COST);
-  const salt = await bcrypt.getSalt(rounds);
-  const result = await bcrypt.hash(s, salt);
+  const rounds: number = Number(process.env.BCRYPT_COST);
+  const salt: string =  bcrypt.genSaltSync(rounds);
+  const result: string = bcrypt.hashSync(s, salt);
   return result;
 };
 

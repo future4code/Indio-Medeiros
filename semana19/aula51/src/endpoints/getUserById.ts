@@ -7,7 +7,7 @@ export default async function getUserById (req: Request, res: Response): Promise
       const token = req.headers.authorization as string;
   
       const authenticationData = getData(token);
-      console.log(authenticationData.id)
+      
       const user = await selectUserById(authenticationData.id);
       console.log("id", user)
 

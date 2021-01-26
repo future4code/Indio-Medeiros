@@ -1,3 +1,4 @@
+import { compare } from "../services/generateHash";
 import { Request, Response } from "express";
 import { selectUserByEmail } from "../data/selectUser";
 import { generateToken } from "../services/generateToken";
@@ -20,9 +21,17 @@ export default async function getUserByEmail(
         throw new Error("Invalid email");
       }
 
-      
-
       const user  = await selectUserByEmail ( userBody.email);
+
+      const compareResult: boolean = await compare(
+        userBody.password,
+        user.password
+     )
+        
+
+     if (!compareResult) {
+        throw new Error("Incorrect Password.");
+     }
 
       if (userBody.password !== user.password) {
         throw new Error("Invalid password");

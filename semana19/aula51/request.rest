@@ -1,3 +1,17 @@
 ###test request
-GET http:localhost:3003/
+POST http://localhost:3003/signup
 Content-Type: application/json
+
+{
+    "email": "boyindio@ygm.com",
+      "password": "1457582"
+}
+
+###test request login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "boyindio@ygm.com",
+      "password": "1457582"
+}
