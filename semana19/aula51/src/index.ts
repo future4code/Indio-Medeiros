@@ -1,11 +1,15 @@
-import express from "express";
+import express, { Express } from "express";
+import knex from "knex";
+import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
-import knex from "knex";
+import { createTable } from "./data/createTable";
+import createUser from "./endpoints/createUser";
+import getUserByEmail from "./endpoints/getUserByEmail";
+import getUserById from "./endpoints/getUserById";
+
 
 dotenv.config();
-
-const app = express();
 
 export const connection = knex({
   client: "mysql",
@@ -18,7 +22,17 @@ export const connection = knex({
   },
 });
 
+const app: Express = express();
 app.use(express.json());
+app.use(cors());
+
+//criar tabela "User"
+createTable()
+
+//criar usuário
+app.post('/signup', createUser)
+app.post("/login", getUserByEmail)
+app.get("/user/profile", getUserById)
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
