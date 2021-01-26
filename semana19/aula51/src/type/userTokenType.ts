@@ -1,3 +1,4 @@
 export type userTokenType = {
-    id:string
+    id:string,
+    role: string,
 }

@@ -4,7 +4,7 @@ import generateId from "../services/generateId";
 import { generateToken } from "../services/generateToken";
 import { userTokenType } from "../type/userTokenType";
 import { userData } from "../type/userData";
-import {hash} from "../services/generateHash";
+import { hash } from "../services/generateHash";
 
 export default async function createUser(
   req: Request,
@@ -14,6 +14,7 @@ export default async function createUser(
     const user: userData = {
       email: req.body.email,
       password: req.body.password,
+      role: req.body.role,
     };
 
     if (!user.email) {
@@ -35,11 +36,14 @@ export default async function createUser(
 
     const id = generateId();
 
-    const cryptedPassword = await hash(user.password)
-    
-    await insertUser(id, user.email, cryptedPassword );
+    const cryptedPassword = await hash(user.password);
 
-    const idToken: userTokenType = { id: id };
+    await insertUser(id, user.email, cryptedPassword);
+
+    const idToken: userTokenType = { 
+      id: id, 
+      role: user.role,
+     };
 
     const token = generateToken(idToken);
 
