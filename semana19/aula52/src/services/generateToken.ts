@@ -1,0 +1,20 @@
+import * as jwt from "jsonwebtoken";
+import {userTokenType} from '../type/userTokenType'
+
+const expiresIn = "10min"
+
+export const generateToken = (id: userTokenType): string => {
+ 
+  const token = jwt.sign(
+    {
+      id
+    },
+    process.env.JWT_KEY as string,
+    {
+      expiresIn
+    }
+
+  );
+
+  return token;
+}
