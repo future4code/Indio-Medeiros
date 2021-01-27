@@ -2,28 +2,22 @@ import { compare } from "../services/generateHash";
 import { Request, Response } from "express";
 import { selectUserByEmail } from "../data/selectUser";
 import { generateToken } from "../services/generateToken";
-import { userData } from "../type/userData";
+import { checkBodyIncludes } from "../services/checkBody";
 
 export default async function getUserByEmail(
   req: Request,
   res: Response
 ): Promise<void> {
   try {
-    const userBody: userData = {
-      email: req.body.email,
-      password: req.body.password,
-      role: req.body.role,
-    };
+    const  {email, password} = req.body
 
-    // Item b. Validação do email
-    if (!userBody.email || userBody.email.indexOf("@") === -1) {
-      throw new Error("Invalid email");
-    }
+    // Validação do email
+    checkBodyIncludes(email, "email", "@", res)
 
-    const user = await selectUserByEmail(userBody.email);
+    const user = await selectUserByEmail(email);
 
     const compareResult: boolean = await compare(
-      userBody.password,
+      password,
       user.password
     );
 

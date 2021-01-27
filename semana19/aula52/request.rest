@@ -3,9 +3,12 @@ POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-    "email": "boyindi@ygm.com",
-      "password": "1457582",
-      "role": "normal"
+     "email": "labenu@gmail.com",
+      "password": "47851269",
+      "role": "normal",
+      "complement": "casa",
+      "cep": "40250170",
+      "number": "44"
 }
 
 ###test request login

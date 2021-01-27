@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
-import  insertUser  from "../data/insertUser ";
+import insertUser from "../data/insertUser ";
 import generateId from "../services/generateId";
 import { generateToken } from "../services/generateToken";
 import { userTokenType } from "../type/userTokenType";
 import { userData } from "../type/userData";
 import { hash } from "../services/generateHash";
+import {checkBody, checkBodyIncludes} from "../services/checkBody";
+import { getAddressByCep } from "../services/adressManage";
+import { addressType } from "../type/addressType";
 
 export default async function createUser(
   req: Request,
@@ -15,35 +18,44 @@ export default async function createUser(
       email: req.body.email,
       password: req.body.password,
       role: req.body.role,
+      complement: req.body.complement,
+      cep: req.body.cep,
+      number: req.body.number,
     };
-
-    if (!user.email) {
-      res.statusCode = 422;
-      throw new Error("verifique a propriedade *email*");
-    }
-    if (!user.email.includes("@")) {
-      res.statusCode = 422;
-      throw new Error(
-        "verifique a propriedade *email* (ausência do caracter '@')"
-      );
-    }
-    if (user.password.length < 6 || !user.password) {
-      res.statusCode = 422;
-      throw new Error(
-        "verifique a propriedade *password* (minimo de 6 caracteres)"
-      );
+    
+    //validando os dados da requisição
+    checkBody(user.complement, "complement", res);
+    checkBody(user.number, "number", res);
+    checkBody(user.cep, "cep", res)
+    checkBodyIncludes(user.email, "email", "@", res)
+    
+    if (user.cep.includes("-")) {
+      res.statusCode = 406;
+      throw new Error("only numbers");
     }
 
     const id = generateId();
 
     const cryptedPassword = await hash(user.password);
 
-    await insertUser(id, user.email, cryptedPassword);
+    
 
-    const idToken: userTokenType = { 
-      id: id, 
+    //pegando detalhes do cep por requisição em outra API
+    const address: addressType = await getAddressByCep(user.cep);
+    
+    await insertUser(
+      id, 
+      user.email, 
+      cryptedPassword, 
+      user.role, 
+      user.complement,
+      address,
+      user.number );
+
+    const idToken: userTokenType = {
+      id: id,
       role: user.role,
-     };
+    };
 
     const token = generateToken(idToken);
 

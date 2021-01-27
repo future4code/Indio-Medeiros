@@ -3,7 +3,6 @@ import { userTokenType } from "../type/userTokenType";
 
 export const getData = (token: string): userTokenType => {
   const payload = jwt.verify(token, process.env.JWT_KEY as string) as any;
-  console.log("getData", payload)
 
   return payload.id;
 };
