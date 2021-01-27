@@ -3,7 +3,6 @@ import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
-import { createTable } from "./data/createTable";
 import createUser from "./endpoints/createUser";
 import getUserByEmail from "./endpoints/getUserByEmail";
 import getUserById from "./endpoints/getUserById";
@@ -29,8 +28,7 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
-//criar tabela "User"
-createTable()
+
 
 //criar usuário
 app.post('/signup', createUser)
@@ -50,3 +48,5 @@ const server = app.listen(process.env.PORT || 3003, () => {
     console.error(`Failure upon starting server.`);
   }
 });
+
+console.log("create the project tables with the command 'npm run createTables'")

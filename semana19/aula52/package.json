@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev ./src/index.ts",
+    "createTables": "ts-node-dev ./src/data/createTables.ts",
+    "start": " ts-node ./src/index.ts",
+    "dev": "ts-node-dev ./src/index.ts",
     "build": "tsc"
   },
   "author": "",

@@ -2,7 +2,7 @@ import { connection } from "..";
 
 
 
-export async function createTable(): Promise<void> {
+export  async function createTable(): Promise<void> {
     try {
 
      await connection.raw(`

@@ -2,10 +2,10 @@ import {connection} from '../index'
 
 export const userTableName = "User";
 
-	export const insertUser = async (
+	export default async function insertUser(
 		id: string, 
 		email: string, 
-		password: string) => {
+		password: string): Promise<void> {
 	  await connection
 	    .insert({
 	      id,
