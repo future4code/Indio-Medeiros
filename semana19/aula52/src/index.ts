@@ -9,6 +9,7 @@ import getUserByEmail from "./endpoints/getUserByEmail";
 import getUserById from "./endpoints/getUserById";
 import deleteUser from "./endpoints/deleteUser";
 import getUser from "./endpoints/getUser";
+import getAddressInfo from "./endpoints/getAddressInfo";
 
 
 dotenv.config();
@@ -38,6 +39,8 @@ app.get("/user/profile", getUserById)
 app.delete("/user/:id", deleteUser)
 app.get("/user", getUser)
 
+//pegar cep de outro servidor
+app.get('/address/:cep', getAddressInfo)
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
