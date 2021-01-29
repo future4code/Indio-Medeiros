@@ -4,7 +4,6 @@ export function generateToken(payload: string): string {
   const token: string = jwt.sign(payload, process.env.JWT_KEY as string, {
   });
 
-  console.log(token);
   return token;
 }
 

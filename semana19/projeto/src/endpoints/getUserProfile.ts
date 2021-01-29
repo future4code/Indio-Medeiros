@@ -1,9 +1,7 @@
-import { Console } from "console";
 import { Request, Response } from "express";
 import { selectUserById } from "../data/selectUserById";
 import { getTokenData } from "../services/authenticator";
 import { checkDataExisting } from "../services/checkUserData";
-import { userProfile } from "../types/userProfile";
 
 export async function getUserProfile(
   req: Request,

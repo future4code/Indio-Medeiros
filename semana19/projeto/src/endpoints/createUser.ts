@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { userData } from "../types/userData";
-import { v4 } from "uuid";
 import { checkDataExisting } from "../services/checkUserData";
 import { insertUserInTable } from "../data/insertUserInTable";
 import { checkEmailFormat } from "../services/checkEmailFormat";
 import { checkPasswordFormat } from "../services/checkPasswordFormat";
 import { hashGenerator } from "../services/hashGenerator";
 import { generateToken } from "../services/authenticator";
+import { idGenerator } from "../services/idGenerate";
 
 export default async function createUser(
   req: Request,
@@ -25,7 +25,7 @@ export default async function createUser(
     const hash: string = hashGenerator(password);
 
     const user: userData = {
-      id: v4(),
+      id: idGenerator(),
       name: name,
       password: hash,
       email: email,

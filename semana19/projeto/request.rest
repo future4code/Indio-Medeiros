@@ -22,3 +22,12 @@ GET http://localhost:3003/user/profile
 Content-Type: application/json
 Authorization:eyJhbGciOiJIUzI1NiJ9.YTRkNWMyMTctMDc1Ni00MGM4LTg3OWMtNmVhYTAxMTg0NWUw.-gkl3xsLAk17ULaEhW5SBgXHh7auGDkX-H0wwjKQDwY
 
+###Create recipes
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.YTRkNWMyMTctMDc1Ni00MGM4LTg3OWMtNmVhYTAxMTg0NWUw.-gkl3xsLAk17ULaEhW5SBgXHh7auGDkX-H0wwjKQDwY
+
+{
+	"title": "título da receita",
+	"description": "descrição da receita"
+}
