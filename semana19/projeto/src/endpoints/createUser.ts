@@ -12,8 +12,8 @@ export default async function createUser(
   req: Request,
   res: Response
 ): Promise<void> {
+  res.statusCode = 400;
   try {
-    
     const { name, password, email } = req.body;
 
     checkDataExisting(name, "name", res);
@@ -32,8 +32,8 @@ export default async function createUser(
     };
 
     await insertUserInTable(user);
-      const token:string = generateToken(user.id)
-    res.status(200).send({access_token: token});
+    const token: string = generateToken(user.id);
+    res.status(200).send({ access_token: token });
   } catch (error) {
     res.send(error.sqlMessage || error.message);
   }
