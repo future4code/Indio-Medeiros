@@ -17,3 +17,8 @@ Content-Type: application/json
 	"password": "123452"
 }
 
+###get profile user
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.YTRkNWMyMTctMDc1Ni00MGM4LTg3OWMtNmVhYTAxMTg0NWUw.-gkl3xsLAk17ULaEhW5SBgXHh7auGDkX-H0wwjKQDwY
+
