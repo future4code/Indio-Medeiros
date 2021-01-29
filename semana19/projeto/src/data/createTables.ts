@@ -1,6 +1,7 @@
 import { connection } from "../index";
 import { tableRecipes, tableUsers } from "../services/tablesName";
 
+
 async function createTables(): Promise<void> {
 
   try {
