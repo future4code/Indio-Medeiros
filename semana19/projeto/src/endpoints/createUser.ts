@@ -1,26 +1,40 @@
-import {Request, Response} from "express"
-import { userData } from "../types/userData"
-import {v4} from 'uuid'
-import { checkUserPropety } from "../services/checkUserData"
-import { insertUserInTable } from "../data/insertUserInTable"
+import { Request, Response } from "express";
+import { userData } from "../types/userData";
+import { v4 } from "uuid";
+import { checkDataExisting } from "../services/checkUserData";
+import { insertUserInTable } from "../data/insertUserInTable";
+import { checkEmailFormat } from "../services/checkEmailFormat";
+import { checkPasswordFormat } from "../services/checkPasswordFormat";
+import { hashGenerator } from "../services/hashGenerator";
+import { generateToken } from "../services/authenticator";
 
-export default async function createUser(req: Request, res: Response): Promise<void> {
-    try {
-        //é preciso ajustar as verificações e criar o token
-        const user:userData = {
-            id:v4(),
-            name: req.body.name, 
-            password: req.body.password, 
-            email: req.body.email
-        }   
-        checkUserPropety(user.name, "name", res)
-        checkUserPropety(user.password, "name", res)
-        checkUserPropety(user.email, "email", res)
-        
-        await insertUserInTable(user)
+export default async function createUser(
+  req: Request,
+  res: Response
+): Promise<void> {
+  try {
+    
+    const { name, password, email } = req.body;
 
-        res.status(200).send("{access_token: token}")
-    } catch (error) {
-        res.send(error.sqlMessage || error.message)
-    }
+    checkDataExisting(name, "name", res);
+    checkDataExisting(password, "name", res);
+    checkDataExisting(email, "email", res);
+    checkEmailFormat(email, res);
+    checkPasswordFormat(password, res);
+
+    const hash: string = hashGenerator(password);
+
+    const user: userData = {
+      id: v4(),
+      name: name,
+      password: hash,
+      email: email,
+    };
+
+    await insertUserInTable(user);
+      const token:string = generateToken(user.id)
+    res.status(200).send({access_token: token});
+  } catch (error) {
+    res.send(error.sqlMessage || error.message);
+  }
 }

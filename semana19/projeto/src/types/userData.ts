@@ -1,5 +1,3 @@
-
-
 export type userData = {
     id: string,
     name: string,
