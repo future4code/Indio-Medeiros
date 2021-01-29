@@ -1,12 +1,11 @@
 import { connection } from "../index";
 import { tableRecipes, tableUsers } from "../services/tablesName";
 
-
 async function createTables(): Promise<void> {
 
   try {
     await connection.raw(`
-
+ 
     CREATE TABLE ${tableUsers}(
      id VARCHAR(255) PRIMARY KEY,
      name varchar(255) NOT NULL,

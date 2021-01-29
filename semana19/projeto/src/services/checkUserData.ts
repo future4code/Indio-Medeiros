@@ -1,6 +1,5 @@
 import { Response } from "express";
 
-
 export function checkUserPropety(
   requestPropety: string,
   propetyName: string,
