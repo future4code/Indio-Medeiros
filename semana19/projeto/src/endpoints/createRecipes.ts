@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { getTokenData } from "../services/authenticator";
-import { checkDataExisting } from "../services/checkUserData";
-import { formatDate } from "../services/formatDate";
+import { checkDataExisting } from "../services/checkDataExisting";
+import { dateGenerator } from "../services/formatDate";
 import { idGenerator } from "../services/idGenerate";
 import { recipeData } from "../types/recipeData";
 import {insertRecipeInTable} from "../data/insertRecipeInTable"
@@ -25,7 +25,7 @@ export async function createRecipes(
       id: idGenerator(),
       title: title,
       description: description,
-      createdAt: formatDate(),
+      createdAt: dateGenerator(),
     };
      await insertRecipeInTable(recipe)
     res.status(200).send("Recipe was created!")

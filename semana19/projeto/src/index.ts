@@ -7,6 +7,7 @@ import createUser from "./endpoints/createUser";
 import { login } from "./endpoints/login";
 import { getUserProfile } from "./endpoints/getUserProfile";
 import { createRecipes } from "./endpoints/createRecipes";
+import { getRecipe } from "./endpoints/getRecipe";
 
 dotenv.config();
 
@@ -30,7 +31,9 @@ app.use(cors());
 app.post ('/signup', createUser)
 app.post ('/login', login)
 app.get('/user/profile', getUserProfile)
+app.get('/recipe/:id', getRecipe)
 app.post('/recipe', createRecipes)
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

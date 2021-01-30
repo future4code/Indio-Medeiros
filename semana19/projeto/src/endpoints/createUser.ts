@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { userData } from "../types/userData";
-import { checkDataExisting } from "../services/checkUserData";
+import { checkDataExisting } from "../services/checkDataExisting";
 import { insertUserInTable } from "../data/insertUserInTable";
 import { checkEmailFormat } from "../services/checkEmailFormat";
 import { checkPasswordFormat } from "../services/checkPasswordFormat";

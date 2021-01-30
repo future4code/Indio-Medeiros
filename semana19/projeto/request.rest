@@ -28,6 +28,16 @@ Content-Type: application/json
 Authorization:eyJhbGciOiJIUzI1NiJ9.YTRkNWMyMTctMDc1Ni00MGM4LTg3OWMtNmVhYTAxMTg0NWUw.-gkl3xsLAk17ULaEhW5SBgXHh7auGDkX-H0wwjKQDwY
 
 {
-	"title": "título da receita",
-	"description": "descrição da receita"
+
+	"title": "arroz",
+	"description": "cebola + arroz + alho + água e sal. Deixa fever até secar"
+	
 }
+
+
+###Get recipes
+GET http://localhost:3003/recipe/""
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.YTRkNWMyMTctMDc1Ni00MGM4LTg3OWMtNmVhYTAxMTg0NWUw.-gkl3xsLAk17ULaEhW5SBgXHh7auGDkX-H0wwjKQDwY
+
+
