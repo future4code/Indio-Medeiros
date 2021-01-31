@@ -17,15 +17,19 @@ async function createTables(): Promise<void> {
    );
  
    CREATE TABLE ${tableRecipes} (
-     id VARCHAR(255) PRIMARY KEY,
-     title varchar(255) NOT NULL,
-     description varchar(255) NOT NULL,
-     createdAt DATE NOT NULL
+      id VARCHAR(255) PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      description VARCHAR(255) NOT NULL,
+      createdAt DATE NOT NULL,
+      creatorId  VARCHAR(255) NOT NULL,
+      FOREIGN KEY (creatorId) REFERENCES Cookenu_users(id)
    );
 
    CREATE TABLE ${tableFollowers} (
-    "followerId" VARCHAR(255) NOT NULL,
-    "idFollowed" varchar(255) NOT NULL
+    followerId VARCHAR(255) NOT NULL,
+    idFollowed VARCHAR(255) NOT NULL,
+    FOREIGN KEY (followerId) REFERENCES Cookenu_users(id),
+    FOREIGN KEY (idFollowed) REFERENCES Cookenu_users(id)
   );
      
      `);

@@ -19,13 +19,14 @@ export default async function createRecipes(
     checkDataExisting(title, "title", res);
     checkDataExisting(description, "description", res);
 
-    getTokenData(authorization!);
+    const userId = getTokenData(authorization!);
 
     const recipe: recipeData = {
       id: idGenerator(),
       title: title,
       description: description,
       createdAt: dateGenerator(),
+      creatorId: userId
     };
 
     await insertRecipeInTable(recipe);
