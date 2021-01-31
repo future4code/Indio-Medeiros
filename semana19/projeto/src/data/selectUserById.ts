@@ -1,4 +1,6 @@
+import { response } from "express";
 import { connection } from "..";
+import { checkDataExisting } from "../services/checkDataExisting";
 import { tableUsers } from "../services/tablesName";
 import { userProfile } from "../types/userProfile";
 
@@ -7,7 +9,8 @@ export async function selectUserById(userId: string): Promise<userProfile> {
         SELECT * FROM ${tableUsers}
         WHERE  id = "${userId}";
     `);
-
+ 
+  checkDataExisting(result[0][0], "Id", response)
   const { id, name, email } = result[0][0];
   
   const profile: userProfile = {

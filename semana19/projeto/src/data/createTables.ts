@@ -1,5 +1,5 @@
 import { connection } from "../index";
-import { tableRecipes, tableUsers } from "../services/tablesName";
+import { tableFollowers, tableRecipes, tableUsers } from "../services/tablesName";
 
 async function createTables(): Promise<void> {
 
@@ -19,6 +19,11 @@ async function createTables(): Promise<void> {
      description varchar(255) NOT NULL,
      createdAt DATE NOT NULL
    );
+
+   CREATE TABLE ${tableFollowers} (
+    "followerId" VARCHAR(255) NOT NULL,
+    "idFollowed" varchar(255) NOT NULL
+  );
      
      `);
     console.log("the tables were created!");
