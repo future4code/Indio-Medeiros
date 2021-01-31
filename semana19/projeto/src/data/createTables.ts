@@ -1,8 +1,11 @@
 import { connection } from "../index";
-import { tableFollowers, tableRecipes, tableUsers } from "../services/tablesName";
+import {
+  tableFollowers,
+  tableRecipes,
+  tableUsers,
+} from "../services/tablesName";
 
 async function createTables(): Promise<void> {
-
   try {
     await connection.raw(`
  

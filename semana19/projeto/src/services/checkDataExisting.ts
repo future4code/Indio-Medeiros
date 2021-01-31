@@ -1,6 +1,6 @@
 import { Response } from "express";
 
-export function checkDataExisting(
+export default function checkDataExisting(
   requestPropety: string,
   propetyName: string,
   res: Response

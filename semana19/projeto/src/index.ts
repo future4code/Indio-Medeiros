@@ -4,11 +4,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import createUser from "./endpoints/createUser";
-import { login } from "./endpoints/login";
-import { getUserProfile } from "./endpoints/getUserProfile";
-import { createRecipes } from "./endpoints/createRecipes";
-import { getRecipe } from "./endpoints/getRecipe";
-import { createFollower } from "./endpoints/createFollower";
+import login from "./endpoints/login";
+import getUserProfile from "./endpoints/getUserProfile";
+import createRecipes from "./endpoints/createRecipes";
+import getRecipe from "./endpoints/getRecipe";
+import createFollower from "./endpoints/createFollower";
 
 dotenv.config();
 
@@ -29,12 +29,12 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
-app.post ('/signup', createUser)
-app.post ('/login', login)
-app.get('/user/profile', getUserProfile)
-app.get('/recipe/:id', getRecipe)
-app.post('/recipe', createRecipes)
-app.post('/user/follow', createFollower)
+app.post("/signup", createUser);
+app.post("/login", login);
+app.get("/user/profile", getUserProfile);
+app.get("/recipe/:id", getRecipe);
+app.post("/recipe", createRecipes);
+app.post("/user/follow", createFollower);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

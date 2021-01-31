@@ -1,11 +1,14 @@
 import { Request, Response } from "express";
-import { selectRecipeById } from "../data/selectRecipeById";
+import selectRecipeById from "../data/selectRecipeById";
 import { getTokenData } from "../services/authenticator";
-import { checkDataExisting } from "../services/checkDataExisting";
+import checkDataExisting from "../services/checkDataExisting";
 import { reFormatDate } from "../services/formatDate";
 import { recipeData } from "../types/recipeData";
 
-export async function getRecipe(req: Request, res: Response): Promise<void> {
+export default async function getRecipe(
+  req: Request,
+  res: Response
+): Promise<void> {
   res.statusCode = 400;
   try {
     const recipeId = req.params.id;

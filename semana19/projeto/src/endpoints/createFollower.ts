@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { insertFollowerInTable } from "../data/insertFollowerInTable";
-import { selectUserById } from "../data/selectUserById";
+import insertFollowerInTable from "../data/insertFollowerInTable";
+import selectUserById from "../data/selectUserById";
 import { getTokenData } from "../services/authenticator";
-import { checkDataExisting } from "../services/checkDataExisting";
+import checkDataExisting from "../services/checkDataExisting";
 import { followersData } from "../types/followersData";
 
-export async function createFollower(
+export default async function createFollower(
   req: Request,
   res: Response
 ): Promise<void> {

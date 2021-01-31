@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
-import { selectUserById } from "../data/selectUserById";
+import selectUserById from "../data/selectUserById";
 import { getTokenData } from "../services/authenticator";
-import { checkDataExisting } from "../services/checkDataExisting";
+import checkDataExisting from "../services/checkDataExisting";
 
-export async function getUserProfile(
+export default async function getUserProfile(
   req: Request,
   res: Response
-  
 ): Promise<void> {
   res.statusCode = 400;
   try {

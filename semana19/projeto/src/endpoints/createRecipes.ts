@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { getTokenData } from "../services/authenticator";
-import { checkDataExisting } from "../services/checkDataExisting";
+import checkDataExisting from "../services/checkDataExisting";
 import { dateGenerator } from "../services/formatDate";
 import { idGenerator } from "../services/idGenerate";
 import { recipeData } from "../types/recipeData";
-import {insertRecipeInTable} from "../data/insertRecipeInTable"
+import insertRecipeInTable from "../data/insertRecipeInTable";
 
-export async function createRecipes(
+export default async function createRecipes(
   req: Request,
   res: Response
 ): Promise<void> {
@@ -27,8 +27,10 @@ export async function createRecipes(
       description: description,
       createdAt: dateGenerator(),
     };
-     await insertRecipeInTable(recipe)
-    res.status(200).send("Recipe was created!")
+
+    await insertRecipeInTable(recipe);
+
+    res.status(200).send("Recipe was created!");
   } catch (error) {
     res.send(error.sqlMessage || error.message);
   }

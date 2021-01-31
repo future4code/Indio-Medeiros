@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
-import { selectUserByEmail } from "../data/selectUserByEmail";
+import selectUserByEmail from "../data/selectUserByEmail";
 import { generateToken } from "../services/authenticator";
-import { checkEmailFormat } from "../services/checkEmailFormat";
-import { checkPasswordFormat } from "../services/checkPasswordFormat";
-import { checkDataExisting } from "../services/checkDataExisting";
+import checkEmailFormat from "../services/checkEmailFormat";
+import checkPasswordFormat from "../services/checkPasswordFormat";
+import checkDataExisting from "../services/checkDataExisting";
 import { comparePasswordEndHash } from "../services/hashGenerator";
 
-export async function login(req: Request, res: Response): Promise<void> {
+export default async function login(
+  req: Request,
+  res: Response
+): Promise<void> {
   res.statusCode = 400;
   try {
     const { email, password } = req.body;

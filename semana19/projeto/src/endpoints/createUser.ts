@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { userData } from "../types/userData";
-import { checkDataExisting } from "../services/checkDataExisting";
-import { insertUserInTable } from "../data/insertUserInTable";
-import { checkEmailFormat } from "../services/checkEmailFormat";
-import { checkPasswordFormat } from "../services/checkPasswordFormat";
+import checkDataExisting from "../services/checkDataExisting";
+import insertUserInTable from "../data/insertUserInTable";
+import checkEmailFormat from "../services/checkEmailFormat";
+import checkPasswordFormat from "../services/checkPasswordFormat";
 import { hashGenerator } from "../services/hashGenerator";
 import { generateToken } from "../services/authenticator";
 import { idGenerator } from "../services/idGenerate";
@@ -32,7 +32,9 @@ export default async function createUser(
     };
 
     await insertUserInTable(user);
+
     const token: string = generateToken(user.id);
+
     res.status(200).send({ access_token: token });
   } catch (error) {
     res.send(error.sqlMessage || error.message);
