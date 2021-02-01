@@ -1,0 +1,28 @@
+###test request
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{     "name": "labenu",
+      "password": "47851269",
+      "email": "labenu@gmail.com",
+      "role": "NORMAL"
+}
+
+###test request login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+     "email": "baboyindio@ygm.com",
+      "password": "1457582"
+}
+
+###test request login
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjFmNTY5NmNjLTdlNmYtNGZiMy1hMjdlLTYxNWE1NTY5ODg5ZSIsInJvbGUiOiJub3JtYWwifSwiaWF0IjoxNjExNzY2NDg0LCJleHAiOjE2MTE3NjcwODR9.N2EX0mLdMvTiBgqFU40Zb7eqv6ryaI2yy92FpzsuV_s
+
+###get cep address 
+GET http://localhost:3003/address/40250170
+Content-Type: application/json
+
