@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
-import { signup } from "./controller/userController";
+import { login, signup } from "./controller/userController";
 
 
 
@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/user/signup', signup)
+app.post('/login', login)
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

@@ -13,3 +13,12 @@ export const insertUserInTable  = async (
       throw new Error(error.sqlMessage || error.message);
     }
   }
+
+export async function selectUserByEmail(userEmail: string) {
+  const result = await connection.raw(`
+        SELECT * FROM ${userTable}
+        WHERE  email = "${userEmail}";
+    `);
+
+  return result[0][0];
+}

@@ -13,8 +13,8 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-     "email": "baboyindio@ygm.com",
-      "password": "1457582"
+     "password": "47851269",
+      "email": "labenu@gmail.com"
 }
 
 ###test request login
