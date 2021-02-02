@@ -1,5 +1,10 @@
 import { Request, Response } from "express";
-import { businessGetAllUsers, businessLogin, businessSignup } from "../business/userBusiness";
+import {
+    businessDeleteUser,
+  businessGetAllUsers,
+  businessLogin,
+  businessSignup,
+} from "../business/userBusiness";
 
 export const signup = async (req: Request, res: Response): Promise<void> => {
   res.statusCode = 404;
@@ -30,7 +35,9 @@ export const getAllUsers = async (
   req: Request,
   res: Response
 ): Promise<void> => {
+    res.statusCode = 400
   try {
+      
     const token = req.headers.authorization as string;
     const users = await businessGetAllUsers(token);
 
@@ -38,4 +45,20 @@ export const getAllUsers = async (
   } catch (error) {
     res.send(error.sqlMessage || error.message);
   }
+};
+
+export const deleteUser = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+    try {
+        res.statusCode = 400
+        const token = req.headers.authorization as string;
+        const idToBeDeleted = req.params.id  as string
+        await businessDeleteUser(token, idToBeDeleted, res );
+        
+        res.status(201).send({ message: "Usuário apagado com sucesso" })
+    } catch (error) {
+        res.send(error.sqlMessage || error.message)
+    }
 };

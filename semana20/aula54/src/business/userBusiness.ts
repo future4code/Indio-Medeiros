@@ -8,7 +8,13 @@ import {
 import { idGenerator } from "./services/idGenerator";
 import { compare, hash } from "./services/hashManager";
 import { generateToken, getTokenData } from "./services/authenticator";
-import { insertUserInTable, selecAllUsers, selectUserByEmail } from "../data/userDatabase";
+import {
+  deleteUserById,
+  insertUserInTable,
+  selecAllUsers,
+  selectUserByEmail,
+  selectUserById,
+} from "../data/userDatabase";
 
 export const businessSignup = async (
   name: string,
@@ -57,7 +63,6 @@ export async function businessLogin(
 
     const user = await selectUserByEmail(email);
     const comparePass = await compare(password, user.password);
-    console.log(comparePass);
     if (!comparePass) {
       res.statusCode = 404;
       throw new Error("Password incorrect!");
@@ -76,12 +81,31 @@ export async function businessLogin(
 
 export const businessGetAllUsers = async (token: string): Promise<any> => {
   try {
-
     getTokenData(token);
     const users = await selecAllUsers();
     return users;
-
   } catch (error) {
     throw new Error(error.sqlMessage || error.message);
   }
+};
+
+export const businessDeleteUser = async (
+  token: string,
+  idToBeDeleted: string,
+  res: Response
+): Promise<void> => {
+  try {
+    checkExistenceProperty(idToBeDeleted, "id", res)
+    const userId =  getTokenData(token)
+    const user = await selectUserById(userId.id)
+    if(!user || user.role !== USER_ROLES.ADMIN){
+      throw new Error("user not Admin")
+    }
+    
+     await deleteUserById(idToBeDeleted)
+    
+  } catch (error) {
+    throw new Error(error.sqlMessage || error.message)
+  }
+
 };

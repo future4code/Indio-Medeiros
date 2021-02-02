@@ -4,8 +4,8 @@ Content-Type: application/json
 
 {     "name": "aben",
       "password": "47851269",
-      "email": "abn@gmail.com",
-      "role": "NORMAL"
+      "email": "bn@gmail.com",
+      "role": "ADMIN"
 }
 
 ###test request login
@@ -14,7 +14,7 @@ Content-Type: application/json
 
 {
      "password": "47851269",
-      "email": "abn@gmail.com"
+      "email": "bn@gmail.com"
 }
 
 
@@ -23,3 +23,9 @@ Content-Type: application/json
 GET http://localhost:3003/all
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE4N2VlZGRhLTE5Y2ItNDQ3MS1hM2QzLTc3MGU0ZDM4OTU4MiIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE2MTIyNjY5NDMsImV4cCI6MTYxMjI3MDU0M30.Q37TUsIzP_SRDTHH3DCQy2qOtnFO2tkte-SxyRh-pDE
+
+
+###get all users 
+DELETE http://localhost:3003/f5cd2a3a-9475-45c9-9fc6-7a3a9e9416d1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZlZjVlYTM3LTZmMzMtNGJlNS04YmViLWM0ODk1YTE1ZjE4OCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTYxMjI3MjgyMSwiZXhwIjoxNjEyMjc2NDIxfQ.pBDhIQIW6wNa-Xj1w6pzjTAWbYZBQ4QGvPlTr9U2nNs

@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
-import { getAllUsers, login, signup } from "./controller/userController";
+import { deleteUser, getAllUsers, login, signup } from "./controller/userController";
 
 
 
@@ -12,6 +12,7 @@ app.use(cors());
 app.post('/user/signup', signup)
 app.post('/login', login)
 app.get('/all', getAllUsers)
+app.delete('/:id', deleteUser)
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
