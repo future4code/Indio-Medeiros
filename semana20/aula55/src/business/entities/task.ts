@@ -3,5 +3,7 @@ export type task = {
    title: string,
    description: string,
    deadline: string,
-   authorId: string
+   status: string,
+   authorId: string,
+   authorNickname: string
 }
