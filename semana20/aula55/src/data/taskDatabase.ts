@@ -1,8 +1,8 @@
 import { connection } from "./connection";
-import { task } from "../business/entities/task";
+import { getTaskInputDTO, taskInputDataDTO } from "./model/task";
 
 export const selectTaskById = async (
-   id: string
+   id: getTaskInputDTO 
 ): Promise<any> => {
    const result = await connection.raw(`
         SELECT tasks.*, nickname FROM to_do_list_tasks AS tasks
@@ -15,14 +15,8 @@ export const selectTaskById = async (
 }
 
 export const insertTask = async (
-   task: task
+   task: taskInputDataDTO
 ) => {
    await connection('to_do_list_tasks')
-      .insert({
-         id: task.id,
-         title: task.title,
-         description: task.description,
-         deadline: task.deadline,
-         author_id: task.authorId
-      })
+      .insert(task)
 }

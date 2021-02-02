@@ -2,62 +2,52 @@ import { compare, hash } from "./services/hashManager";
 import { insertUser, selectUserByEmail } from "../data/userDatabase";
 import { generateToken } from "./services/authenticator";
 import { generateId } from "./services/idGenerator";
-import { user, USER_ROLES } from "./entities/user";
+import { user } from "./entities/user";
+import { convertTextToRole, loginInputDTO, signupInputDTO } from "../data/model/user";
 
 export const businessSignup = async (
-   name: string,
-   nickname: string,
-   email: string,
-   password: string,
-   role: USER_ROLES
+   signupData:signupInputDTO 
 ) => {
 
    if (
-      !name ||
-      !nickname ||
-      !email ||
-      !password ||
-      !role
+      !signupData.name ||
+      !signupData.nickname ||
+      !signupData.email ||
+      !signupData.password ||
+      !signupData.role
    ) {
       throw new Error('Preencha os campos "name","nickname", "email" e "password"')
    }
 
    const id: string = generateId()
 
-   const cypherPassword = await hash(password);
-
-   await insertUser({
-      id,
-      name,
-      nickname,
-      email,
-      password: cypherPassword,
-      role
-   })
+   const cypherPassword = await hash(signupData.password);
+   signupData.password = cypherPassword
+   
+   await insertUser(signupData)
 
    const token: string = generateToken({
       id,
-      role: role
+      role: convertTextToRole(signupData.role) 
    })
 
    return token
 }
 
 export const businessLogin = async (
-   email: string,
-   password: string
+   loginInput:loginInputDTO
 ) => {
-   if (!email || !password) {
+   if (!loginInput.email || !loginInput.password) {
       throw new Error("'email' e 'senha' são obrigatórios")
    }
 
-   const user: user = await selectUserByEmail(email)
+   const user: user = await selectUserByEmail(loginInput.email)
 
    if (!user) {
       throw new Error("Usuário não encontrado ou senha incorreta")
    }
 
-   const passwordIsCorrect: boolean = await compare(password, user.password)
+   const passwordIsCorrect: boolean = await compare(loginInput.password, user.password)
 
    if (!passwordIsCorrect) {
       throw new Error("Usuário não encontrado ou senha incorreta")

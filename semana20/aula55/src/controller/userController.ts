@@ -1,14 +1,18 @@
 import { Request, Response } from "express";
 import { businessLogin, businessSignup } from "../business/userBusiness";
+import { loginInputDTO, signupInputDTO } from "../data/model/user";
 
 export const login = async (
    req: Request,
    res: Response
 ): Promise<void> => {
    try {
-      const { email, password } = req.body
+      const loginInput: loginInputDTO  = { 
+         email: req.body.emal, 
+         password: req.body.password
+      }
 
-      const token = await businessLogin(email, password)
+      const token = await businessLogin(loginInput)
 
       res.send({
          message: "Usuário logado!",
@@ -24,15 +28,15 @@ export const signup = async (
    res: Response
 ) => {
    try {
-      const { name, nickname, email, password, role } = req.body
+      const signupData: signupInputDTO = {
+         name:  req.body.name, 
+         nickname: req.body.nickname, 
+         email:  req.body.email, 
+         password: req.body.password, 
+         role: req.body.role 
+      }
 
-      const token = await businessSignup(
-         name,
-         nickname,
-         email,
-         password,
-         role
-      )
+      const token = await businessSignup(signupData)
 
       res
          .status(201)

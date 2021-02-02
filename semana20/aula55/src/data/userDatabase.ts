@@ -1,17 +1,13 @@
 import { connection } from "./connection"
 import { user } from "../business/entities/user"
+import { signupInputDTO } from "./model/user"
 
 
 export const insertUser = async(
-   user: user
+   signupData: signupInputDTO
 ) => {
    await connection.insert({
-      id: user.id,
-      name: user.name,
-      nickname: user.nickname,
-      email: user.email,
-      password: user.password,
-      role: user.role
+      signupData
    }).into('to_do_list_users')
 }
 
