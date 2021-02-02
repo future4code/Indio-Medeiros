@@ -7,8 +7,8 @@ import {
 } from "./services/checkBodyRequest";
 import { idGenerator } from "./services/idGenerator";
 import { compare, hash } from "./services/hashManager";
-import { generateToken } from "./services/authenticator";
-import { insertUserInTable, selectUserByEmail } from "../data/userDatabase";
+import { generateToken, getTokenData } from "./services/authenticator";
+import { insertUserInTable, selecAllUsers, selectUserByEmail } from "../data/userDatabase";
 
 export const businessSignup = async (
   name: string,
@@ -57,7 +57,7 @@ export async function businessLogin(
 
     const user = await selectUserByEmail(email);
     const comparePass = await compare(password, user.password);
-    console.log(comparePass)
+    console.log(comparePass);
     if (!comparePass) {
       res.statusCode = 404;
       throw new Error("Password incorrect!");
@@ -69,8 +69,19 @@ export async function businessLogin(
     });
 
     return token;
-
   } catch (error) {
-    res.send(error.sqlMessage || error.message);
+    throw new Error(error.sqlMessage || error.message);
   }
 }
+
+export const businessGetAllUsers = async (token: string): Promise<any> => {
+  try {
+
+    getTokenData(token);
+    const users = await selecAllUsers();
+    return users;
+
+  } catch (error) {
+    throw new Error(error.sqlMessage || error.message);
+  }
+};

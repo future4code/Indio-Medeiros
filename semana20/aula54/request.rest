@@ -2,9 +2,9 @@
 POST http://localhost:3003/user/signup
 Content-Type: application/json
 
-{     "name": "labenu",
+{     "name": "aben",
       "password": "47851269",
-      "email": "labenu@gmail.com",
+      "email": "abn@gmail.com",
       "role": "NORMAL"
 }
 
@@ -14,15 +14,12 @@ Content-Type: application/json
 
 {
      "password": "47851269",
-      "email": "labenu@gmail.com"
+      "email": "abn@gmail.com"
 }
 
-###test request login
-GET http://localhost:3003/user/profile
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjFmNTY5NmNjLTdlNmYtNGZiMy1hMjdlLTYxNWE1NTY5ODg5ZSIsInJvbGUiOiJub3JtYWwifSwiaWF0IjoxNjExNzY2NDg0LCJleHAiOjE2MTE3NjcwODR9.N2EX0mLdMvTiBgqFU40Zb7eqv6ryaI2yy92FpzsuV_s
 
-###get cep address 
-GET http://localhost:3003/address/40250170
-Content-Type: application/json
 
+###get all users 
+GET http://localhost:3003/all
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE4N2VlZGRhLTE5Y2ItNDQ3MS1hM2QzLTc3MGU0ZDM4OTU4MiIsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE2MTIyNjY5NDMsImV4cCI6MTYxMjI3MDU0M30.Q37TUsIzP_SRDTHH3DCQy2qOtnFO2tkte-SxyRh-pDE

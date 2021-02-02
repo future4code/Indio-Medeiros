@@ -22,3 +22,16 @@ export async function selectUserByEmail(userEmail: string) {
 
   return result[0][0];
 }
+
+export const selecAllUsers = async (): Promise<any> => {
+  try {
+    const result = await connection.raw(`
+      SELECT * FROM ${userTable};
+    
+    `)
+    return result[0]
+
+  } catch (error) {
+    throw new Error(error.sqlMessage || error.message);
+  }
+}
