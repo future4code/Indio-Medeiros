@@ -1,13 +1,16 @@
 import { compare, hash } from "./services/hashManager";
-import { insertUser, selectUserByEmail } from "../data/userDatabase";
+import { insertUser, selectUserByEmail, selectUserById } from "../data/userDatabase";
 import { generateToken } from "./services/authenticator";
 import { generateId } from "./services/idGenerator";
 import { user } from "./entities/user";
+import { task } from "./entities/task";
 import {
   convertTextToRole,
   loginInputDTO,
   signupInputDTO,
 } from "../data/model/user";
+import { selectTaskById } from "../data/taskDatabase";
+import { getTaskInputDTO } from "../data/model/task";
 
 export const businessSignup = async (
   signupData: signupInputDTO
@@ -68,3 +71,15 @@ export const businessLogin = async (
 
   return token;
 };
+
+export const businessGetUserWhithTask = async (
+   id: string, 
+   taskRquest: getTaskInputDTO
+): Promise<[user, task]>=> {
+   
+   const user: user = await selectUserById(id)
+   const task: task = await selectTaskById(taskRquest)
+
+
+   return [user, task]
+}

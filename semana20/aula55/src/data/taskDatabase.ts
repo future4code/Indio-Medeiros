@@ -1,3 +1,4 @@
+import { task } from "../business/entities/task";
 import { connection } from "./connection";
 import { getTaskInputDTO, taskInputDataDTO } from "./model/task";
 
