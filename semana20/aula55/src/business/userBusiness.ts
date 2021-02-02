@@ -23,7 +23,7 @@ export const businessSignup = async (
 
    const cypherPassword = await hash(signupData.password);
    signupData.password = cypherPassword
-   
+
    await insertUser(signupData)
 
    const token: string = generateToken({
