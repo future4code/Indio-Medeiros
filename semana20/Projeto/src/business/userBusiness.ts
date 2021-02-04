@@ -29,7 +29,6 @@ export const signupBusiness = async (
     const token: string = generateToken({ id });
 
     return { message, token };
-    
   } catch (error) {
     response.statusCode = 400;
     let message = error.sqlMessage || error.message;
