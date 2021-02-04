@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { createPostBusiness, getPostByIdBusiness } from "../business/postBusiness";
+
 export const createPost = async (
   req: Request,
   res: Response
