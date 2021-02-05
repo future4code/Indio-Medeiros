@@ -1,9 +1,9 @@
 import { insertUserData, selectUserByEmail } from "../data/userDatabase";
 import { generateId } from "./services/IdGenerator";
-import { response } from "express";
 import { generateToken } from "./services/authenticator";
 import { hashGenerator } from "./services/hashGenerator";
 import { User } from "./entities/userType";
+import { CheckUserBusiness} from "./errors/checkUserBusiness";
 
 export const signupBusiness = async (
   name: string,
@@ -12,28 +12,23 @@ export const signupBusiness = async (
 ) => {
   try {
     let message = "Success!";
-
-    if (!name || !email || !password) {
-      response.statusCode = 406;
-      message = '"name", "email" and "password" must be provided';
-      throw new Error(message);
-    }
+     const check = new CheckUserBusiness
+     check.checkExistenceProperty(name, "name")
+     check.checkEmailFormat(email)
+     check.checkPasswordFormat(password)
 
     const id: string = generateId();
 
     const hash = new hashGenerator();
     const cypherPassword = await hash.hash(password);
-
+    
     await insertUserData(id, name, email, cypherPassword);
 
     const token: string = generateToken({ id });
 
     return { message, token };
   } catch (error) {
-    response.statusCode = 400;
-    let message = error.sqlMessage || error.message;
-
-    response.send({ message });
+    throw new Error (error.sqlMessage || error.message)
   }
 };
 
@@ -41,15 +36,13 @@ export const loginBusiness = async (email: string, password: string) => {
   try {
     let message = "Success!";
 
-    if (!email || !password) {
-      response.statusCode = 406;
-      message = '"email" and "password" must be provided';
-      throw new Error(message);
-    }
+    const check = new CheckUserBusiness
+    check.checkEmailFormat(email)
+    check.checkPasswordFormat(password)
+
     const queryResult: any = await selectUserByEmail(email);
 
     if (!queryResult[0]) {
-      response.statusCode = 401;
       message = "Invalid credentials";
       throw new Error(message);
     }
@@ -67,7 +60,6 @@ export const loginBusiness = async (email: string, password: string) => {
     );
 
     if (!passwordIsCorrect) {
-      response.statusCode = 401;
       message = "Invalid credentials";
       throw new Error(message);
     }
@@ -78,9 +70,6 @@ export const loginBusiness = async (email: string, password: string) => {
 
     return { message, token };
   } catch (error) {
-    response.statusCode = 400;
-    let message = error.sqlMessage || error.message;
-
-    response.send({ message });
+    throw new Error (error.sqlMessage || error.message)
   }
 };

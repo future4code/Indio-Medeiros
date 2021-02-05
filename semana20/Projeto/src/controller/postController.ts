@@ -10,7 +10,7 @@ export const createPost = async (
     const token: string = req.headers.authorization as string;
 
     const result = await createPostBusiness(photo, description, type, token);
-    console.log("teste", result);
+ 
     res.status(201).send(result);
   } catch (error) {
     let message = error.sqlMessage || error.message;

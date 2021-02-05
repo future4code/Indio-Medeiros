@@ -16,15 +16,15 @@ export const createPostBusiness = async (
 
     const tokenData: AuthenticationData = getTokenData(token);
     const id: string = generateId();
-    console.log("test2");
-    const result = await insertPostData(
+    
+     await insertPostData(
       id,
       photo,
       description,
       type,
       tokenData.id
     );
-    console.log(result);
+ 
     return message;
   } catch (error) {
     let message = error.sqlMessage || error.message;
