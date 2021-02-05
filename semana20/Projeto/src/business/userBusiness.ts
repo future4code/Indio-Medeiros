@@ -2,56 +2,71 @@ import { insertUserData, selectUserByEmail } from "../data/userDatabase";
 import { generateId } from "./services/IdGenerator";
 import { generateToken } from "./services/authenticator";
 import { hashGenerator } from "./services/hashGenerator";
-import { User } from "./entities/userType";
-import { CheckUserBusiness} from "./errors/checkUserBusiness";
+import {
+  InputLoginBusiness,
+  InputSignupBusiness,
+  outputUserBusiness,
+  User,
+} from "./entities/userType";
+import { CheckData } from "./errors/CheckData";
+import { UserInputDTO } from "../data/model/userModel";
 
 export const signupBusiness = async (
-  name: string,
-  email: string,
-  password: string
-) => {
+  inputSignupBusiness: InputSignupBusiness
+): Promise<outputUserBusiness> => {
   try {
+    const { name, email, password } = inputSignupBusiness;
+
     let message = "Success!";
-     const check = new CheckUserBusiness
-     check.checkExistenceProperty(name, "name")
-     check.checkEmailFormat(email)
-     check.checkPasswordFormat(password)
+
+    const check = new CheckData();
+    check.checkExistenceProperty(name, "name");
+    check.checkEmailFormat(email);
+    check.checkPasswordFormat(password);
 
     const id: string = generateId();
 
     const hash = new hashGenerator();
     const cypherPassword = await hash.hash(password);
-    
-    await insertUserData(id, name, email, cypherPassword);
+
+    const inputUserData: User = {
+      id,
+      name,
+      email,
+      password: cypherPassword,
+    };
+
+    await insertUserData(inputUserData);
 
     const token: string = generateToken({ id });
 
     return { message, token };
   } catch (error) {
-    throw new Error (error.sqlMessage || error.message)
+    throw new Error(error.sqlMessage || error.message);
   }
 };
 
-export const loginBusiness = async (email: string, password: string) => {
+export const loginBusiness = async (
+  inputLoginBusiness: InputLoginBusiness
+): Promise<outputUserBusiness> => {
   try {
+    const { email, password } = inputLoginBusiness;
     let message = "Success!";
 
-    const check = new CheckUserBusiness
-    check.checkEmailFormat(email)
-    check.checkPasswordFormat(password)
+    const check = new CheckData();
+    check.checkEmailFormat(email);
+    check.checkPasswordFormat(password);
 
-    const queryResult: any = await selectUserByEmail(email);
+    const userInputDTO: UserInputDTO = {
+      email,
+    };
 
-    if (!queryResult[0]) {
+    const user = await selectUserByEmail(userInputDTO);
+
+    if (!user) {
       message = "Invalid credentials";
       throw new Error(message);
     }
-    const user: User = {
-      id: queryResult[0].id,
-      name: queryResult[0].name,
-      email: queryResult[0].email,
-      password: queryResult[0].password,
-    };
 
     const hash = new hashGenerator();
     const passwordIsCorrect: boolean = await hash.compare(
@@ -70,6 +85,6 @@ export const loginBusiness = async (email: string, password: string) => {
 
     return { message, token };
   } catch (error) {
-    throw new Error (error.sqlMessage || error.message)
+    throw new Error(error.sqlMessage || error.message);
   }
 };

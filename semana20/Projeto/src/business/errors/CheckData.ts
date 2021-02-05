@@ -1,4 +1,4 @@
-export class CheckUserBusiness {
+export class CheckData {
   checkEmailFormat = (email: string) => {
     this.checkExistenceProperty(email, "email");
     if (!email.includes("@")) {

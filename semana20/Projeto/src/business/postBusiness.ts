@@ -1,30 +1,36 @@
 import { response } from "express";
 import { insertPostData, selectPostById } from "../data/postDatabase";
-import { Post } from "./entities/postType";
+import { InputCreatePostBusiness, Post } from "./entities/postType";
 import { AuthenticationData } from "./entities/userType";
+import { CheckData } from "./errors/CheckData";
 import { getTokenData } from "./services/authenticator";
 import { generateId } from "./services/IdGenerator";
 
 export const createPostBusiness = async (
-  photo: string,
-  description: string,
-  type: string,
-  token: string
+  inputCreatePostBusiness: InputCreatePostBusiness
 ) => {
   try {
     let message = "Success!";
-
-    const tokenData: AuthenticationData = getTokenData(token);
-    const id: string = generateId();
-    
-     await insertPostData(
-      id,
+    const {
       photo,
       description,
       type,
-      tokenData.id
-    );
- 
+      token
+    } = inputCreatePostBusiness
+
+    
+
+    const check = new CheckData();
+    check.checkExistenceProperty(photo, "photo");
+    check.checkExistenceProperty(description, "description");
+    check.checkExistenceProperty(type, "type");
+    check.checkExistenceProperty(token, "token");
+
+    const tokenData: AuthenticationData = getTokenData(token);
+    const id: string = generateId();
+
+    await insertPostData(id, photo, description, type, tokenData.id);
+
     return message;
   } catch (error) {
     let message = error.sqlMessage || error.message;
@@ -37,6 +43,9 @@ export const createPostBusiness = async (
 export const getPostByIdBusiness = async (id: string) => {
   try {
     let message = "Success!";
+
+    const check = new CheckData();
+    check.checkExistenceProperty(id, "id");
 
     const queryResult: any = await selectPostById(id);
 
