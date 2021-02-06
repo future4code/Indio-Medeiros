@@ -1,9 +1,4 @@
-export type User = {
-    id: string,
-    name: string,
-    email: string,
-    password: string
- }
+
 
 export  type AuthenticationData = {
     id: string
@@ -20,7 +15,7 @@ export type InputLoginBusiness = {
     password: string
  }
 
- export type outputUserBusiness = {
+ export type OutputUserBusiness = {
     message: string, 
     token: string
  }

@@ -7,6 +7,7 @@ import { loginBusiness, signupBusiness } from "../business/userBusiness";
 
 export const signup = async (req: Request, res: Response) => {
   try {
+    
     const {name, email, password} = req.body
     const inputUser: InputSignupBusiness = {
       name,
@@ -18,7 +19,7 @@ export const signup = async (req: Request, res: Response) => {
 
     res.status(201).send(result);
   } catch (error) {
-    res.status(400).send(error.sqlMessage || error.message);
+    res.status(error.statusCode).send(error.sqlMessage || error.message);
   }
 };
 
@@ -34,6 +35,6 @@ export const login = async (req: Request, res: Response) => {
 
     res.status(200).send(result);
   } catch (error) {
-    res.status(400).send(error.sqlMessage || error.message);
+    res.status(error.statusCode).send(error.sqlMessage || error.message);
   }
 };

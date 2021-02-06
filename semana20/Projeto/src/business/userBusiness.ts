@@ -5,15 +5,14 @@ import { hashGenerator } from "./services/hashGenerator";
 import {
   InputLoginBusiness,
   InputSignupBusiness,
-  outputUserBusiness,
-  User,
+  OutputUserBusiness,
 } from "./entities/userType";
-import { CheckData } from "./errors/CheckData";
-import { UserInputDTO } from "../data/model/userModel";
+import { CheckData, CustomError } from "./errors/CheckData";
+import { EmailInputDTO, UserInputDTO } from "../data/model/userModel";
 
 export const signupBusiness = async (
   inputSignupBusiness: InputSignupBusiness
-): Promise<outputUserBusiness> => {
+): Promise<OutputUserBusiness> => {
   try {
     const { name, email, password } = inputSignupBusiness;
 
@@ -29,7 +28,7 @@ export const signupBusiness = async (
     const hash = new hashGenerator();
     const cypherPassword = await hash.hash(password);
 
-    const inputUserData: User = {
+    const inputUserData: UserInputDTO = {
       id,
       name,
       email,
@@ -42,13 +41,13 @@ export const signupBusiness = async (
 
     return { message, token };
   } catch (error) {
-    throw new Error(error.sqlMessage || error.message);
+    throw new CustomError (error.statusCode, error.sqlMessage || error.message);
   }
 };
 
 export const loginBusiness = async (
   inputLoginBusiness: InputLoginBusiness
-): Promise<outputUserBusiness> => {
+): Promise<OutputUserBusiness> => {
   try {
     const { email, password } = inputLoginBusiness;
     let message = "Success!";
@@ -57,7 +56,7 @@ export const loginBusiness = async (
     check.checkEmailFormat(email);
     check.checkPasswordFormat(password);
 
-    const userInputDTO: UserInputDTO = {
+    const userInputDTO: EmailInputDTO = {
       email,
     };
 

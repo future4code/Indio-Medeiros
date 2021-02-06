@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { InputCreatePostBusiness } from "../business/entities/postType";
 import { createPostBusiness, getPostByIdBusiness } from "../business/postBusiness";
 
 export const createPost = async (
@@ -8,8 +9,15 @@ export const createPost = async (
   try {
     const { photo, description, type } = req.body;
     const token: string = req.headers.authorization as string;
-
-    const result = await createPostBusiness(photo, description, type, token);
+    
+    const inputCreatePostBusiness: InputCreatePostBusiness = {
+      photo, 
+      description, 
+      type,
+      token
+    }
+    
+    const result = await createPostBusiness(inputCreatePostBusiness);
  
     res.status(201).send(result);
   } catch (error) {

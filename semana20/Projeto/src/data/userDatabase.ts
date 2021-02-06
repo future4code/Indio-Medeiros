@@ -1,10 +1,8 @@
-import { promises } from "fs";
-import { User } from "../business/entities/userType";
 import { connection } from "./connection";
-import { UserInputDTO } from "./model/userModel";
+import { EmailInputDTO, UserInputDTO, UserOutputDTO } from "./model/userModel";
 
 export const insertUserData = async (
-  inputUserData : User
+  inputUserData : UserInputDTO
 ): Promise<void> => {
   try {
     await connection("labook_users")
@@ -15,11 +13,11 @@ export const insertUserData = async (
   }
 };
 
-export const selectUserByEmail = async (userInputDTO:UserInputDTO): Promise<User> => {
+export const selectUserByEmail = async (emailInputDTO:EmailInputDTO): Promise<UserOutputDTO> => {
   try {
     const queryResult: any = await connection("labook_users")
       .select("*")
-      .where(userInputDTO);
+      .where(emailInputDTO);
 
     return queryResult[0];
   } catch (error) {
