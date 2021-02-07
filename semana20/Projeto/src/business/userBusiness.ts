@@ -39,9 +39,12 @@ export const signupBusiness = async (
 
     const token: string = generateToken({ id });
 
-    return { message, token };
+    return {
+      message,
+      token,
+    };
   } catch (error) {
-    throw new CustomError (error.statusCode, error.sqlMessage || error.message);
+    throw new CustomError(error.statusCode, error.sqlMessage || error.message);
   }
 };
 
@@ -50,6 +53,7 @@ export const loginBusiness = async (
 ): Promise<OutputUserBusiness> => {
   try {
     const { email, password } = inputLoginBusiness;
+
     let message = "Success!";
 
     const check = new CheckData();
@@ -84,6 +88,6 @@ export const loginBusiness = async (
 
     return { message, token };
   } catch (error) {
-    throw new Error(error.sqlMessage || error.message);
+    throw new CustomError(error.statusCode, error.sqlMessage || error.message);
   }
 };

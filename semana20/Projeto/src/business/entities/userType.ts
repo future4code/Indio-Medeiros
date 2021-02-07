@@ -1,21 +1,19 @@
-
-
-export  type AuthenticationData = {
-    id: string
- }
+export type AuthenticationData = {
+  id: string;
+};
 
 export type InputSignupBusiness = {
-    name: string,
-    email: string,
-    password: string
-}
+  name: string;
+  email: string;
+  password: string;
+};
 
 export type InputLoginBusiness = {
-    email: string,
-    password: string
- }
+  email: string;
+  password: string;
+};
 
- export type OutputUserBusiness = {
-    message: string, 
-    token: string
- }
+export type OutputUserBusiness = {
+  message: string;
+  token: string;
+};

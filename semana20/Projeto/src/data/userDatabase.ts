@@ -9,11 +9,16 @@ export const insertUserData = async (
     .insert(inputUserData);
 
   } catch (error) {
-    throw new Error(error.sqlMessage || error.message);
+    throw new Error (
+      error.sqlMessage || 
+      error.message
+      );
   }
 };
 
-export const selectUserByEmail = async (emailInputDTO:EmailInputDTO): Promise<UserOutputDTO> => {
+export const selectUserByEmail = async (
+  emailInputDTO:EmailInputDTO
+): Promise<UserOutputDTO> => {
   try {
     const queryResult: any = await connection("labook_users")
       .select("*")
@@ -21,6 +26,9 @@ export const selectUserByEmail = async (emailInputDTO:EmailInputDTO): Promise<Us
 
     return queryResult[0];
   } catch (error) {
-    throw new Error(error.sqlMessage || error.message);
+    throw new Error(
+      error.sqlMessage || 
+      error.message
+      );
   }
 };

@@ -1,6 +1,12 @@
 import { Request, Response } from "express";
-import { InputCreatePostBusiness } from "../business/entities/postType";
-import { createPostBusiness, getPostByIdBusiness } from "../business/postBusiness";
+import {
+  InputCreatePostBusiness,
+  InputPostByIdBusiness,
+} from "../business/entities/postType";
+import {
+  createPostBusiness,
+  getPostByIdBusiness,
+} from "../business/postBusiness";
 
 export const createPost = async (
   req: Request,
@@ -8,37 +14,31 @@ export const createPost = async (
 ): Promise<void> => {
   try {
     const { photo, description, type } = req.body;
+
     const token: string = req.headers.authorization as string;
-    
+
     const inputCreatePostBusiness: InputCreatePostBusiness = {
-      photo, 
-      description, 
+      photo,
+      description,
       type,
-      token
-    }
-    
+      token,
+    };
+
     const result = await createPostBusiness(inputCreatePostBusiness);
- 
+
     res.status(201).send(result);
   } catch (error) {
-    let message = error.sqlMessage || error.message;
-    res.statusCode = 400;
-
-    res.send({ message });
+    res.status(error.statusCode || 400).send(error.sqlMessage || error.message);
   }
 };
 
 export const getPostById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-
+    const id = req.params as InputPostByIdBusiness;
     const result = await getPostByIdBusiness(id);
 
     res.status(200).send(result);
   } catch (error) {
-    let message = error.sqlMessage || error.message;
-    res.statusCode = 400;
-
-    res.send({ message });
+    res.status(error.statusCode || 400).send(error.sqlMessage || error.message);
   }
 };

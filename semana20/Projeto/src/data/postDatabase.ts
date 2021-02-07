@@ -1,33 +1,36 @@
+import { InputPostByIdBusiness } from "../business/entities/postType";
 import { connection } from "./connection";
+import { PostInputDTO, PostOutputDTO } from "./model/postModel";
 
 export const insertPostData = async (
-  id: string,
-  photo: string,
-  description: string,
-  type: string,
-  author_id: string
-) => {
+  postInputDTO: PostInputDTO
+): Promise<void> => {
   try {
-    await connection("labook_posts").insert({
-      id,
-      photo,
-      description,
-      type,
-      author_id,
-    });
+    await connection("labook_posts")
+    .insert(
+      postInputDTO
+    );
   } catch (error) {
-    console.log(error.sqlMessage || error.message);
+    throw new Error (
+      error.sqlMessage || 
+      error.message
+      );
   }
 };
 
-export const selectPostById = async (id: string) => {
+export const selectPostById = async (
+  id:InputPostByIdBusiness
+): Promise <PostOutputDTO>  => {
   try {
     const result = await connection("labook_posts")
     .select("*")
-    .where({ id });
+    .where( id );
 
-    return result;
+    return result[0];
   } catch (error) {
-    throw new Error(error.sqlMessage || error.message);
+    throw new Error(
+      error.sqlMessage || 
+      error.message
+      );
   }
 };

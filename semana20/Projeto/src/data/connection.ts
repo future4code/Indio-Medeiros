@@ -2,7 +2,6 @@ import Knex from "knex"
 import dotenv from "dotenv"
 import knex from "knex"
 
-
 dotenv.config()
 
 export const connection: Knex = knex({

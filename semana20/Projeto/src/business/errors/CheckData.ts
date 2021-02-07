@@ -17,7 +17,7 @@ export class CheckData {
     }
   };
 
-  checkExistenceProperty = (reqPropety: string, propretyName: string) => {
+  checkExistenceProperty = (reqPropety: any, propretyName: string) => {
     if (!reqPropety || reqPropety === undefined) {
       throw new CustomError(406, `'${propretyName}' not found`);
     }
@@ -26,7 +26,21 @@ export class CheckData {
   checkPasswordFormat = (password: string) => {
     this.checkExistenceProperty(password, "password");
     if (password.length < 6) {
-      throw new CustomError(406," is password required whith minimum 6 caracteres");
+      throw new CustomError(
+        406,
+        " is password required whith minimum 6 caracteres"
+      );
+    }
+  };
+
+  checkRole = (role: string) => {
+    this.checkExistenceProperty(role, "type");
+    if (role === "normal" || role === "event") {
+    } else {
+      throw new CustomError(
+        406,
+        " user options for property type : 'normal' or 'event' "
+      );
     }
   };
 }
