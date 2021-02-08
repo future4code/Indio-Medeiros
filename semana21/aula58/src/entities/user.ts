@@ -1,4 +1,5 @@
+//1a.
 export interface User {
-    name: string
-    balance: number
+  name: string;
+  balance: number;
 }
