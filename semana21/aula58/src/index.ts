@@ -1,4 +1,4 @@
-import { User } from "./entities/user";
+import {  User } from "./entities/user";
 
 //1b.
 export const performPurchase = (
