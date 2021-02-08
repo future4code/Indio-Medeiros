@@ -104,6 +104,7 @@ test("1 No one allowed", () => {
   expect(result.americans.unallowed).toEqual(["indian", "indian"]);
 });
 
+//4d
 test("2 american allowed and 2 brazilian unallowed", () => {
   const brasilizan: UserNacionatily = {
     name: "indio BR",
@@ -125,5 +126,90 @@ test("2 american allowed and 2 brazilian unallowed", () => {
   const result = checkAge(casino, [brasilizan, brasilizan, american, american]);
 
   expect(result.brazilians.unallowed).toEqual(["indio BR", "indio BR"]);
-    expect(result.americans.allowed).toEqual(["indio EUA", "indio EUA"]);
+  expect(result.americans.allowed).toEqual(["indio EUA", "indio EUA"]);
+});
+
+//5a
+test("1 brazilian allowed", () => {
+  const brazilian: UserNacionatily = {
+    name: "Astrodev",
+    age: 19,
+    nacionality: NACIONALITY.BRAZILIAN,
+  };
+
+  const casino: Casino = {
+    name: "Balada Estelar",
+    location: LOCATION.BRAZIL,
+  };
+
+  const result = checkAge(casino, [brazilian]);
+  expect(result.brazilians.allowed.length).toBeGreaterThan(0);
+  expect(result.brazilians.allowed.length).toBeLessThan(2);
+});
+
+//5b.
+test("1 american allowed", () => {
+  const brazilian: UserNacionatily = {
+    name: "Astrodev",
+    age: 19,
+    nacionality: NACIONALITY.AMERICAN,
+  };
+
+  const casino: Casino = {
+    name: "Balada Estelar",
+    location: LOCATION.BRAZIL,
+  };
+
+  const result = checkAge(casino, [brazilian]);
+  expect(result.americans.unallowed.length).toBe(0);
+});
+
+//5c.
+test("No one allowed", () => {
+  const brazilian: UserNacionatily = {
+    name: "Astrodev BR",
+    age: 19,
+    nacionality: NACIONALITY.BRAZILIAN,
+  };
+
+  const american: UserNacionatily = {
+    name: "Astrodev EUA",
+    age: 19,
+    nacionality: NACIONALITY.AMERICAN,
+  };
+
+  const casino: Casino = {
+    name: "Balada Estelar",
+    location: LOCATION.EUA,
+  };
+
+  const result = checkAge(casino, [brazilian, brazilian, american, american]);
+
+  expect(result.brazilians.unallowed).toContain("Astrodev BR");
+  expect(result.americans.unallowed).toContain("Astrodev EUA");
+});
+
+//5d.
+test("2 american allowed and 2 brazilians unallowed", () => {
+  const brazilian: UserNacionatily = {
+    name: "Astrodev BR",
+    age: 19,
+    nacionality: NACIONALITY.BRAZILIAN,
+  };
+
+  const american: UserNacionatily = {
+    name: "Astrodev EUA",
+    age: 21,
+    nacionality: NACIONALITY.AMERICAN,
+  };
+
+  const casino: Casino = {
+    name: "Balada Estelar",
+    location: LOCATION.EUA,
+  };
+
+  const result = checkAge(casino, [brazilian, brazilian, american, american]);
+  expect(result.brazilians.unallowed.length).toBeGreaterThan(1);
+  expect(result.americans.unallowed.length).toBeLessThan(1);
+  expect(result.americans.allowed.length).toBe(2);
 });
