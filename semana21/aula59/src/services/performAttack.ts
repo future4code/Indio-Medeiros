@@ -25,4 +25,5 @@ export const performAttackInvertDependences = (
   if (attacker.strength > defender.defense) {
     defender.life -= attacker.strength - defender.defense;
   }
+
 };
