@@ -1,6 +1,6 @@
 import { Character } from "../entities/character"
 
-//2b.
+//1b.
 export const validateCharacter = (input: Character): boolean => {
     if(
         !input.name ||
