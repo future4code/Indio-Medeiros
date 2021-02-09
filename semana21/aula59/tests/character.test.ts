@@ -3,6 +3,7 @@ import { validateCharacter } from "../src/services/checkCharacter";
 describe("Testing validate charater propeties", () => {
   //2a.
   test("Should return false for empty name", () => {
+      expect.assertions(1)
     const result = validateCharacter({
       name: "",
       life: 1500,
@@ -13,6 +14,7 @@ describe("Testing validate charater propeties", () => {
   });
   //2b.
   test("Should return false for life equal 0", () => {
+    expect.assertions(1)
     const result = validateCharacter({
       name: "Indio",
       life: 0,
@@ -24,6 +26,7 @@ describe("Testing validate charater propeties", () => {
 
   //2c.
   test("Should return false for strength 0", () => {
+    expect.assertions(1)
     const result = validateCharacter({
       name: "Indio",
       life: 1500,
@@ -35,6 +38,7 @@ describe("Testing validate charater propeties", () => {
 
   //2d.
   test("Should return false for defense 0", () => {
+    expect.assertions(1)
     const result = validateCharacter({
       name: "Indio",
       life: 1500,
@@ -46,6 +50,7 @@ describe("Testing validate charater propeties", () => {
 
   //2e.
   test("Should return false for life negative", () => {
+    expect.assertions(1)
     const result = validateCharacter({
       name: "Indio",
       life: 1500,
@@ -57,12 +62,13 @@ describe("Testing validate charater propeties", () => {
 
   //2f.
   test("Should return true  for proprities validate", () => {
+    expect.assertions(1)
     const result = validateCharacter({
-        name: "Indio",
-        life: 1500,
-        strength: 300,
-        defense: 10,
-      });
-      expect(result).toBe(true)
-  })
+      name: "Indio",
+      life: 1500,
+      strength: 300,
+      defense: 10,
+    });
+    expect(result).toBe(true);
+  });
 });

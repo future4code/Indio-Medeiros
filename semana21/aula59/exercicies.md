@@ -8,3 +8,5 @@ Response
  A função não está  dependente de outra função para validar
  os dados.
 
+* 4a - na função performAttack, pois a função está isolada
+e podemos usar o mock para testar.
