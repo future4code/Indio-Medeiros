@@ -1,5 +1,5 @@
 import { CustomError } from "../errors/CustomError";
-import { User, stringToUserRole } from "../model/User";
+import { User, stringToUserRole, UserRole } from "../model/User";
 import { UserDatabase } from "../data/UserDatabase";
 import { HashGenerator } from "../services/hashGenerator";
 import { IdGenerator } from "../services/idGenerator";
@@ -94,7 +94,7 @@ export class UserBusiness {
       try {
          const user  = await this.userDatabase.getUserById(id)
          if(!user){
-            throw new Error("User not found")
+            throw new CustomError(404, "User not found")
          }
 
          return{
@@ -104,6 +104,24 @@ export class UserBusiness {
             role: user.getRole()
          }
          
+      } catch (error) {
+         throw new CustomError(error.statusCode, error.message)
+      }
+   }
+
+   public async getAllUsers (token: string) {
+      try {
+        const user = this.tokenGenerator.verify(token)
+        if (stringToUserRole(user.role) !== UserRole.ADMIN) {
+         throw new CustomError(
+            401,
+           "You must be an admin to access this endpoint"
+         );
+      }
+
+      const users = await this.userDatabase.getAllUsers()
+      return users
+
       } catch (error) {
          throw new CustomError(error.statusCode, error.message)
       }

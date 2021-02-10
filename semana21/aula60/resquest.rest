@@ -1,0 +1,31 @@
+###test request
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{     "name": "aben",
+      "password": "47851269",
+      "email": "bn@gmail.com",
+      "role": "ADMIN"
+}
+
+###test request login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+     "password": "47851269",
+      "email": "bn@gmail.com"
+}
+
+###test get user
+GET  http://localhost:3003/users/profile/66436fba-be44-4b19-8a7c-52febbe5c5dd
+Content-Type: application/json
+
+###test get allUsers
+GET  http://localhost:3003/users/all
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDM2ZmJhLWJlNDQtNGIxOS04YTdjLTUyZmViYmU1YzVkZCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYxMjk4NTgwNiwiZXhwIjoxNjEyOTg3MDA2fQ.KtDbvhguNcFyEEB1kRtzBF2z1DBLxamkrnL1zeGQLMk
+Content-Type: application/json
+
+
+
+
