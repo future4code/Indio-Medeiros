@@ -123,7 +123,7 @@ export class UserBusiness {
       return users
 
       } catch (error) {
-         throw new CustomError(error.statusCode, error.message)
+         throw new CustomError(error.statusCode || 401, error.message)
       }
    }
 }
