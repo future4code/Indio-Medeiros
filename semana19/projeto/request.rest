@@ -1,0 +1,50 @@
+###signup
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "INdio",
+	"email": "INDIO@lbn.com",
+	"password": "12345dw2"
+}
+
+###login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+		"email": "INDIO@lbn.com",
+	"password": "12345dw2"
+}
+
+###get profile user
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.NzU1M2IxODgtZjZkZi00ZTU0LWFlNzYtZjRkNTQyYzU1OGZk.PKhP1cH9jyxEXxYKV4tCcezzbW3oG0XzDVYvmCrIerI
+
+###Create recipes
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.NzU1M2IxODgtZjZkZi00ZTU0LWFlNzYtZjRkNTQyYzU1OGZk.PKhP1cH9jyxEXxYKV4tCcezzbW3oG0XzDVYvmCrIerI
+
+{
+
+	"title": "arroz",
+	"description": "cebola + arroz + alho + água e sal. Deixa fever até secar"
+	
+}
+
+
+###Get recipes
+GET http://localhost:3003/recipe/""
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.NzU1M2IxODgtZjZkZi00ZTU0LWFlNzYtZjRkNTQyYzU1OGZk.PKhP1cH9jyxEXxYKV4tCcezzbW3oG0XzDVYvmCrIerI
+
+###create followers
+POST http://localhost:3003/user/follow
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.YTRkNWMyMTctMDc1Ni00MGM4LTg3OWMtNmVhYTAxMTg0NWUw.-gkl3xsLAk17ULaEhW5SBgXHh7auGDkX-H0wwjKQDwY
+
+{
+	"idFollowed": "4d5c217-0756-40c8-879c-6eaa011845e0"
+}
