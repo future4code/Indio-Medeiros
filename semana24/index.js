@@ -6,9 +6,9 @@ const checkDifferenLength = (originalWord, resultOriginalWord) => {
     return true;
   }
   return false;
-}
+};
 
-const countLetters = (originalWord, resultOriginalWord) => {
+const countDifferentLetters = (originalWord, resultOriginalWord) => {
   let letterDiffCount = 0;
   for (let i = 0; i < originalWord.length; i++) {
     if (originalWord[i] !== resultOriginalWord[i]) charsDiffCount += 1;
@@ -18,9 +18,9 @@ const countLetters = (originalWord, resultOriginalWord) => {
   } else {
     return false;
   }
-}
+};
 
-function isOneEdit(originalWord, resultOriginalWord) {
+function CheckIsOneEdit(originalWord, resultOriginalWord) {
   const resultDifferent = checkDifferenLength(originalWord, resultOriginalWord);
   if (!resultDifferent) {
     return false;
@@ -31,8 +31,56 @@ function isOneEdit(originalWord, resultOriginalWord) {
   if (resultOriginalWord.length > originalWord.length) {
     return resultOriginalWord.includes(originalWord);
   }
-  const resultCountLetters = countLetters(originalWord, resultOriginalWord);
+  const resultCountLetters = countDifferentLetters(
+    originalWord,
+    resultOriginalWord
+  );
+  
   return resultCountLetters;
 }
 
-isOneEdit("banana", "banan");
+
+// =================================================================
+
+// Exercicio 2
+
+const countLetters = (word) => {
+  let totalLetters = [];
+
+  for (let letter of word.toLowerCase()) {
+    if (!totalLetters[letter]) {
+      totalLetters[letter] = [`${letter}`, 1];
+    } else {
+      totalLetters[letter][1] += 1;
+    }
+  }
+
+  return totalLetters;
+};
+
+const joinResultOfLetterCount = (word, resultCountLetters) => {
+  let newWord;
+
+  for (let letter of word.toLowerCase()) {
+    if (!newWord) {
+      newWord = resultCountLetters[letter].join("");
+    } else if (!newWord.includes(resultCountLetters[letter].join(""))) {
+      newWord += resultCountLetters[letter].join("");
+    }
+  }
+
+  if (newWord.length > word.length) {
+    return word;
+  } else {
+    return newWord;
+  }
+};
+
+function compressWord(word) {
+  const resultCountLetters = countLetters(word);
+  const wordCompressed = joinResultOfLetterCount(word, resultCountLetters);
+  
+  return wordCompressed;
+}
+
+compressWord("aabbb");
