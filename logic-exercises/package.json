@@ -1,0 +1,17 @@
+{
+  "name": "lodigc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc ./ex1day1.ts && node ./ex1day1.js",
+    "test": "jest"
+  },
+  "author": "indio",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^26.0.21",
+    "jest": "^26.6.3"
+  }
+}
